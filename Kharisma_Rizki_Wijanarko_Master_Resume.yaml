@@ -1,0 +1,419 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/rendercv/rendercv/refs/tags/v2.8/schema.json
+cv:
+  name: Kharisma Rizki Wijanarko
+  location: "Jombang, East Java, Indonesia"
+  email: rizkiwijanarko7@gmail.com
+  phone: "+6282131462184"
+  custom_connections:
+    - fontawesome_icon: "linkedin"
+      placeholder: "LinkedIn"
+      url: "https://linkedin.com/in/rizki-wijanarko"
+    - fontawesome_icon: "github"
+      placeholder: "GitHub"
+      url: "https://github.com/rizkiwijanarko"
+  sections:
+    professional_summary:
+      - text: "Computer Science graduate and certified TensorFlow Developer specializing in applied AI, machine learning systems, and LLM engineering. Proven track record in building and deploying production-ready AI workflows, including RAG pipelines, multi-agent systems, and computer vision models. Passionate about engineering scalable, backend-integrated AI applications that solve complex data problems and drive operational efficiency."
+        roles: ["ai_engineer"]
+      - text: "Computer Science graduate and certified TensorFlow Developer specializing in machine learning systems, deep learning models, and MLOps. Experienced in training and deploying computer vision and sequence-to-sequence neural networks, as well as optimizing open-source models for high-performance GPU inference. Passionate about engineering production-grade machine learning pipelines and scalable AI systems."
+        roles: ["ml_engineer"]
+      - text: "Computer Science graduate and data practitioner specializing in predictive modeling, statistical analysis, and machine learning pipelines. Experienced in exploratory data analysis (EDA), cluster analysis, and data quality validation on complex datasets. Proven track record of leveraging data to uncover trends and build robust models to support data-driven decision-making."
+        roles: ["data_scientist"]
+      - text: "Computer Science graduate and data analyst specializing in business intelligence, data wrangling, and actionable insights. Proficient in SQL query optimization, database design, and interactive dashboard creation. Experienced in executing the complete Data Analysis Life Cycle and transforming complex datasets into clear, data-driven recommendations."
+        roles: ["data_analyst"]
+      - text: "Computer Science graduate and backend developer specializing in robust API design, database optimization, and scalable backend workflows. Experienced in building enterprise-grade data reconciliation systems, integrating AI models, and optimizing database queries, reducing processing times by 95%. Passionate about clean code and efficient system design."
+        roles: ["backend_engineer"]
+
+    skills:
+      # AI Engineer skills
+      - label: "Languages"
+        details: "Python, SQL, JavaScript, TypeScript"
+        roles: ["ai_engineer"]
+      - label: "AI & Machine Learning"
+        details: "LLM Applications, Agentic AI, RAG, Prompt Engineering, TensorFlow, PyTorch, Scikit-learn, Hugging Face, Transformers"
+        roles: ["ai_engineer"]
+      - label: "Backend & APIs"
+        details: "FastAPI, Flask, REST APIs, PostgreSQL, Supabase"
+        roles: ["ai_engineer"]
+      - label: "Infrastructure"
+        details: "Docker, Git, Linux, CI/CD, vLLM"
+        roles: ["ai_engineer"]
+      - label: "Data"
+        details: "Vector Databases, Pandas, NumPy"
+        roles: ["ai_engineer"]
+
+      # ML Engineer skills
+      - label: "Languages"
+        details: "Python, SQL, C++"
+        roles: ["ml_engineer"]
+      - label: "Machine Learning & DL"
+        details: "TensorFlow, PyTorch, Scikit-learn, CNNs, Transformers, Transfer Learning, NLP, Time-Series Forecasting"
+        roles: ["ml_engineer"]
+      - label: "MLOps & Infrastructure"
+        details: "vLLM, Docker, Linux, GPU Inference (vLLM on AMD MI300X), Git, CI/CD"
+        roles: ["ml_engineer"]
+      - label: "Backend & APIs"
+        details: "FastAPI, Flask, REST APIs, PostgreSQL"
+        roles: ["ml_engineer"]
+      - label: "Data & Libraries"
+        details: "Pandas, NumPy, Vector Databases"
+        roles: ["ml_engineer"]
+
+      # Data Scientist skills
+      - label: "Languages"
+        details: "Python, SQL"
+        roles: ["data_scientist"]
+      - label: "Data Science & Modeling"
+        details: "Clustering (K-Means, HDBSCAN, GMM), Machine Learning (Scikit-learn, TensorFlow), Statistical Analysis, Time-Series Forecasting, Data Leakage Detection"
+        roles: ["data_scientist"]
+      - label: "Data & Visualization"
+        details: "Pandas, NumPy, Matplotlib, Seaborn, Tableau, Data Wrangling"
+        roles: ["data_scientist"]
+      - label: "Databases & Backend"
+        details: "PostgreSQL, Supabase, Flask, REST APIs"
+        roles: ["data_scientist"]
+
+      # Data Analyst skills
+      - label: "Languages"
+        details: "Python, SQL"
+        roles: ["data_analyst"]
+      - label: "Data Analysis & EDA"
+        details: "Exploratory Data Analysis (EDA), Data Wrangling, Business Intelligence, Data Cleaning"
+        roles: ["data_analyst"]
+      - label: "Visualization & Tools"
+        details: "Tableau, Matplotlib, Seaborn, Excel"
+        roles: ["data_analyst"]
+      - label: "Databases & Storage"
+        details: "PostgreSQL, Supabase, Firebase"
+        roles: ["data_analyst"]
+      - label: "Libraries & Frameworks"
+        details: "Pandas, NumPy, Flask, Laravel"
+        roles: ["data_analyst"]
+
+      # Backend Engineer skills
+      - label: "Languages"
+        details: "Python, SQL, PHP, JavaScript, TypeScript, C++"
+        roles: ["backend_engineer"]
+      - label: "Backend & APIs"
+        details: "FastAPI, Flask, Laravel, REST APIs, JSON Schemas"
+        roles: ["backend_engineer"]
+      - label: "Databases & Storage"
+        details: "PostgreSQL, Supabase, Firebase, Relational Database Design, Query Optimization"
+        roles: ["backend_engineer"]
+      - label: "Infrastructure & Tools"
+        details: "Docker, Git, Linux, CI/CD, APScheduler"
+        roles: ["backend_engineer"]
+      - label: "AI Integration"
+        details: "LLM APIs, OpenAI, Vector Search, Tool-Calling Architecture"
+        roles: ["backend_engineer"]
+
+      # Common
+      - label: "Spoken Languages"
+        details: "Indonesian (Native), English (Professional)"
+        roles: ["all"]
+
+    work_experience:
+      - company: "Outlier.AI"
+        position: "LLM Evaluator (Freelance)"
+        start_date: "2024-08"
+        end_date: "2026-06"
+        location: "Remote"
+        roles: ["all"]
+        highlights:
+          - text: "Completed **100+ technical evaluation tasks** assessing LLM capabilities across code generation, web development, PyTorch/deep learning model building, and structured data tasks."
+            roles: ["all"]
+          - text: "Designed system prompts and adversarial test cases to evaluate multi-step agent reasoning, tool-calling accuracy, and instruction adherence across complex technical workflows."
+            roles: ["ai_engineer", "backend_engineer"]
+          - text: "Identified and documented agent failure patterns (hallucinations, loop errors, improper function calling) to deliver qualitative debugging feedback, improving LLM reasoning quality."
+            roles: ["ai_engineer", "ml_engineer", "backend_engineer"]
+          - text: "Evaluated deep learning model architectures (PyTorch) and code correctness to identify performance bottlenecks and logic flaws."
+            roles: ["ml_engineer", "data_scientist"]
+          - text: "Assessed structured data extraction pipelines and query optimization tasks for high-dimensional datasets."
+            roles: ["data_scientist", "data_analyst"]
+
+      - company: "BIT & PARI"
+        position: "Fullstack Developer (Internship)"
+        start_date: "2024-10"
+        end_date: "2025-01"
+        location: "Jakarta Pusat, Indonesia"
+        roles: ["all"]
+        highlights:
+          - text: "**Reduced reconciliation processing time by 95%** (from ~45 minutes to ~2 minutes) by optimizing backend data processing logic and database queries."
+            roles: ["all"]
+          - text: "Engineered an enterprise financial reconciliation system using SQL and relational databases to automate transaction matching and validation across multiple disparate sources."
+            roles: ["all"]
+          - text: "Designed robust backend validation pipelines and data traceability protocols (PostgreSQL), ensuring absolute auditability and consistency for daily finance operations."
+            roles: ["all"]
+
+      - company: "Universitas Negeri Semarang"
+        position: "Assistant Research Engineer"
+        start_date: "2022-11"
+        end_date: "2023-08"
+        location: "Semarang, Indonesia"
+        roles: ["backend_engineer", "data_analyst", "data_scientist"]
+        highlights:
+          - text: "Contributed to developing 'TeenyBoy', an interactive educational game designed to reduce pre-operative anxiety in children."
+            roles: ["backend_engineer", "data_analyst", "data_scientist"]
+          - text: "Co-led user testing and data collection across regional elementary schools, collecting behavioral and survey metrics to measure app efficacy."
+            roles: ["data_analyst", "data_scientist"]
+          - text: "Collaborated with a cross-functional team of educators, clinical researchers, and designers to refine game flows based on user testing analytics."
+            roles: ["backend_engineer", "data_analyst", "data_scientist"]
+
+    projects:
+      - name: "SignalAtlas: AI Market Intelligence Platform"
+        start_date: "2026-06"
+        summary: "Python, FastAPI, PostgreSQL, Vector DB, LLMs"
+        roles: ["ai_engineer", "backend_engineer"]
+        highlights:
+          - text: "Architected a SaaS-ready AI market intelligence platform that discovers business opportunities by mining and clustering customer pain points from unstructured online discussions."
+            roles: ["all"]
+          - text: "Designed an end-to-end LLM pipeline integrating concurrent web scraping, embedding-based clustering, and automated opportunity scoring using FastAPI, PostgreSQL, and vector search."
+            roles: ["all"]
+          - text: "Deployed containerized (Docker) REST APIs with scheduled pipelines (APScheduler), authentication, and a dashboard, reducing data ingestion latency."
+            roles: ["all"]
+
+      - name: "Ningsih: My Personal AI Secretary"
+        start_date: "2026-06"
+        summary: "Python, FastAPI, OpenAI, Supabase, Docker"
+        roles: ["ai_engineer", "backend_engineer"]
+        highlights:
+          - text: "Built an autonomous agentic AI assistant integrating Google APIs (Calendar, Tasks) and Telegram with persistent long-term memory to manage scheduling and workflows proactively."
+            roles: ["all"]
+          - text: "Implemented tool-calling architecture with persistent context, structured outputs (JSON schema matching), and background scheduling using FastAPI, Supabase, and OpenAI models."
+            roles: ["all"]
+          - text: "Engineered the platform for multi-tenant scalability, deploying Docker containers and designing modular APIs to handle concurrent task scheduling."
+            roles: ["all"]
+
+      - name: "VentureForge: Autonomous Startup Discovery"
+        date: "May 2026"
+        summary: "LangGraph, vLLM, Qwen3-35B, AMD MI300X, Gradio | [GitHub](https://github.com/rizkiwijanarko/KickUp)"
+        roles: ["ai_engineer", "ml_engineer"]
+        highlights:
+          - text: "Built a multi-agent workflow using LangGraph to analyze and score startup ideas via real-time integrations with Hacker News, Product Hunt, and YouTube APIs."
+            roles: ["all"]
+          - text: "Designed structured LLM-based evaluation pipelines to assess market relevance and product-market fit based on real-time data ingestion."
+            roles: ["all"]
+          - text: "Deployed open-source LLM inference (Qwen 3.5 35B) using vLLM on high-performance AMD MI300X GPUs, achieving low-latency inference for interactive Gradio clients."
+            roles: ["all"]
+
+      - name: "Rizclone: RAG-based Chatbot"
+        start_date: "2026-05"
+        summary: "Gradio, Hugging Face Spaces, Cohere, Telegram API"
+        roles: ["ai_engineer"]
+        highlights:
+          - text: "Built and deployed a RAG-based chatbot application using Gradio and Hugging Face Spaces, supporting custom tool calling and response generation."
+            roles: ["all"]
+          - text: "Enhanced retrieval accuracy by 25%+ by implementing query rewriting (LLM-based) and reranking (Cohere/BGE) to filter out noise from the knowledge base."
+            roles: ["all"]
+          - text: "Integrated Telegram API webhooks for real-time alerting on unanswered queries, tracking user interactions."
+            roles: ["all"]
+
+      - name: "Ensemble Wayang Kulit Classification"
+        date: "Jul 2025"
+        summary: "TensorFlow, InceptionV3, EfficientNetB2, ResNet101V2, Flask | [GitHub](https://github.com/rizkiwijanarko/Wayang_Kulit_Characters_Classification_using_Ensemble_Learning_Majority_Voting)"
+        roles: ["ml_engineer", "data_scientist"]
+        highlights:
+          - text: "Developed an ensemble CNN classifier combining InceptionV3, EfficientNetB2, and ResNet101V2 via transfer learning, achieving 99.80% test accuracy on 22 classes."
+            roles: ["all"]
+          - text: "Diagnosed and resolved a critical data leakage issue in the public Kaggle dataset (pre-existing augmentation before partitioning), demonstrating rigorous evaluation methodology."
+            roles: ["all"]
+          - text: "Built and deployed a Flask-based web application to serve real-time predictions with interactive probability visualizations."
+            roles: ["all"]
+
+      - name: "Sustainable Urbanization Clustering Analysis"
+        date: "Feb 2025"
+        summary: "K-Means, HDBSCAN, GMM, Pandas, NumPy | [GitHub](https://github.com/rizkiwijanarko)"
+        roles: ["data_scientist", "data_analyst"]
+        highlights:
+          - text: "Led data preprocessing, feature engineering, and clustering model development using multi-source environmental and demographic datasets."
+            roles: ["all"]
+          - text: "Integrated and analyzed regional datasets from Badan Pusat Statistik, IQAir, and WeatherSpark, conducting exploratory data analysis (EDA) to uncover urbanization trends."
+            roles: ["all"]
+          - text: "Evaluated K-Means, K-Medoids, HDBSCAN, and Gaussian Mixture Models, achieving optimal silhouette scores and earning 3rd Place in a National Data Mining Competition."
+            roles: ["all"]
+
+      - name: "Lapor Pak: Web Public Complaint System"
+        date: "Oct 2024"
+        summary: "Laravel, OpenAI API, Geocoding, Resend API"
+        roles: ["backend_engineer"]
+        highlights:
+          - text: "Developed the backend of a web-based AI public complaint system using Laravel, OpenAI, GeoCoding, and Resend APIs."
+            roles: ["all"]
+          - text: "Designed automated text categorization and routing logic to classify citizen complaints and assign them to relevant government bodies."
+            roles: ["all"]
+          - text: "Earned 'Best Project' recognition from judges at the Maxy Hackathon for backend stability and AI feature integration."
+            roles: ["all"]
+
+      - name: "Automated Image Captioning"
+        date: "Jun 2024"
+        summary: "TensorFlow, CNN, LSTM, BLEU Evaluation"
+        roles: ["ml_engineer"]
+        highlights:
+          - text: "Developed an automated image captioning model combining CNN (feature extraction) and LSTM (sequence generation) architectures in TensorFlow."
+            roles: ["all"]
+          - text: "Engineered data preprocessing pipelines to tokenize captions and pad sequences for 8K+ images."
+            roles: ["all"]
+          - text: "Evaluated model performance using BLEU metrics, achieving BLEU-1: 0.569, BLEU-2: 0.350, and BLEU-4: 0.139."
+            roles: ["all"]
+
+      - name: "Brazilian E-Commerce Data Analysis"
+        date: "Mar 2024"
+        summary: "Pandas, NumPy, Matplotlib, Seaborn, Tableau"
+        roles: ["data_scientist", "data_analyst"]
+        highlights:
+          - text: "Executed the complete Data Analysis Life Cycle on a 100K+ transaction Brazilian E-Commerce dataset, using Pandas and NumPy for wrangling."
+            roles: ["all"]
+          - text: "Conducted exploratory data analysis (EDA) and built an interactive visualization dashboard (Tableau/Matplotlib) to track revenue growth and order fulfillment."
+            roles: ["all"]
+          - text: "Formulated actionable business recommendations by answering 6 key questions regarding customer lifecycle value and geographic distribution."
+            roles: ["all"]
+
+      - name: "Coffeein: Mobile Purchase Order App"
+        date: "Nov 2023"
+        summary: "Android, Firebase Realtime Database, Google OAuth"
+        roles: ["data_analyst", "backend_engineer"]
+        highlights:
+          - text: "Developed a secure purchase order backend for a mobile coffee shop application, integrating Firebase Realtime Database and Google OAuth."
+            roles: ["all"]
+          - text: "Implemented role-based access control for shop owners and customers, ensuring secure transactional operations."
+            roles: ["all"]
+          - text: "Nominated for Intellectual Property Rights (HKI) registration by supervisorial committee for outstanding architecture."
+            roles: ["all"]
+
+      - name: "TaniLink: Agro-Marketplace Price Forecasting"
+        date: "Dec 2023"
+        summary: "Python, TensorFlow, LSTM, REST APIs"
+        roles: ["ml_engineer", "data_scientist", "data_analyst"]
+        highlights:
+          - text: "Developed commodity price forecasting models as part of the ML engineering team for a farmer-to-consumer mobile marketplace."
+            roles: ["all"]
+          - text: "Trained and evaluated LSTM and time-series regression models, achieving a Validation Mean Absolute Error (MAE) of 0.0784."
+            roles: ["all"]
+          - text: "Collaborated with backend engineers to deploy the model as a lightweight microservice serving real-time predictions."
+            roles: ["all"]
+
+    education:
+      - institution: "Universitas Negeri Semarang"
+        area: "Computer Science"
+        degree: "Bachelor of Computer Science"
+        start_date: "2021-08"
+        end_date: "2025-08"
+        location: "Semarang, Indonesia"
+        highlights:
+          - "GPA: **3.82 / 4.00**"
+        roles: ["all"]
+      - institution: "Bangkit Academy"
+        area: "Machine Learning Path"
+        degree: "Graduate"
+        start_date: "2023-08"
+        end_date: "2023-12"
+        location: "Indonesia"
+        highlights:
+          - "Final score: **93.23 / 100**"
+        roles: ["all"]
+
+    certifications:
+      - bullet: "TensorFlow Developer Certificate -- TensorFlow (May 2024)"
+        roles: ["ai_engineer", "ml_engineer", "data_scientist"]
+      - bullet: "Agentic AI Course Completion -- DeepLearning.AI (Apr 2026)"
+        roles: ["ai_engineer", "backend_engineer"]
+      - bullet: "Bangkit Academy Certificate of Completion -- Bangkit Academy (Dec 2023)"
+        roles: ["all"]
+      - bullet: "TensorFlow: Data and Deployment Specialization -- Coursera (Nov 2023)"
+        roles: ["ml_engineer", "backend_engineer"]
+      - bullet: "DeepLearning.AI TensorFlow Developer Specialization -- Coursera (Nov 2023)"
+        roles: ["ml_engineer"]
+      - bullet: "Machine Learning Specialization -- Coursera (Oct 2023)"
+        roles: ["ml_engineer", "data_scientist", "data_analyst"]
+      - bullet: "Mathematics for Machine Learning and Data Science Specialization -- Coursera (Sep 2023)"
+        roles: ["data_scientist", "data_analyst"]
+      - bullet: "Structuring Machine Learning Projects -- Coursera (Nov 2023)"
+        roles: ["ml_engineer", "data_scientist"]
+
+    achievements:
+      - bullet: "3rd Place -- National Data Mining Competition, UNY National IT Competition (UNITY), 2025"
+        roles: ["all"]
+
+design:
+  theme: engineeringresumes
+  page:
+    size: us-letter
+    top_margin: 0.65in
+    bottom_margin: 0.65in
+    left_margin: 0.6in
+    right_margin: 0.6in
+    show_footer: false
+    show_top_note: false
+  colors:
+    name: rgb(0, 0, 0)
+    connections: rgb(0, 0, 0)
+    headline: rgb(0, 0, 0)
+    section_titles: rgb(0, 0, 0)
+    links: rgb(0, 79, 144)
+  typography:
+    line_spacing: 0.6em
+    alignment: justified
+    date_and_location_column_alignment: right
+    font_family:
+      body: XCharter
+      name: XCharter
+      headline: XCharter
+      connections: XCharter
+      section_titles: XCharter
+    font_size:
+      body: 10pt
+      name: 26pt
+      headline: 10pt
+      connections: 10pt
+      section_titles: 1.2em
+    bold:
+      name: false
+      headline: false
+      connections: false
+      section_titles: true
+  links:
+    underline: false
+    show_external_link_icon: false
+  header:
+    alignment: center
+    space_below_name: 0.25cm
+    space_below_headline: 0.25cm
+    space_below_connections: 0.25cm
+    connections:
+      phone_number_format: international
+      hyperlink: true
+      show_icons: false
+      display_urls_instead_of_usernames: true
+      separator: ' | '
+      space_between_connections: 0.35cm
+  section_titles:
+    type: with_full_line
+    line_thickness: 0.5pt
+    space_above: 0.5cm
+    space_below: 0.3cm
+  sections:
+    allow_page_break: true
+    space_between_regular_entries: 0.42cm
+    space_between_text_based_entries: 0.15cm
+    show_time_spans_in: []
+  entries:
+    date_and_location_width: 3.5cm
+    side_space: 0cm
+    space_between_columns: 0.15cm
+    allow_page_break: true
+    short_second_row: false
+    degree_width: 1cm
+    summary:
+      space_above: 0.08cm
+      space_left: 0cm
+    highlights:
+      bullet: ●
+      nested_bullet: ●
+      space_left: 0cm
+      space_above: 0.08cm
+      space_between_items: 0.08cm
+      space_between_bullet_and_text: 0.4em
+
+locale:
+  language: english
+  present: Present
