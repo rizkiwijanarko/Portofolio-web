@@ -25,7 +25,7 @@ const base = import.meta.env.BASE_URL;
           aria-current={active === l.key ? 'page' : undefined}
         >
           {l.label}
-          {l.soon && <span class="soon">soon</span>}
+          {l.soon && <span class="soon" aria-hidden="true">soon</span>}
         </a>
       ))}
     </nav>
