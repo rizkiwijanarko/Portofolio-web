@@ -7,3 +7,5 @@
 - Prefers the personal photo presented understated — part of the hero composition (small avatar, or beside the copy), not a large standalone centerpiece; a standalone portrait "feels too narcissistic." Confidence: 0.85
 - Prefers building from scratch over reusing previous designs/blueprints — was unsatisfied with builds based on an old blueprint and explicitly wanted a fresh start. Confidence: 0.85
 - Wants visual/UI changes actually verified by rendering (headless-browser screenshots + measured geometry), not just reasoned about in code — "ensure to verify it visually." Confidence: 0.85
+- Prefers agent-browser (CDP-based Chrome automation) for visual inspection and testing of the site — screenshots plus accessibility-tree snapshots — over headless-Chrome flags or Puppeteer scripts; proposed it proactively ("how about using agent-browser mcp instead") to make testing easier. Confidence: 0.85
+- Wants AGENTS.md kept current as workflows and tooling evolve — asked whether it needed updating after the agent adopted a new testing tool. Confidence: 0.65

@@ -7,15 +7,15 @@ const projects = (await getCollection('projects')).sort((a, b) => a.data.order -
 const featured = projects.filter((p) => p.data.featured);
 
 const journey = [
-  'Python',
-  'Machine Learning',
-  'TensorFlow Certification',
-  'Bangkit',
-  'Production Internship',
-  'LLM Systems',
-  'Multi-Agent Systems',
-  'SignalAtlas',
-  'AI SaaS',
+  { stage: 'Python', desc: 'First steps \u2014 scripts, data, and curiosity about how things work.' },
+  { stage: 'Machine Learning', desc: 'Scikit-learn, CNNs, and learning the math underneath the models.' },
+  { stage: 'TensorFlow Certification', desc: 'Officially a TensorFlow Developer \u2014 deep learning with structure.' },
+  { stage: 'Bangkit', desc: "Google's ML program \u2014 graduated 93.23/100 alongside real peers." },
+  { stage: 'Production Internship', desc: 'BIT & PARI \u2014 cut financial reconciliation time by 95%.' },
+  { stage: 'LLM Systems', desc: 'RAG pipelines, tool-calling, structured outputs, long-term memory.' },
+  { stage: 'Multi-Agent Systems', desc: 'LangGraph workflows, open-source models served on AMD MI300X.' },
+  { stage: 'SignalAtlas', desc: 'First AI-native SaaS platform \u2014 from idea to containerized product.' },
+  { stage: 'AI SaaS', desc: 'Building AI products end to end \u2014 and enjoying every part of it.' },
 ];
 
 const base = import.meta.env.BASE_URL;
@@ -92,15 +92,17 @@ const pdf = base + 'Kharisma_Rizki_Wijanarko_CV.pdf';
       <h2 class="sec-title">The road so far</h2>
       <p class="sec-sub">From first lines of Python to shipping AI SaaS.</p>
       <div class="tl">
-        {journey.map((stage, i) => (
+        {journey.map((j, i) => (
           <div class:list={['tl-item', { current: i === journey.length - 1 }]}>
-            <div class="tl-spacer" />
             <div class="tl-node">
               <span class="tl-dot">{String(i + 1).padStart(2, '0')}</span>
             </div>
             <div class="tl-card">
-              <span class="tl-stage">{stage}</span>
-              {i === journey.length - 1 && <span class="tl-now">now</span>}
+              <h3>
+                {j.stage}
+                {i === journey.length - 1 && <span class="tl-now" aria-hidden="true">now</span>}
+              </h3>
+              <p>{j.desc}</p>
             </div>
           </div>
         ))}
@@ -309,53 +311,65 @@ const pdf = base + 'Kharisma_Rizki_Wijanarko_CV.pdf';
     position: relative;
     max-width: 760px;
     margin: 46px auto 0;
+    padding-left: 72px;
   }
   .tl::before {
     content: '';
     position: absolute;
-    left: 28px;
-    top: 0;
-    bottom: 0;
+    left: 24px;
+    top: 8px;
+    bottom: 8px;
     width: 2px;
     background: var(--hairline);
   }
   .tl-item {
-    display: grid;
-    grid-template-columns: 56px 1fr;
-    gap: 18px;
-    margin-bottom: 8px;
+    position: relative;
+    margin-bottom: 20px;
+  }
+  .tl-item:last-child {
+    margin-bottom: 0;
   }
   .tl-node {
+    position: absolute;
+    left: -72px;
+    top: 16px;
     display: flex;
     justify-content: center;
+    width: 72px;
   }
   .tl-dot {
-    width: 42px;
-    height: 42px;
+    width: 50px;
+    height: 50px;
     border-radius: 50%;
     background: var(--card);
-    border: 1.5px solid var(--card-border);
-    color: var(--ink-faint);
+    border: 2px solid var(--accent);
+    color: var(--accent-deep);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 0.72rem;
-    font-weight: 700;
+    font-size: 0.82rem;
+    font-weight: 750;
     font-family: var(--font-mono);
     box-shadow: var(--shadow-soft);
-    z-index: 1;
   }
   .tl-card {
-    padding: 8px 0;
-    display: flex;
-    align-items: center;
-    gap: 10px;
+    background: var(--card);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius-lg);
+    padding: 18px 22px;
+    box-shadow: var(--shadow-soft);
   }
-  .tl-stage {
-    font-weight: 650;
-    font-size: 1.02rem;
+  .tl-card h3 {
+    font-size: 1.06rem;
+    font-weight: 700;
+  }
+  .tl-card p {
+    margin: 4px 0 0;
+    color: var(--ink-soft);
+    font-size: 0.92rem;
   }
   .tl-now {
+    display: inline-block;
     font-size: 0.68rem;
     font-weight: 700;
     letter-spacing: 0.05em;
@@ -364,11 +378,17 @@ const pdf = base + 'Kharisma_Rizki_Wijanarko_CV.pdf';
     color: var(--accent-deep);
     border-radius: var(--radius-pill);
     padding: 3px 9px;
+    margin-left: 8px;
+    vertical-align: 2px;
   }
   .tl-item.current .tl-dot {
     background: var(--accent);
     border-color: var(--accent);
     color: #fff;
+  }
+  .tl-item.current .tl-card {
+    background: linear-gradient(180deg, #fdf6ee, var(--card));
+    border-color: #f0dcc5;
   }
 
   /* ============ Experience ============ */
@@ -469,20 +489,20 @@ const pdf = base + 'Kharisma_Rizki_Wijanarko_CV.pdf';
     .exp-grid {
       grid-template-columns: 1fr;
     }
-    .tl::before {
-      left: 24px;
+    .tl {
+      padding-left: 56px;
     }
-    .tl-item {
-      grid-template-columns: 48px 1fr;
-      gap: 0;
+    .tl::before {
+      left: 19px;
+    }
+    .tl-node {
+      left: -56px;
+      width: 56px;
     }
     .tl-dot {
-      width: 42px;
-      height: 42px;
+      width: 44px;
+      height: 44px;
       font-size: 0.75rem;
-    }
-    .tl-card {
-      margin-left: 8px;
     }
     .contact-card {
       padding: 48px 24px 44px;
