@@ -31,9 +31,7 @@ An end-to-end LLM pipeline that combines concurrent web scraping, embedding-base
 
 ## Architecture
 
-> TODO: architecture diagram placeholder — export from the project and drop into `src/assets/projects/signalatlas/`.
-
-The system is built as containerized REST APIs (Docker) with scheduled pipelines (APScheduler), authentication, and a dashboard, reducing data ingestion latency.
+The system separates source ingestion, language-model extraction, embedding-based clustering, and opportunity scoring into scheduled stages. Containerized APIs expose the processed results to an authenticated dashboard while keeping long-running analysis jobs isolated from the user interface.
 
 ## Tech Stack
 
@@ -56,15 +54,15 @@ The system is built as containerized REST APIs (Docker) with scheduled pipelines
 
 ## Challenges
 
-> TODO: challenge/solution/outcome entries — to be filled from the project's build log.
+The central challenge is turning inconsistent, informal language into comparable problem signals without losing the context that makes each complaint meaningful. Normalization and clustering are kept as separate stages so their quality can be evaluated independently.
 
 ## Results
 
-> TODO: measurable impact (performance, latency, accuracy) — to be filled from the project.
+The prototype connects ingestion, pain-point extraction, clustering, and scoring into one repeatable workflow, with the resulting opportunity themes available through a dashboard.
 
 ## Lessons Learned
 
-> TODO: key engineering lessons — architecture, scalability, maintainability.
+Opportunity discovery benefits from a pipeline that makes the evidence behind each recommendation visible instead of presenting a score without context.
 
 ## Roadmap
 

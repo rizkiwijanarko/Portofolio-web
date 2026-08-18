@@ -29,9 +29,7 @@ A critical part of the work was **diagnosing data leakage** in the public Kaggle
 
 ## Architecture
 
-> TODO: architecture diagram placeholder — export from the project.
-
-The pipeline: image input → three parallel transfer-learned backbones → softmax probabilities per backbone → majority-vote ensemble → predicted class, served via a Flask web app with interactive probability visualizations.
+The pipeline sends each image through three parallel transfer-learned backbones. Their class probabilities are combined through majority voting before the predicted character is returned by a Flask web app with interactive confidence visualizations.
 
 ## Tech Stack
 
@@ -63,7 +61,7 @@ The pipeline: image input → three parallel transfer-learned backbones → soft
 
 ## Lessons Learned
 
-> TODO: key engineering lessons — evaluation integrity first.
+Evaluation integrity matters as much as model accuracy. Checking the dataset split for leakage before reporting results made the final performance claim meaningful.
 
 ## Roadmap
 

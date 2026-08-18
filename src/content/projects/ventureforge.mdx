@@ -33,7 +33,7 @@ The inference layer runs a self-hosted open-source LLM — Qwen3-35B served with
 
 ## Architecture
 
-> TODO: architecture diagram placeholder — export from the project.
+The workflow routes an idea through dedicated source collectors, a shared evaluation stage, and a final scoring step. Each stage contributes structured evidence so the result can be traced back to the signals that influenced it.
 
 ## Tech Stack
 
@@ -57,15 +57,15 @@ The inference layer runs a self-hosted open-source LLM — Qwen3-35B served with
 
 ## Challenges
 
-> TODO: challenge/solution/outcome entries.
+The main challenge is keeping the evaluation grounded in current evidence without letting one noisy source dominate the result. Separating collection, analysis, and scoring makes each stage easier to inspect and calibrate.
 
 ## Results
 
-> TODO: measurable impact.
+The working prototype combines multiple live sources, produces a structured score, and exposes the workflow through an interactive Gradio interface. Calibration against known outcomes remains part of the next iteration.
 
 ## Lessons Learned
 
-> TODO: key engineering lessons.
+Multi-agent workflows are most useful when each stage has a narrow responsibility and produces an inspectable intermediate result.
 
 ## Roadmap
 

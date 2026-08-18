@@ -12,99 +12,83 @@ preview: "/previews/ningsih-app.jpg"
 order: 1
 ---
 
+import PublicImage from '../../components/PublicImage.astro';
+
 ## Overview
 
-**Ningsih** is a proactive, multi-tenant mobile SaaS that acts as an intelligent digital chief of staff. Instead of forcing users into rigid project-management boards, it manages Google Calendar, tracks habits and goals, generates 3-tier micro-task decompositions, records long-term memories, and orchestrates day-part routines — all through natural conversation and voice.
+**Ningsih** is a proactive mobile product that acts as an intelligent digital chief of staff. Instead of forcing people into rigid project-management boards, it helps manage calendars, habits, goals, small tasks, and personal context through natural conversation and voice.
 
-It evolved from an earlier Telegram-bot prototype into a carefully designed mobile product: an Expo/React Native app backed by a serverless Convex real-time backend and a deep agent engine.
+It evolved from an earlier Telegram-bot prototype into a focused mobile experience backed by a real-time serverless platform and an agent engine that can take action on a person's behalf.
 
-![Ningsih App Showcase](/Portofolio-web/previews/ningsih-app.jpg)
+<PublicImage src="/previews/ningsih-app.jpg" alt="Ningsih mobile app showcase" />
 
 ## Problem
 
-Busy professionals and ADHD minds face **executive dysfunction, time blindness, and calendar overload**. Traditional productivity apps demand manual entry, rigid boards, and constant context-switching — exactly the friction that stops people from starting. What's missing is a system that *proactively* structures the day and breaks overwhelming work into approachable steps.
+Busy professionals and people with ADHD often face executive dysfunction, time blindness, and calendar overload. Traditional productivity apps demand manual entry and constant context switching — exactly the friction that makes it hard to start. Ningsih is designed to turn an overwhelming thought into one approachable next step.
 
 ## Solution
 
 Ningsih turns messy voice notes and brain-dumps into structured daily momentum:
 
-- **Proactive morning kickoff** — prepares a daily briefing based on your chronotype (Early Bird vs. Night Owl) and energy level before you ask.
-- **Speak or text naturally** — raw voice notes ("I'm overwhelmed with this client proposal and need to fit in a gym session") are transcribed and parsed into actions.
-- **Smart organizing & calendar sync** — cross-references requests against Google Calendar for open slots and conflict detection, linking actions to overarching goals.
-- **2-minute micro-steps** — decomposes intimidating tasks into three difficulty tiers (Easy ~2m / Medium ~3m / Larger ~5m) with "Just do step 1" framing to break initiation inertia.
-- **Zero-guilt momentum** — distraction-recovery prompts, 5-minute re-entry timers, and rest-day tolerance buffers so a single off-day never wipes progress.
+- **Proactive morning kickoff** — prepares a daily briefing based on the person's schedule, goals, and energy pattern.
+- **Natural voice and text input** — understands requests such as fitting a workout around a client proposal and an existing calendar.
+- **Calendar-aware planning** — checks open time, detects conflicts, and connects actions to longer-term goals.
+- **Small next steps** — breaks intimidating work into short, progressive actions so the person can begin without planning the entire task.
+- **Low-pressure recovery** — offers distraction recovery, re-entry timers, and rest-day tolerance instead of treating one missed day as failure.
 
 ## Architecture
 
-![System Architecture](/Portofolio-web/projects/ningsih-app/architecture.jpg)
+<PublicImage src="/projects/ningsih-app/architecture.jpg" alt="Ningsih mobile app architecture connecting the client, real-time backend, AI services, calendar, authentication, and subscriptions" />
 
-![Agent Behavior Lifecycle](/Portofolio-web/projects/ningsih-app/agentic-lifecycle.jpg)
+<PublicImage src="/projects/ningsih-app/agentic-lifecycle.jpg" alt="Ningsih agent lifecycle from a natural-language request to planning, tool use, and a user-facing response" />
 
 ### Key Layers
 
-1. **Client Layer (Mobile App)** — Expo SDK 57 (React Native 0.86) with Expo Router, NativeWind (Tailwind CSS) + a custom **Ember Studio** design system (dark-mode-first ember gradients, glassmorphism, Playfair Display + Source Sans 3). Real-time data binding via the Convex React Native client (`useQuery`/`useMutation`/`useAction`); voice recording via `expo-audio`, haptics via `expo-haptics`, smart local alerts via `expo-notifications`.
-
-2. **Backend Layer (Convex Serverless)** — a document store with relational multi-tenant models (users, goals, milestones, tasks, activities, calendar events, memories, day-part routines). A deep agent engine (`convex/agent/`) provides a unified 10-tool execution registry with structured tool parsing, Socratic goal alignment, and fallback resilience. The calendar-sync engine runs 15-minute background cron syncs with immediate on-write projection, conflict detection, and RRULE expansion. Entitlements are server-authoritative (Free vs. Plus/Premium).
-
-3. **External Services** — OpenRouter powering DeepSeek V4 Flash for low-latency reasoning and tool dispatch (OpenAI API as fallback); OpenAI Whisper for voice-to-text; Clerk Expo for Google OAuth; RevenueCat for Google Play / App Store subscriptions with server webhook validation.
+1. **Mobile experience** — an Expo and React Native app with a dark, calm visual system, real-time data binding, voice capture, haptics, and local reminders.
+2. **Application backend** — a serverless real-time backend stores users, goals, tasks, activities, calendar events, memories, and routines while enforcing tenant boundaries.
+3. **Agent services** — language models interpret requests, choose appropriate actions, and return structured results that the app can display and update in real time.
+4. **External services** — calendar synchronization, speech-to-text, authentication, and subscriptions connect through server-controlled integrations.
 
 ## Tech Stack
 
-- **Frontend**: Expo SDK 57, React Native 0.86, Expo Router, NativeWind, expo-glass-effect, expo-linear-gradient
-- **Backend**: Convex (serverless real-time database, queries, mutations, Node.js actions)
-- **AI**: DeepSeek V4 Flash via OpenRouter, OpenAI Whisper (voice), OpenAI API fallback
-- **Auth & Monetization**: Clerk Expo (Google OAuth), RevenueCat (`react-native-purchases` v10.7.0)
-- **Testing**: Vitest (backend & unit), agent-device (automated E2E replays), rn-debug MCP (Android inspection)
-
-## The Agent Tool Registry
-
-The agent's deep module registry (`convex/agent/toolRegistry.ts`) co-locates 10 schemas and handlers:
-
-| Tool | Purpose |
-|---|---|
-| `logActivity` | Log habits, workouts, skips, or misses with pillar categorization and streak updates |
-| `fetchTodaySchedule` | Unified schedule of Ningsih events, Google Calendar events, and completed activities |
-| `scheduleEvent` | Schedule events with conflict checking, goal linking, and RRULE recurrence |
-| `alignGoal` | Interactive Socratic alignment session for ambiguous goals |
-| `manageGoal` | Create, update, pause, or complete long/short-term goals |
-| `manageTask` | Create, list, or complete tasks in the native Focus List |
-| `suggestMicroTask` | Decompose overwhelming tasks into 3 tiered micro-steps (2m / 3m / 5m) |
-| `rememberContext` | Store constraints, preferences, and details into long-term memory |
-| `reportScreenTime` | Log distraction time and generate somatic reset + re-entry micro-actions |
-| `generateWeeklyReview` | Synthesize weekly metrics, focus hours, and key wins into an insights review |
+- **Frontend**: Expo, React Native, Expo Router, NativeWind
+- **Backend**: Convex serverless real-time database and functions
+- **AI**: DeepSeek V4 Flash via OpenRouter, with speech-to-text input
+- **Auth and monetization**: Clerk and RevenueCat
+- **Testing**: unit, backend, and device-level workflow testing
 
 ## Key Features
 
-- **Core AI agent loop & tool calling** — DeepSeek V4 Flash with real-time tool execution and structured outputs
-- **Socratic goal alignment** — 3-tier milestone cascade (Short/Long-term Goals → Sub-milestones → Sprint Tasks) with quick-select chips
-- **Habit & activity consistency engine** — 30-day rolling consistency score, per-activity streaks, rest-day buffers, comeback celebrations
-- **Focus sessions & native Focus List** — focus timer, ambient sound, distraction recovery, `/tasks` management
-- **Voice note input** — native capture + Whisper transcription into structured tool calls
-- **Google Calendar 2-way sync** — agenda, conflict detection, recurring events (RRULE) with tiered capabilities
-- **Weekly insights & native charts** — Gifted Charts: focus hours, habit consistency %, AI-synthesized weekly reviews
-- **Freemium entitlements** — server-authoritative Free vs. Plus tiers with RevenueCat and in-app paywalls
+- Conversational AI agent with structured actions
+- Goal alignment and milestone planning
+- Habit and activity consistency tracking with rest-day buffers
+- Focus sessions, distraction recovery, and a native task list
+- Voice notes converted into actionable plans
+- Two-way Google Calendar sync with conflict detection
+- Weekly insights and progress visualizations
+- Server-controlled free and paid entitlements
 
 ## Engineering Decisions
 
-- **Convex serverless** for real-time reactivity (queries/mutations/actions) without managing a backend fleet — the document store handles relational multi-tenant models.
-- **Deep tool registry pattern** — a single unified registry with co-located schemas keeps 10 tools consistent, parseable, and fallback-resilient.
-- **Server-authoritative entitlements** — webhook verification and tier gating on the server, not the client, so paywall state can't be spoofed.
-- **15-minute calendar cron + on-write projection** — predictable background sync with immediate local consistency.
+- **Real-time backend** so calendar updates, task changes, and agent actions stay synchronized across the app.
+- **One action-oriented agent flow** so natural-language requests can produce useful changes instead of only generating advice.
+- **Server-controlled permissions and entitlements** so account access and subscription state cannot be trusted only to the client.
+- **Small-step planning** so the product supports starting and recovering, not only long-term planning.
 
 ## Screens
 
-![Today's Dashboard](/Portofolio-web/projects/ningsih-app/screen-home.jpg)
+<PublicImage src="/projects/ningsih-app/screen-home.jpg" alt="Ningsih daily dashboard" />
 
-![AI Chief of Staff Chat](/Portofolio-web/projects/ningsih-app/screen-chat.jpg)
+<PublicImage src="/projects/ningsih-app/screen-chat.jpg" alt="Ningsih conversational AI assistant" />
 
-![Goals & Milestone Cascade](/Portofolio-web/projects/ningsih-app/screen-goals.jpg)
+<PublicImage src="/projects/ningsih-app/screen-goals.jpg" alt="Ningsih goals and milestone planning" />
 
-![Focus Session Timer](/Portofolio-web/projects/ningsih-app/screen-focus.jpg)
+<PublicImage src="/projects/ningsih-app/screen-focus.jpg" alt="Ningsih focus session timer" />
 
-![Habits & Consistency](/Portofolio-web/projects/ningsih-app/screen-habits.jpg)
+<PublicImage src="/projects/ningsih-app/screen-habits.jpg" alt="Ningsih habits and consistency view" />
 
 ## Status & Roadmap
 
-- **Building** — active development as a private multi-tenant SaaS (mobile app in development builds on Pixel 6)
-- Architecture Decision Records (ADRs 0001–0014) and a full user-flow documentation hub live in the project repo
-- RevenueCat IAP setup and entitlement gating are implemented and documented
+- **Building** — active development as a private multi-tenant mobile SaaS
+- **Current focus** — refining the agent experience, calendar reliability, and subscription flows
+- **Next** — expanding integrations and validating the product with real daily routines
