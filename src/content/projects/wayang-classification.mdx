@@ -1,0 +1,70 @@
+---
+title: "Ensemble Wayang Kulit Classification"
+summary: "An ensemble CNN classifier combining InceptionV3, EfficientNetB2, and ResNet101V2 to recognize 22 Wayang Kulit characters at 99.80% accuracy."
+status: "shipped"
+category: "Machine Learning"
+role: "ML Engineer"
+startDate: "2025-07"
+tech: ["TensorFlow", "InceptionV3", "EfficientNetB2", "ResNet101V2", "Flask"]
+featured: true
+previewAvailable: false
+order: 4
+repoUrl: "https://github.com/rizkiwijanarko/Wayang_Kulit_Characters_Classification_using_Ensemble_Learning_Majority_Voting"
+---
+
+## Overview
+
+An ensemble CNN classifier that recognizes 22 Wayang Kulit (Javanese shadow puppet) characters from images, combining three transfer-learned backbones with majority voting to reach 99.80% test accuracy.
+
+## Problem
+
+Wayang Kulit is a rich cultural heritage, but its characters are unfamiliar to most people. A classifier that can identify the characters from a photo needed to be both accurate and robust — and the public dataset for it carried a hidden data-leakage trap.
+
+## Solution
+
+An ensemble of three transfer-learned CNNs — InceptionV3, EfficientNetB2, and ResNet101V2 — combined with majority voting. Each backbone sees the same image; the ensemble votes on the character.
+
+A critical part of the work was **diagnosing data leakage** in the public Kaggle dataset: pre-existing augmentation before partitioning meant the train/test split was not clean. Resolving it made the reported accuracy trustworthy.
+
+## Architecture
+
+> TODO: architecture diagram placeholder — export from the project.
+
+The pipeline: image input → three parallel transfer-learned backbones → softmax probabilities per backbone → majority-vote ensemble → predicted class, served via a Flask web app with interactive probability visualizations.
+
+## Tech Stack
+
+- **Models**: TensorFlow, InceptionV3, EfficientNetB2, ResNet101V2
+- **Ensemble**: majority voting
+- **Deployment**: Flask web application
+
+## Key Features
+
+- 22-class Wayang Kulit recognition
+- Three-backbone ensemble with majority voting
+- Interactive probability visualization
+- Data-leakage-verified evaluation
+
+## Engineering Decisions
+
+- **Ensemble + majority voting** over a single model — robustness across diverse backbones
+- **Transfer learning** (ImageNet weights) — small dataset, high accuracy without training from scratch
+- **Leakage diagnosis before reporting** — a 99%+ accuracy claim is only worth anything if the split is sound
+
+## Challenges
+
+**Data leakage in the public dataset.** The Kaggle dataset had augmentation applied before partitioning, leaking augmented copies of training images into the test set. Diagnosis and re-partitioning restored evaluation integrity.
+
+## Results
+
+- **Test accuracy: 99.80%** on 22 classes (leakage-free split)
+- Deployed real-time predictions via Flask
+
+## Lessons Learned
+
+> TODO: key engineering lessons — evaluation integrity first.
+
+## Roadmap
+
+- **Completed**: ensemble model, leakage fix, Flask deployment
+- **Planned**: edge-case robustness, more characters

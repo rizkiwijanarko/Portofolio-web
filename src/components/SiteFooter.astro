@@ -1,0 +1,72 @@
+---
+const base = import.meta.env.BASE_URL;
+const nav = [
+  { href: '/', label: 'Home' },
+  { href: '/projects/', label: 'Projects' },
+  { href: '/experience/', label: 'Experience' },
+  { href: '/writing/', label: 'Writing' },
+  { href: '/resume/', label: 'Resume' },
+  { href: '/contact/', label: 'Contact' },
+];
+---
+
+<footer class="site-footer">
+  <div class="wrap footer-row">
+    <a class="brand" href={base}>KRW<span class="brand-dot">.</span></a>
+    <nav class="footer-links" aria-label="Footer">
+      {nav.map((l) => <a href={base + l.href.slice(1)}>{l.label}</a>)}
+    </nav>
+    <span class="footer-note">Made by hand, with warmth.</span>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    border-top: 1px solid var(--hairline);
+    margin-top: 96px;
+    padding: 36px 0 44px;
+  }
+  .footer-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+    flex-wrap: wrap;
+  }
+  .brand {
+    font-size: 1.1rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+  }
+  .brand-dot {
+    color: var(--accent);
+  }
+  .footer-links {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+  .footer-links a {
+    color: var(--ink-soft);
+    font-weight: 600;
+    padding: 6px 10px;
+    border-radius: var(--radius-pill);
+    font-size: 0.92rem;
+  }
+  .footer-links a:hover {
+    background: var(--chip-bg);
+    color: var(--ink);
+    text-decoration: none;
+  }
+  .footer-note {
+    font-size: 0.85rem;
+    color: var(--ink-faint);
+  }
+  @media (max-width: 768px) {
+    .footer-row {
+      justify-content: center;
+      text-align: center;
+    }
+  }
+</style>

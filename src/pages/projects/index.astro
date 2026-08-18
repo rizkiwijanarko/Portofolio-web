@@ -1,0 +1,225 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+const resume = (await getCollection('resume'))[0]?.data;
+const caseStudies = (await getCollection('projects')).sort((a, b) => a.data.order - b.data.order);
+const featuredIds = new Set(caseStudies.map((p) => p.id));
+const otherProjects = (resume?.projects ?? []).filter((p) => !featuredIds.has(p.name.toLowerCase()));
+const base = import.meta.env.BASE_URL;
+---
+
+<Layout title="Projects" active="projects" description="Projects and case studies by Kharisma Rizki Wijanarko — AI systems, agents, and machine learning.">
+  <section class="page-head">
+    <div class="wrap">
+      <span class="eyebrow">Projects</span>
+      <h1 class="page-title">Things I've built</h1>
+      <p class="page-sub">Four featured case studies in depth, plus the rest of the work — from AI SaaS platforms to ML research.</p>
+    </div>
+  </section>
+
+  <!-- Featured case studies -->
+  <section class="section">
+    <div class="wrap">
+      <h2 class="sec-title">Featured case studies</h2>
+      <div class="featured-list">
+        {caseStudies.map((p) => (
+          <article class="case-card">
+            <a href={base + 'projects/' + p.id + '/'} class="case-link">
+              <div class="preview-panel">
+                {p.data.previewAvailable ? <span>Preview</span> : <span>Preview coming soon</span>}
+              </div>
+              <div class="case-body">
+                <div class="case-top">
+                  <h3>{p.data.title}</h3>
+                  <span class:list={['status-pill', 'status-' + p.data.status]}>{p.data.status}</span>
+                </div>
+                <p class="case-category">{p.data.category} &middot; {p.data.role} &middot; {p.data.startDate}</p>
+                <p class="case-summary">{p.data.summary}</p>
+                <div class="case-tech">{p.data.tech.map((t) => <span class="chip">{t}</span>)}</div>
+                <span class="case-cta">Read case study &rarr;</span>
+              </div>
+            </a>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Card-only projects -->
+  <section class="section">
+    <div class="wrap">
+      <h2 class="sec-title">More work</h2>
+      <p class="sec-sub">Other projects — summaries and tech, with links where the source is public.</p>
+      <div class="more-grid">
+        {otherProjects.map((p) => (
+          <article class="more-card">
+            {p.repoUrl ? (
+              <a href={p.repoUrl} target="_blank" rel="noopener" class="more-link">
+                <div class="more-top">
+                  <h3>{p.name}</h3>
+                  {p.status && <span class:list={['status-pill', 'status-' + p.status]}>{p.status}</span>}
+                </div>
+                <p class="more-summary">{p.summary}</p>
+                <div class="more-tech">{p.tech.map((t) => <span class="chip">{t}</span>)}</div>
+                <span class="more-cta">View on GitHub &rarr;</span>
+              </a>
+            ) : (
+              <div class="more-link">
+                <div class="more-top">
+                  <h3>{p.name}</h3>
+                  {p.status && <span class:list={['status-pill', 'status-' + p.status]}>{p.status}</span>}
+                </div>
+                <p class="more-summary">{p.summary}</p>
+                <div class="more-tech">{p.tech.map((t) => <span class="chip">{t}</span>)}</div>
+              </div>
+            )}
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .page-head {
+    padding: 72px 0 8px;
+  }
+  .page-title {
+    font-size: clamp(2.2rem, 4.6vw, 3.1rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+  }
+  .page-sub {
+    color: var(--ink-soft);
+    max-width: 56ch;
+    margin-top: 12px;
+    font-size: 1.05rem;
+  }
+
+  .featured-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-top: 36px;
+  }
+  .case-card {
+    background: var(--card);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-soft);
+    overflow: hidden;
+    transition: transform 150ms ease, box-shadow 150ms ease;
+  }
+  .case-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-card);
+  }
+  .case-link {
+    display: grid;
+    grid-template-columns: 320px 1fr;
+    color: inherit;
+    height: 100%;
+  }
+  .case-link:hover {
+    text-decoration: none;
+  }
+  .case-link .preview-panel {
+    border-radius: 0;
+    border: none;
+    border-right: 1.5px dashed #d9c3a8;
+    height: 100%;
+  }
+  .case-body {
+    padding: 24px 26px;
+  }
+  .case-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 10px;
+  }
+  .case-top h3 {
+    font-size: 1.25rem;
+  }
+  .case-category {
+    color: var(--ink-faint);
+    font-size: 0.82rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    margin: 4px 0 0;
+  }
+  .case-summary {
+    color: var(--ink-soft);
+    margin: 10px 0 12px;
+  }
+  .case-cta {
+    display: inline-block;
+    margin-top: 10px;
+    font-weight: 650;
+    color: var(--accent-deep);
+  }
+
+  .more-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-top: 36px;
+  }
+  .more-card {
+    background: var(--card);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius-lg);
+    padding: 22px;
+    box-shadow: var(--shadow-soft);
+    transition: transform 150ms ease, box-shadow 150ms ease;
+  }
+  .more-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-card);
+  }
+  .more-link {
+    color: inherit;
+    display: block;
+    height: 100%;
+  }
+  .more-link:hover {
+    text-decoration: none;
+  }
+  .more-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 10px;
+  }
+  .more-top h3 {
+    font-size: 1.1rem;
+  }
+  .more-summary {
+    color: var(--ink-soft);
+    font-size: 0.94rem;
+    margin: 8px 0 10px;
+  }
+  .more-cta {
+    display: inline-block;
+    margin-top: 10px;
+    font-weight: 650;
+    font-size: 0.92rem;
+    color: var(--accent-deep);
+  }
+
+  @media (max-width: 768px) {
+    .case-link {
+      grid-template-columns: 1fr;
+    }
+    .case-link .preview-panel {
+      border-right: none;
+      border-bottom: 1.5px dashed #d9c3a8;
+      border-radius: 0;
+    }
+    .more-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

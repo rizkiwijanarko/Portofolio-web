@@ -1,0 +1,76 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout title="Writing" active="writing" description="Writing by Kharisma Rizki Wijanarko — AI engineering, LLMs, and system architecture.">
+  <section class="page-head">
+    <div class="wrap">
+      <span class="eyebrow">Writing</span>
+      <h1 class="page-title">Coming soon</h1>
+      <p class="page-sub">I'm working on articles about AI engineering, LLMs, and system architecture. They'll land here.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="writing-card">
+        <div class="writing-illo" aria-hidden="true">
+          <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="44" height="44">
+            <path d="M14 8h28l8 8v40H14z" />
+            <path d="M42 8v8h8" />
+            <path d="M22 28h20M22 36h20M22 44h12" />
+          </svg>
+        </div>
+        <h2 class="writing-title">Articles are on the way</h2>
+        <p class="writing-text">
+          Planned topics: AI Engineering, System Architecture, LLMs, Agentic AI, FastAPI, Backend Engineering, SaaS Development.
+        </p>
+        <p class="writing-text faint">No articles yet — this section is a placeholder until the first one ships.</p>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .page-head {
+    padding: 72px 0 8px;
+  }
+  .page-title {
+    font-size: clamp(2.2rem, 4.6vw, 3.1rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+  }
+  .page-sub {
+    color: var(--ink-soft);
+    max-width: 56ch;
+    margin-top: 12px;
+    font-size: 1.05rem;
+  }
+
+  .writing-card {
+    max-width: 720px;
+    margin: 56px auto 0;
+    text-align: center;
+    background: var(--card);
+    border: 1.5px dashed #d9c3a8;
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-soft);
+    padding: 64px 40px;
+  }
+  .writing-illo {
+    color: var(--accent);
+    margin-bottom: 20px;
+  }
+  .writing-title {
+    font-size: 1.5rem;
+  }
+  .writing-text {
+    color: var(--ink-soft);
+    margin: 12px auto 0;
+    max-width: 46ch;
+  }
+  .writing-text.faint {
+    color: var(--ink-faint);
+    font-size: 0.9rem;
+  }
+</style>

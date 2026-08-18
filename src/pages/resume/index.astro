@@ -1,0 +1,101 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+const resume = (await getCollection('resume'))[0]?.data;
+const base = import.meta.env.BASE_URL;
+const pdf = base + 'Kharisma_Rizki_Wijanarko_CV.pdf';
+---
+
+<Layout title="Resume" active="resume" description="Resume of Kharisma Rizki Wijanarko — AI Engineer.">
+  <section class="page-head">
+    <div class="wrap">
+      <span class="eyebrow">Resume</span>
+      <h1 class="page-title">The one-page version</h1>
+      <p class="page-sub">A complete CV, ready to download or read inline.</p>
+      <div class="head-actions">
+        <a class="btn btn-primary" href={pdf} download>Download PDF</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="pdf-frame">
+        <iframe
+          src={pdf}
+          title="Kharisma Rizki Wijanarko — Resume"
+          loading="lazy"
+        ></iframe>
+        <p class="pdf-fallback">
+          Your browser can't show the PDF inline —
+          <a href={pdf} download>download it here</a> instead.
+        </p>
+      </div>
+
+      <div class="resume-links">
+        <span class="eyebrow">Also on</span>
+        <div class="link-row">
+          <a class="btn btn-soft" href={resume?.contact.github} target="_blank" rel="noopener">GitHub</a>
+          <a class="btn btn-soft" href={resume?.contact.linkedin} target="_blank" rel="noopener">LinkedIn</a>
+          <a class="btn btn-soft" href={'mailto:' + resume?.contact.email}>Email</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .page-head {
+    padding: 72px 0 8px;
+  }
+  .page-title {
+    font-size: clamp(2.2rem, 4.6vw, 3.1rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+  }
+  .page-sub {
+    color: var(--ink-soft);
+    max-width: 56ch;
+    margin-top: 12px;
+    font-size: 1.05rem;
+  }
+  .head-actions {
+    margin-top: 24px;
+  }
+
+  .pdf-frame {
+    margin-top: 36px;
+    background: var(--card);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-soft);
+    overflow: hidden;
+    padding: 12px;
+  }
+  .pdf-frame iframe {
+    width: 100%;
+    height: 80vh;
+    min-height: 480px;
+    border: none;
+    border-radius: var(--radius-md);
+    background: #fff;
+  }
+  .pdf-fallback {
+    display: none;
+    text-align: center;
+    color: var(--ink-soft);
+    padding: 32px;
+  }
+  .resume-links {
+    margin-top: 48px;
+    text-align: center;
+  }
+  .link-row {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 14px;
+  }
+</style>

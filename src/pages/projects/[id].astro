@@ -1,0 +1,151 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const projects = await getCollection('projects');
+  return projects.map((p) => ({ params: { id: p.id }, props: { project: p } }));
+}
+
+const { project } = Astro.props;
+const { Content } = await render(project);
+const base = import.meta.env.BASE_URL;
+---
+
+<Layout title={project.data.title} active="projects" description={project.data.summary}>
+  <article class="case-study">
+    <div class="wrap">
+      <nav class="crumbs" aria-label="Breadcrumb">
+        <a href={base + 'projects/'}>Projects</a> <span aria-hidden="true">&rarr;</span> <span class="current">{project.data.title}</span>
+      </nav>
+
+      <header class="cs-head">
+        <div class="cs-meta">
+          <span class:list={['status-pill', 'status-' + project.data.status]}>{project.data.status}</span>
+          <span class="cs-category">{project.data.category} &middot; {project.data.role} &middot; {project.data.startDate}</span>
+        </div>
+        <h1 class="cs-title">{project.data.title}</h1>
+        <p class="cs-summary">{project.data.summary}</p>
+        <div class="cs-tech">{project.data.tech.map((t) => <span class="chip">{t}</span>)}</div>
+        <div class="cs-actions">
+          {project.data.repoUrl && (
+            <a class="btn btn-soft" href={project.data.repoUrl} target="_blank" rel="noopener">View source on GitHub &rarr;</a>
+          )}
+          {project.data.demoUrl && (
+            <a class="btn btn-primary" href={project.data.demoUrl} target="_blank" rel="noopener">Try the demo &rarr;</a>
+          )}
+          <a class="btn btn-soft" href={base + 'projects/'}>All projects</a>
+        </div>
+      </header>
+
+      <div class="preview-panel cs-preview">
+        {project.data.previewAvailable ? <span>Preview</span> : <span>Product preview coming soon</span>}
+      </div>
+
+      <div class="cs-body">
+        <Content />
+      </div>
+    </div>
+  </article>
+</Layout>
+
+<style>
+  .case-study {
+    padding: 56px 0 40px;
+  }
+  .crumbs {
+    font-size: 0.9rem;
+    color: var(--ink-faint);
+    margin-bottom: 32px;
+    display: flex;
+    gap: 8px;
+    align-items: center;
+  }
+  .crumbs a {
+    color: var(--accent-deep);
+    font-weight: 600;
+  }
+  .crumbs .current {
+    color: var(--ink-soft);
+  }
+  .cs-head {
+    max-width: 760px;
+  }
+  .cs-meta {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .cs-category {
+    color: var(--ink-faint);
+    font-size: 0.82rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+  .cs-title {
+    font-size: clamp(2rem, 4.4vw, 3rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    margin-top: 14px;
+  }
+  .cs-summary {
+    color: var(--ink-soft);
+    font-size: 1.1rem;
+    margin: 14px 0 0;
+    max-width: 60ch;
+  }
+  .cs-tech {
+    margin-top: 16px;
+  }
+  .cs-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 24px;
+  }
+  .cs-preview {
+    margin: 40px 0;
+    aspect-ratio: 16 / 7;
+    border-radius: var(--radius-lg);
+    background: linear-gradient(135deg, #f3ece1, #ead9c8);
+    border: 1.5px dashed #d9c3a8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--ink-faint);
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    font-size: 0.9rem;
+  }
+  .cs-body {
+    max-width: 720px;
+  }
+  .cs-body :global(h2) {
+    font-size: 1.5rem;
+    margin: 40px 0 12px;
+  }
+  .cs-body :global(h2:first-child) {
+    margin-top: 8px;
+  }
+  .cs-body :global(p) {
+    color: var(--ink-soft);
+    margin-bottom: 1em;
+  }
+  .cs-body :global(ul) {
+    padding-left: 22px;
+    margin-bottom: 1em;
+    color: var(--ink-soft);
+  }
+  .cs-body :global(li) {
+    margin-bottom: 6px;
+  }
+  .cs-body :global(blockquote) {
+    border-left: 3px solid var(--accent);
+    padding-left: 16px;
+    color: var(--ink-soft);
+    font-style: italic;
+    margin: 16px 0;
+  }
+</style>

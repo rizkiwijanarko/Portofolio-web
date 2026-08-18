@@ -1,0 +1,73 @@
+---
+title: "VentureForge: Autonomous Startup Discovery"
+summary: "A multi-agent LangGraph workflow that analyzes and scores startup ideas via real-time Hacker News, Product Hunt, and YouTube integrations."
+status: "open-source"
+category: "AI Agent"
+role: "AI Engineer"
+startDate: "2026-05"
+tech: ["LangGraph", "vLLM", "Qwen3-35B", "AMD MI300X", "Gradio"]
+featured: true
+previewAvailable: false
+order: 3
+repoUrl: "https://github.com/rizkiwijanarko/KickUp"
+---
+
+## Overview
+
+VentureForge is a multi-agent workflow that takes a startup idea and scores it against real-time signals from Hacker News, Product Hunt, and YouTube. It evaluates market relevance and product-market fit with structured LLM pipelines instead of vibes.
+
+## Problem
+
+Validating a startup idea means scanning multiple real-time sources and synthesizing whether the market actually cares. Doing that by hand is slow, inconsistent, and biased by whatever you happened to read last.
+
+## Solution
+
+A LangGraph multi-agent graph where each agent owns a source:
+
+- **Source agents** ingest real-time data from Hacker News, Product Hunt, and YouTube APIs.
+- **Evaluation pipelines** assess market relevance and product-market fit against the ingested data.
+- **Scoring** produces a structured verdict per idea.
+
+The inference layer runs a self-hosted open-source LLM — Qwen3-35B served with vLLM on AMD MI300X GPUs — for low-latency, cost-controlled evaluation.
+
+## Architecture
+
+> TODO: architecture diagram placeholder — export from the project.
+
+## Tech Stack
+
+- **Orchestration**: LangGraph (multi-agent graph)
+- **Inference**: vLLM serving Qwen3-35B on AMD MI300X
+- **Interface**: Gradio
+- **Integrations**: Hacker News, Product Hunt, YouTube APIs
+
+## Key Features
+
+- Multi-agent source ingestion
+- Structured startup scoring
+- Self-hosted open-source LLM inference
+- Interactive Gradio client
+
+## Engineering Decisions
+
+- **LangGraph** over a hand-rolled loop — the graph shape maps naturally to agent pipelines
+- **Self-hosted Qwen3-35B on vLLM/AMD** — open weights, no per-token API cost, low-latency GPU inference
+- **Gradio** for a quick interactive surface over the graph
+
+## Challenges
+
+> TODO: challenge/solution/outcome entries.
+
+## Results
+
+> TODO: measurable impact.
+
+## Lessons Learned
+
+> TODO: key engineering lessons.
+
+## Roadmap
+
+- **Completed**: multi-agent graph, source integrations, scoring, Gradio client
+- **In Progress**: scoring calibration against known outcomes
+- **Planned**: more sources, deeper market-fit analysis

@@ -1,0 +1,72 @@
+---
+title: "SignalAtlas: AI Market Intelligence Platform"
+summary: "A SaaS-ready AI platform that discovers business opportunities by mining and clustering customer pain points from unstructured online discussions."
+status: "building"
+category: "AI SaaS"
+role: "AI Engineer"
+startDate: "2026-06"
+tech: ["Python", "FastAPI", "PostgreSQL", "Vector DB", "LLMs"]
+featured: true
+previewAvailable: false
+order: 1
+---
+
+## Overview
+
+SignalAtlas is an AI market intelligence platform that discovers business opportunities by mining and clustering customer pain points from unstructured online discussions. It turns scattered complaints and requests across forums and social threads into scored, actionable opportunity clusters.
+
+## Problem
+
+Finding what to build next usually means reading thousands of scattered discussions, guessing which problems are common enough to matter, and hoping the guess is right. There was no systematic way to aggregate pain points and rank them by business opportunity.
+
+## Solution
+
+An end-to-end LLM pipeline that combines concurrent web scraping, embedding-based clustering, and automated opportunity scoring:
+
+- **Ingestion**: concurrent scrapers pull unstructured discussions from online sources.
+- **Understanding**: LLMs extract and normalize pain points from raw text.
+- **Clustering**: embedding-based clustering groups related pain points into opportunity themes.
+- **Scoring**: automated opportunity scoring ranks clusters by size, intensity, and fit.
+
+## Architecture
+
+> TODO: architecture diagram placeholder — export from the project and drop into `src/assets/projects/signalatlas/`.
+
+The system is built as containerized REST APIs (Docker) with scheduled pipelines (APScheduler), authentication, and a dashboard, reducing data ingestion latency.
+
+## Tech Stack
+
+- **Backend**: FastAPI, PostgreSQL
+- **AI**: LLM pipeline, embedding-based clustering, vector search
+- **Infrastructure**: Docker, APScheduler, dashboard
+
+## Key Features
+
+- Concurrent web scraping of online discussions
+- LLM-based pain point extraction and normalization
+- Embedding-based clustering of related issues
+- Automated opportunity scoring
+
+## Engineering Decisions
+
+- **PostgreSQL + vector search** for relational and similarity data in one store
+- **Scheduled pipelines (APScheduler)** instead of purely event-driven ingestion, for predictable batch freshness
+- **Docker containerization** for reproducible deploys
+
+## Challenges
+
+> TODO: challenge/solution/outcome entries — to be filled from the project's build log.
+
+## Results
+
+> TODO: measurable impact (performance, latency, accuracy) — to be filled from the project.
+
+## Lessons Learned
+
+> TODO: key engineering lessons — architecture, scalability, maintainability.
+
+## Roadmap
+
+- **Completed**: pipeline design, clustering, scoring, dashboard
+- **In Progress**: hardening for multi-tenant SaaS
+- **Planned**: public launch

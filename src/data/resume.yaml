@@ -1,0 +1,203 @@
+# Resume data — single source of truth for structured site content.
+# Derived from Kharisma_Rizki_Wijanarko_Master_Resume.yaml (rendercv source).
+contact:
+  name: Kharisma Rizki Wijanarko
+  location: Jombang, East Java, Indonesia
+  email: rizkiwijanarko7@gmail.com
+  phone: "+6282131462184"
+  github: https://github.com/rizkiwijanarko
+  linkedin: https://linkedin.com/in/rizki-wijanarko
+
+summary: >-
+  AI Engineer building production-ready AI systems and AI-native SaaS products.
+  I design and build dependable AI end to end — RAG pipelines, multi-agent
+  workflows, and computer-vision models — and I like making complex systems feel
+  simple to use.
+
+skills:
+  - label: Languages
+    details: [Python, SQL, JavaScript, TypeScript]
+  - label: AI & Machine Learning
+    details: [LLM Applications, Agentic AI, RAG, Prompt Engineering, TensorFlow, PyTorch, Scikit-learn, Hugging Face, Transformers]
+  - label: Backend & APIs
+    details: [FastAPI, Flask, REST APIs, PostgreSQL, Supabase]
+  - label: Infrastructure
+    details: [Docker, Git, Linux, CI/CD, vLLM]
+  - label: Data
+    details: [Vector Databases, Pandas, NumPy]
+
+experience:
+  - company: Outlier.AI
+    position: LLM Evaluator (Freelance)
+    startDate: "2024-08"
+    endDate: "2026-06"
+    location: Remote
+    highlights:
+      - Completed 100+ technical evaluation tasks assessing LLM capabilities across code generation, web development, PyTorch/deep learning model building, and structured data tasks.
+      - Designed system prompts and adversarial test cases to evaluate multi-step agent reasoning, tool-calling accuracy, and instruction adherence across complex technical workflows.
+      - Identified and documented agent failure patterns (hallucinations, loop errors, improper function calling) to deliver qualitative debugging feedback, improving LLM reasoning quality.
+  - company: BIT & PARI
+    position: Fullstack Developer (Internship)
+    startDate: "2024-10"
+    endDate: "2025-01"
+    location: Jakarta Pusat, Indonesia
+    highlights:
+      - Reduced reconciliation processing time by 95% (from ~45 minutes to ~2 minutes) by optimizing backend data processing logic and database queries.
+      - Engineered an enterprise financial reconciliation system using SQL and relational databases to automate transaction matching and validation across multiple disparate sources.
+      - Designed robust backend validation pipelines and data traceability protocols (PostgreSQL), ensuring absolute auditability and consistency for daily finance operations.
+  - company: Universitas Negeri Semarang
+    position: Assistant Research Engineer
+    startDate: "2022-11"
+    endDate: "2023-08"
+    location: Semarang, Indonesia
+    highlights:
+      - Contributed to developing 'TeenyBoy', an interactive educational game designed to reduce pre-operative anxiety in children.
+      - Co-led user testing and data collection across regional elementary schools, collecting behavioral and survey metrics to measure app efficacy.
+      - Collaborated with a cross-functional team of educators, clinical researchers, and designers to refine game flows based on user testing analytics.
+
+education:
+  - institution: Universitas Negeri Semarang
+    degree: Bachelor of Computer Science
+    startDate: "2021-08"
+    endDate: "2025-08"
+    location: Semarang, Indonesia
+    highlights:
+      - "GPA: 3.82 / 4.00"
+  - institution: Bangkit Academy
+    degree: Machine Learning Path
+    startDate: "2023-08"
+    endDate: "2023-12"
+    location: Indonesia
+    highlights:
+      - "Final score: 93.23 / 100"
+
+certifications:
+  - TensorFlow Developer Certificate — TensorFlow (May 2024)
+  - Agentic AI Course Completion — DeepLearning.AI (Apr 2026)
+  - Bangkit Academy Certificate of Completion — Bangkit Academy (Dec 2023)
+  - "TensorFlow: Data and Deployment Specialization — Coursera (Nov 2023)"
+  - DeepLearning.AI TensorFlow Developer Specialization — Coursera (Nov 2023)
+  - Machine Learning Specialization — Coursera (Oct 2023)
+  - Mathematics for Machine Learning and Data Science Specialization — Coursera (Sep 2023)
+  - Structuring Machine Learning Projects — Coursera (Nov 2023)
+
+achievements:
+  - "3rd Place — National Data Mining Competition, UNY National IT Competition (UNITY), 2025"
+
+projects:
+  - name: SignalAtlas
+    startDate: "2026-06"
+    summary: AI market intelligence platform that discovers business opportunities by mining and clustering customer pain points from unstructured online discussions.
+    tech: [Python, FastAPI, PostgreSQL, Vector DB, LLMs]
+    category: AI SaaS
+    status: building
+    featured: true
+    highlights:
+      - Architected a SaaS-ready AI market intelligence platform that discovers business opportunities by mining and clustering customer pain points from unstructured online discussions.
+      - Designed an end-to-end LLM pipeline integrating concurrent web scraping, embedding-based clustering, and automated opportunity scoring using FastAPI, PostgreSQL, and vector search.
+      - Deployed containerized (Docker) REST APIs with scheduled pipelines (APScheduler), authentication, and a dashboard, reducing data ingestion latency.
+  - name: Ningsih
+    startDate: "2026-06"
+    summary: Autonomous agentic AI assistant integrating Google APIs and Telegram with persistent long-term memory to manage scheduling and workflows proactively.
+    tech: [Python, FastAPI, OpenAI, Supabase, Docker]
+    category: AI SaaS
+    status: building
+    featured: true
+    highlights:
+      - Built an autonomous agentic AI assistant integrating Google APIs (Calendar, Tasks) and Telegram with persistent long-term memory to manage scheduling and workflows proactively.
+      - Implemented tool-calling architecture with persistent context, structured outputs (JSON schema matching), and background scheduling using FastAPI, Supabase, and OpenAI models.
+      - Engineered the platform for multi-tenant scalability, deploying Docker containers and designing modular APIs to handle concurrent task scheduling.
+  - name: VentureForge
+    startDate: "2026-05"
+    summary: Multi-agent workflow using LangGraph to analyze and score startup ideas via real-time integrations with Hacker News, Product Hunt, and YouTube APIs.
+    tech: [LangGraph, vLLM, Qwen3-35B, AMD MI300X, Gradio]
+    category: AI Agent
+    status: open-source
+    featured: true
+    repoUrl: https://github.com/rizkiwijanarko/KickUp
+    highlights:
+      - Built a multi-agent workflow using LangGraph to analyze and score startup ideas via real-time integrations with Hacker News, Product Hunt, and YouTube APIs.
+      - Designed structured LLM-based evaluation pipelines to assess market relevance and product-market fit based on real-time data ingestion.
+      - Deployed open-source LLM inference (Qwen 3.5 35B) using vLLM on high-performance AMD MI300X GPUs, achieving low-latency inference for interactive Gradio clients.
+  - name: Rizclone
+    startDate: "2026-05"
+    summary: RAG-based chatbot with custom tool calling, deployed on Hugging Face Spaces, with query rewriting and reranking for improved retrieval.
+    tech: [Gradio, Hugging Face Spaces, Cohere, Telegram API]
+    category: AI Agent
+    status: shipped
+    highlights:
+      - Built and deployed a RAG-based chatbot application using Gradio and Hugging Face Spaces, supporting custom tool calling and response generation.
+      - Enhanced retrieval accuracy by 25%+ by implementing query rewriting (LLM-based) and reranking (Cohere/BGE) to filter out noise from the knowledge base.
+      - Integrated Telegram API webhooks for real-time alerting on unanswered queries, tracking user interactions.
+  - name: Ensemble Wayang Kulit Classification
+    startDate: "2025-07"
+    summary: Ensemble CNN classifier (InceptionV3, EfficientNetB2, ResNet101V2) achieving 99.80% test accuracy on 22 classes.
+    tech: [TensorFlow, InceptionV3, EfficientNetB2, ResNet101V2, Flask]
+    category: Machine Learning
+    status: shipped
+    featured: true
+    repoUrl: https://github.com/rizkiwijanarko/Wayang_Kulit_Characters_Classification_using_Ensemble_Learning_Majority_Voting
+    highlights:
+      - Developed an ensemble CNN classifier combining InceptionV3, EfficientNetB2, and ResNet101V2 via transfer learning, achieving 99.80% test accuracy on 22 classes.
+      - Diagnosed and resolved a critical data leakage issue in the public Kaggle dataset (pre-existing augmentation before partitioning), demonstrating rigorous evaluation methodology.
+      - Built and deployed a Flask-based web application to serve real-time predictions with interactive probability visualizations.
+  - name: Sustainable Urbanization Clustering Analysis
+    startDate: "2025-02"
+    summary: Clustering analysis of multi-source environmental and demographic datasets using K-Means, HDBSCAN, and GMM; 3rd place in a national competition.
+    tech: [K-Means, HDBSCAN, GMM, Pandas, NumPy]
+    category: Machine Learning
+    status: research
+    highlights:
+      - Led data preprocessing, feature engineering, and clustering model development using multi-source environmental and demographic datasets.
+      - Integrated and analyzed regional datasets from Badan Pusat Statistik, IQAir, and WeatherSpark, conducting exploratory data analysis (EDA) to uncover urbanization trends.
+      - Evaluated K-Means, K-Medoids, HDBSCAN, and Gaussian Mixture Models, achieving optimal silhouette scores and earning 3rd Place in a National Data Mining Competition.
+  - name: Lapor Pak
+    startDate: "2024-10"
+    summary: AI public complaint system backend using Laravel, OpenAI, geocoding, and Resend APIs; 'Best Project' at Maxy Hackathon.
+    tech: [Laravel, OpenAI API, Geocoding, Resend API]
+    category: Backend
+    status: shipped
+    highlights:
+      - Developed the backend of a web-based AI public complaint system using Laravel, OpenAI, GeoCoding, and Resend APIs.
+      - Designed automated text categorization and routing logic to classify citizen complaints and assign them to relevant government bodies.
+      - Earned 'Best Project' recognition from judges at the Maxy Hackathon for backend stability and AI feature integration.
+  - name: Automated Image Captioning
+    startDate: "2024-06"
+    summary: "CNN-LSTM image captioning model in TensorFlow, evaluated with BLEU metrics (BLEU-1: 0.569)."
+    tech: [TensorFlow, CNN, LSTM, BLEU Evaluation]
+    category: Machine Learning
+    status: research
+    highlights:
+      - Developed an automated image captioning model combining CNN (feature extraction) and LSTM (sequence generation) architectures in TensorFlow.
+      - Engineered data preprocessing pipelines to tokenize captions and pad sequences for 8K+ images.
+      - "Evaluated model performance using BLEU metrics, achieving BLEU-1: 0.569, BLEU-2: 0.350, and BLEU-4: 0.139."
+  - name: Brazilian E-Commerce Data Analysis
+    startDate: "2024-03"
+    summary: Full data analysis lifecycle on a 100K+ transaction Brazilian E-Commerce dataset with interactive dashboards.
+    tech: [Pandas, NumPy, Matplotlib, Seaborn, Tableau]
+    category: Data
+    status: research
+    highlights:
+      - Executed the complete Data Analysis Life Cycle on a 100K+ transaction Brazilian E-Commerce dataset, using Pandas and NumPy for wrangling.
+      - Conducted exploratory data analysis (EDA) and built an interactive visualization dashboard (Tableau/Matplotlib) to track revenue growth and order fulfillment.
+      - Formulated actionable business recommendations by answering 6 key questions regarding customer lifecycle value and geographic distribution.
+  - name: Coffeein
+    startDate: "2023-11"
+    summary: Secure purchase order backend for a mobile coffee shop app with Firebase Realtime Database and Google OAuth.
+    tech: [Android, Firebase Realtime Database, Google OAuth]
+    category: Backend
+    status: shipped
+    highlights:
+      - Developed a secure purchase order backend for a mobile coffee shop application, integrating Firebase Realtime Database and Google OAuth.
+      - Implemented role-based access control for shop owners and customers, ensuring secure transactional operations.
+      - Nominated for Intellectual Property Rights (HKI) registration by supervisorial committee for outstanding architecture.
+  - name: TaniLink
+    startDate: "2023-12"
+    summary: Commodity price forecasting LSTM models deployed as a lightweight microservice for a farmer-to-consumer marketplace.
+    tech: [Python, TensorFlow, LSTM, REST APIs]
+    category: Machine Learning
+    status: research
+    highlights:
+      - Developed commodity price forecasting models as part of the ML engineering team for a farmer-to-consumer mobile marketplace.
+      - Trained and evaluated LSTM and time-series regression models, achieving a Validation Mean Absolute Error (MAE) of 0.0784.
+      - Collaborated with backend engineers to deploy the model as a lightweight microservice serving real-time predictions.
