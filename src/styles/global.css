@@ -273,6 +273,14 @@ h1, h2, h3, h4 {
   font-size: 0.82rem;
   font-weight: 600;
   letter-spacing: 0.05em;
+  overflow: hidden;
+}
+
+.preview-panel .preview-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 
 /* ---------- Responsive ---------- */

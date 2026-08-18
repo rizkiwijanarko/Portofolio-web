@@ -39,7 +39,11 @@ const base = import.meta.env.BASE_URL;
       </header>
 
       <div class="preview-panel cs-preview">
-        {project.data.previewAvailable ? <span>Preview</span> : <span>Product preview coming soon</span>}
+        {project.data.previewAvailable && project.data.preview ? (
+          <img class="preview-img" src={base + project.data.preview.replace(/^\//, '')} alt={project.data.title + ' preview'} width="800" height="500" />
+        ) : (
+          <span>Product preview coming soon</span>
+        )}
       </div>
 
       <div class="cs-body">

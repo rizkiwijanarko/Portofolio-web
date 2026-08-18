@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" role="img" aria-label="Ningsih: abstract personal AI secretary with chat and calendar">
+  <defs>
+    <linearGradient id="ng-bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f6efe4"/>
+      <stop offset="1" stop-color="#ecd9c5"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="800" height="500" fill="url(#ng-bg)"/>
+
+  <!-- calendar card -->
+  <g transform="translate(140 96)">
+    <rect width="240" height="190" rx="16" fill="#ffffff" fill-opacity="0.92"/>
+    <rect width="240" height="42" rx="16" fill="#b3543a"/>
+    <rect y="26" width="240" height="16" fill="#b3543a"/>
+    <text x="120" y="27" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" fill="#fff" font-weight="700">AUGUST</text>
+    <text x="120" y="120" text-anchor="middle" font-family="ui-monospace, monospace" font-size="58" fill="#2b2118" font-weight="700">18</text>
+    <!-- week dots -->
+    <g fill="#e8d5bf">
+      <circle cx="40" cy="160" r="4"/><circle cx="72" cy="160" r="4"/><circle cx="104" cy="160" r="4"/>
+      <circle cx="136" cy="160" r="4"/><circle cx="168" cy="160" r="4"/><circle cx="200" cy="160" r="4"/>
+    </g>
+    <circle cx="40" cy="160" r="4" fill="#b3543a"/>
+  </g>
+
+  <!-- chat bubble -->
+  <g transform="translate(470 170)">
+    <rect width="220" height="130" rx="18" fill="#ffffff" fill-opacity="0.92"/>
+    <path d="M36 130 L24 158 L64 130 Z" fill="#ffffff" fill-opacity="0.92"/>
+    <circle cx="46" cy="34" r="11" fill="#f6e7df"/>
+    <path d="M42 38 a8 8 0 0 1 8 0" stroke="#b3543a" stroke-width="2" fill="none" stroke-linecap="round"/>
+    <rect x="66" y="16" width="118" height="11" rx="5.5" fill="#efe8dd"/>
+    <rect x="66" y="38" width="96" height="11" rx="5.5" fill="#efe8dd"/>
+    <rect x="66" y="60" width="130" height="11" rx="5.5" fill="#efe8dd"/>
+    <rect x="24" y="92" width="70" height="20" rx="10" fill="#f6e7df"/>
+    <text x="34" y="106" font-family="ui-monospace, monospace" font-size="10" fill="#9a4527" font-weight="700">REMIND ME</text>
+    <rect x="104" y="92" width="92" height="20" rx="10" fill="#f6e7df"/>
+    <text x="114" y="106" font-family="ui-monospace, monospace" font-size="10" fill="#9a4527" font-weight="700">SCHEDULE</text>
+  </g>
+
+  <!-- decorative dots -->
+  <g fill="#d8bfa3" opacity="0.6">
+    <circle cx="620" cy="96" r="5"/><circle cx="666" cy="140" r="4"/><circle cx="588" cy="170" r="3"/>
+    <circle cx="180" cy="330" r="4"/><circle cx="260" cy="360" r="3"/><circle cx="140" cy="400" r="5"/>
+    <circle cx="600" cy="360" r="4"/><circle cx="660" cy="400" r="3"/>
+  </g>
+
+  <text x="400" y="476" text-anchor="middle" font-family="ui-monospace, monospace" font-size="13" letter-spacing="4" fill="#9a4527" font-weight="700">NINGSIH</text>
+</svg>

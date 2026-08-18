@@ -27,7 +27,11 @@ const base = import.meta.env.BASE_URL;
           <article class="case-card">
             <a href={base + 'projects/' + p.id + '/'} class="case-link">
               <div class="preview-panel">
-                {p.data.previewAvailable ? <span>Preview</span> : <span>Preview coming soon</span>}
+                {p.data.previewAvailable && p.data.preview ? (
+                  <img class="preview-img" src={base + p.data.preview.replace(/^\//, '')} alt={p.data.title + ' preview'} width="800" height="500" loading="lazy" />
+                ) : (
+                  <span>Preview coming soon</span>
+                )}
               </div>
               <div class="case-body">
                 <div class="case-top">
