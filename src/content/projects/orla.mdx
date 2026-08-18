@@ -1,0 +1,107 @@
+---
+title: "Orla.co: Luxury Modest Fashion E-Commerce"
+summary: "A paid client project — editorial luxury modest fashion storefront with two-step order-first checkout, atomic inventory reservation, Biteship multi-courier logistics, and an isolated admin portal."
+status: "shipped"
+category: "E-Commerce"
+role: "Fullstack Engineer"
+startDate: "2026-06"
+tech: ["Next.js", "TypeScript", "Prisma", "PostgreSQL", "Tailwind CSS", "Biteship API", "Leaflet", "Vitest"]
+featured: true
+previewAvailable: true
+preview: "/previews/orla.jpg"
+demoUrl: "https://orla.co"
+order: 6
+---
+
+## Overview
+
+**Orla.co** is a boutique digital fashion platform for modern Indonesian women seeking modest, versatile, and elegant everyday apparel. Built for a client who owns a clothing business, it bridges high-fashion editorial aesthetics with robust Indonesian commerce workflows: BCA bank transfer and QRIS payments, an interactive Leaflet delivery pin-picker, and real-time Biteship courier logistics.
+
+![Orla.co Hero](/Portofolio-web/previews/orla.jpg)
+
+## Problem
+
+The client needed more than a catalog — they needed a **complete commerce operation**: an editorial storefront that matched their brand's luxury positioning, an order flow robust enough for manual bank-transfer payments (the norm in Indonesia), and an admin workflow to run the business day-to-day without engineering support.
+
+The hard problems: **stock race conditions** when customers pay offline, **fragmented logistics** across multiple couriers, and **secure separation** between customer and admin surfaces.
+
+## Solution
+
+- **Editorial storefront** — hero carousel, category filtering, search, and curated collection grids with EB Garamond serif display typography and warm neutral palettes.
+- **Two-step order-first checkout** — decouples order placement from payment-proof submission, guaranteeing atomic inventory reservation, zero stock race conditions, and locked subtotal & shipping calculations.
+- **Biteship logistics aggregator** — live multi-courier rate estimation (JNE, SiCepat, J&T, AnterAja, GoSend/Grab), coordinate-based instant delivery, automated pickup booking, AWB generation, and real-time delivery webhooks.
+- **Passwordless customer auth + isolated admin RBAC** — 6-digit email OTP for customers; a separate bcrypt-authenticated admin portal guarded by Next.js middleware with an isolated session cookie.
+- **Atomic inventory lifecycle** — stock locked on `PENDING`, payment-proof verified on `PAID`, courier dispatch on `SHIPPED`, automatic stock restoration on cancellation.
+
+## Architecture
+
+![System & Infrastructure Architecture](/Portofolio-web/projects/orla/system-architecture.svg)
+
+### Two-Step Checkout & Stock Reservation Lifecycle
+
+![Two-Step Checkout Lifecycle](/Portofolio-web/projects/orla/checkout-lifecycle.svg)
+
+The order state machine guarantees transactional stock reservation at order creation — preventing out-of-stock races while customers execute bank transfers or QRIS scans — then advances through payment-proof verification, admin dispatch, and signature-verified delivery webhooks.
+
+### Client/Server Seam Boundaries
+
+![Security & Client/Server Seam Boundaries](/Portofolio-web/projects/orla/seam-boundaries.svg)
+
+A strict seam pattern keeps Node-native packages (`sharp`, `crypto`, `fs`) server-only, preventing hydration issues, bundle bloat, and accidental secret leaks.
+
+## Tech Stack
+
+- **Framework**: Next.js 15.2 (App Router), React 19, TypeScript 5.7
+- **Data**: Prisma 6.3 + PostgreSQL (SQLite for tests)
+- **Styling**: Tailwind CSS 4.3, EB Garamond + Hanken Grotesk
+- **State**: Zustand 5.0 (persistent cart, localStorage)
+- **Geospatial**: Leaflet 1.9 + React-Leaflet 5.0 (delivery pin picker)
+- **Logistics**: Biteship API (rates, pickup, tracking)
+- **Image processing**: Sharp 0.35 (WebP resizing/cropping)
+- **Auth**: JWT + bcryptjs (passwordless OTP & admin session)
+- **Testing**: Vitest 4.1 — **12 test files / 89 tests, 100% passing**
+
+## Key Features
+
+### Customer Experience
+- Editorial homepage with hero carousel, category filters, search, responsive curated grids
+- Dynamic product detail pages: gallery, color-swatch sync, size selector, fabric/care details
+- Client-first Zustand shopping bag with localStorage persistence and live stock validation
+- Interactive Leaflet delivery pin-picker with reverse geocoding and real-time courier rates
+- Two-step dedicated payment view: 24-hour deadline countdown, one-click copy BCA numbers, dynamic QRIS display, receipt dropzone
+- Customer account dashboard: passwordless OTP profile, order timeline, live shipment tracking
+
+### Administrative Operations
+- Shopify-inspired admin portal at `/admin/login` with isolated session cookie
+- Product catalog management: multi-color image assignments, variant matrices, categories
+- Order fulfillment: receipt verification, status updates, Biteship courier pickup, AWB generation
+- Signature-verified Biteship webhooks advancing orders `PROCESSING → SHIPPED → COMPLETED`
+
+## Engineering Decisions
+
+- **Order-first two-step checkout (ADR-0010)** — decoupling order creation from payment upload eliminates financial/stock races; the client can verify receipts manually before dispatch.
+- **Inventory stock-reservation lifecycle (ADR-0006)** — immediate stock lock on `PENDING`; auto-restock on cancellation or 24-hour timeout.
+- **Isolated admin session (ADR-0004)** — `orla_admin_session` cookie + bcrypt auth keeps admin surface fully separate from customer auth.
+- **Abstracted storage (ADR-0003)** — pluggable interface isolating local disk from future cloud S3 migration.
+- **Biteship aggregator (ADR-0009)** — one integration covers multi-courier rates, destination pin lookup, and automated pickup.
+- 10 Architecture Decision Records (ADRs) total document the full stack.
+
+## Screens
+
+![Storefront](/Portofolio-web/projects/orla/storefront.jpg)
+
+![Product Detail](/Portofolio-web/projects/orla/product-detail.jpg)
+
+![Checkout & Delivery Rates](/Portofolio-web/projects/orla/checkout.jpg)
+
+![Two-Step Payment](/Portofolio-web/projects/orla/payment.jpg)
+
+![Customer Account](/Portofolio-web/projects/orla/account.jpg)
+
+![Admin Portal](/Portofolio-web/projects/orla/admin.jpg)
+
+## Results
+
+- **Delivered and shipped** — the platform is live at [orla.co](https://orla.co)
+- **89/89 tests passing** across Biteship rate calculations & tracking, two-step checkout stock reservation, customer OTP auth, admin RBAC middleware, and storage abstractions
+- **Client-ready operations** — the admin portal lets the owner manage catalog, stock, receipts, and courier dispatch without engineering help

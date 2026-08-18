@@ -85,6 +85,29 @@ achievements:
   - "3rd Place — National Data Mining Competition, UNY National IT Competition (UNITY), 2025"
 
 projects:
+  - name: Ningsih App
+    startDate: "2026-07"
+    summary: AI personal chief of staff mobile SaaS — proactive scheduling, habit tracking, 3-tier micro-task decomposition, and voice input via natural conversation.
+    tech: [Expo, React Native, Convex, DeepSeek V4 Flash, OpenRouter, Clerk, RevenueCat]
+    category: AI SaaS
+    status: building
+    featured: true
+    highlights:
+      - Built a proactive multi-tenant mobile SaaS chief of staff (Expo/React Native + Convex serverless) that turns natural language and voice into structured daily momentum — managing Google Calendar, habits, goals, and long-term memory via chat.
+      - Engineered a deep agent engine with a 10-tool registry (scheduleEvent, suggestMicroTask, alignGoal, rememberContext, generateWeeklyReview) powered by DeepSeek V4 Flash via OpenRouter with OpenAI fallback.
+      - "Designed ADHD-focused features: 3-tier micro-task generator (2m/3m/5m), distraction-recovery check-ins, 30-day habit consistency scoring, and day-part routines; monetized via RevenueCat Free/Plus tiers with server-authoritative entitlements."
+  - name: Orla E-Commerce
+    startDate: "2026-06"
+    summary: Paid client project — an editorial luxury modest fashion e-commerce platform with two-step order-first checkout, Biteship multi-courier logistics, and an isolated admin portal.
+    tech: [Next.js, TypeScript, Prisma, PostgreSQL, Tailwind CSS, Biteship API, Leaflet]
+    category: E-Commerce
+    status: shipped
+    featured: true
+    demoUrl: https://orla.co
+    highlights:
+      - Delivered a paid client e-commerce platform (Next.js 15 + TypeScript + Prisma) with an editorial storefront, two-step order-first checkout with atomic inventory reservation, and QRIS/BCA payment proof verification.
+      - Integrated Biteship logistics aggregator for live multi-courier rates (JNE, SiCepat, J&T, instant), automated pickup booking, AWB generation, and signature-verified delivery webhooks.
+      - Built passwordless 6-digit OTP customer auth and an isolated bcrypt-authenticated admin portal; 89 Vitest tests passing across API contracts, stock reservation, and RBAC middleware.
   - name: SignalAtlas
     startDate: "2026-06"
     summary: AI market intelligence platform that discovers business opportunities by mining and clustering customer pain points from unstructured online discussions.
@@ -96,13 +119,13 @@ projects:
       - Architected a SaaS-ready AI market intelligence platform that discovers business opportunities by mining and clustering customer pain points from unstructured online discussions.
       - Designed an end-to-end LLM pipeline integrating concurrent web scraping, embedding-based clustering, and automated opportunity scoring using FastAPI, PostgreSQL, and vector search.
       - Deployed containerized (Docker) REST APIs with scheduled pipelines (APScheduler), authentication, and a dashboard, reducing data ingestion latency.
-  - name: Ningsih
+  - name: Ningsih (Telegram Bot)
     startDate: "2026-06"
-    summary: Autonomous agentic AI assistant integrating Google APIs and Telegram with persistent long-term memory to manage scheduling and workflows proactively.
+    summary: First-version prototype of Ningsih — an autonomous agentic AI assistant integrating Google APIs and Telegram with persistent long-term memory; superseded by the Ningsih App (mobile SaaS).
     tech: [Python, FastAPI, OpenAI, Supabase, Docker]
     category: AI SaaS
-    status: building
-    featured: true
+    status: shipped
+    featured: false
     highlights:
       - Built an autonomous agentic AI assistant integrating Google APIs (Calendar, Tasks) and Telegram with persistent long-term memory to manage scheduling and workflows proactively.
       - Implemented tool-calling architecture with persistent context, structured outputs (JSON schema matching), and background scheduling using FastAPI, Supabase, and OpenAI models.
