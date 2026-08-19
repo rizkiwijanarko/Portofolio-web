@@ -124,32 +124,192 @@ const base = import.meta.env.BASE_URL;
     font-size: 0.9rem;
   }
   .cs-body {
-    max-width: 720px;
+    max-width: 780px;
   }
   .cs-body :global(h2) {
-    font-size: 1.5rem;
-    margin: 40px 0 12px;
+    font-size: 1.55rem;
+    margin: 48px 0 14px;
+    letter-spacing: -0.02em;
   }
   .cs-body :global(h2:first-child) {
     margin-top: 8px;
   }
+  .cs-body :global(h3) {
+    font-size: 1.2rem;
+    margin: 28px 0 10px;
+    letter-spacing: -0.01em;
+  }
   .cs-body :global(p) {
     color: var(--ink-soft);
     margin-bottom: 1em;
+    line-height: 1.7;
   }
-  .cs-body :global(ul) {
+  .cs-body :global(ul), .cs-body :global(ol) {
     padding-left: 22px;
-    margin-bottom: 1em;
+    margin-bottom: 1.2em;
     color: var(--ink-soft);
   }
   .cs-body :global(li) {
-    margin-bottom: 6px;
+    margin-bottom: 8px;
+    line-height: 1.65;
   }
+  .cs-body :global(li strong) {
+    color: var(--ink);
+  }
+  .cs-body :global(code) {
+    font-family: var(--font-mono);
+    font-size: 0.85em;
+    background: var(--chip-bg);
+    padding: 2px 6px;
+    border-radius: 4px;
+    color: var(--accent-deep);
+  }
+  .cs-body :global(blockquote) {
+    border-left: 3px solid var(--accent);
+    padding: 12px 18px;
+    background: var(--accent-tint);
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    color: var(--ink);
+    font-style: normal;
+    margin: 24px 0;
+  }
+
+  /* Table styling */
+  .cs-body :global(table) {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin: 28px 0;
+    font-size: 0.9rem;
+    background: var(--card);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--card-border);
+    overflow: hidden;
+    box-shadow: var(--shadow-soft);
+  }
+  .cs-body :global(th) {
+    text-align: left;
+    padding: 12px 16px;
+    background: var(--chip-bg);
+    color: var(--ink);
+    font-weight: 700;
+    font-size: 0.8rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--card-border);
+  }
+  .cs-body :global(td) {
+    padding: 14px 16px;
+    border-bottom: 1px solid var(--hairline);
+    color: var(--ink-soft);
+    vertical-align: top;
+    line-height: 1.55;
+  }
+  .cs-body :global(tr:last-child td) {
+    border-bottom: none;
+  }
+
+  /* Figure cards for architecture / diagrams */
+  .cs-body :global(.figure-card) {
+    margin: 32px 0;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--card-border);
+    background: var(--card);
+    overflow: hidden;
+    box-shadow: var(--shadow-soft);
+  }
+  .cs-body :global(.figure-card img) {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  .cs-body :global(.figure-caption) {
+    padding: 10px 18px;
+    font-size: 0.84rem;
+    color: var(--ink-faint);
+    background: #fdfbf7;
+    border-top: 1px solid var(--hairline);
+  }
+
+  /* Inlined Feature Cards */
+  .cs-body :global(.feature-card) {
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    gap: 28px;
+    align-items: center;
+    background: var(--card);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius-lg);
+    padding: 24px;
+    margin: 28px 0;
+    box-shadow: var(--shadow-soft);
+    transition: transform 150ms ease, box-shadow 150ms ease;
+  }
+  .cs-body :global(.feature-card:hover) {
+    box-shadow: var(--shadow-card);
+  }
+  .cs-body :global(.feature-media) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .cs-body :global(.feature-media img) {
+    width: 100%;
+    max-width: 220px;
+    height: auto;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--card-border);
+    box-shadow: 0 6px 20px rgba(90, 65, 40, 0.08);
+    display: block;
+  }
+  .cs-body :global(.feature-content) {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .cs-body :global(.feature-content h3) {
+    margin: 0;
+    font-size: 1.25rem;
+    color: var(--ink);
+  }
+  .cs-body :global(.feature-pain) {
+    font-size: 0.88rem;
+    color: var(--accent-deep);
+    font-weight: 600;
+    background: var(--accent-tint);
+    padding: 4px 10px;
+    border-radius: var(--radius-sm);
+    display: inline-block;
+    width: fit-content;
+    margin-bottom: 2px;
+  }
+  .cs-body :global(.feature-desc) {
+    color: var(--ink-soft);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin: 0;
+  }
+  .cs-body :global(.feature-tags) {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 4px;
+  }
+  .cs-body :global(.chip-sm) {
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: var(--ink-soft);
+    background: var(--chip-bg);
+    border-radius: var(--radius-pill);
+    padding: 3px 9px;
+  }
+
+  /* Legacy Screen gallery for projects without inlining */
   .cs-body :global(.screen-gallery) {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 28px;
-    margin: 28px -72px 0;
+    margin: 28px -40px 0;
   }
   .cs-body :global(.screen-gallery img) {
     width: 100%;
@@ -159,25 +319,28 @@ const base = import.meta.env.BASE_URL;
     background: var(--card);
     box-shadow: var(--shadow-soft);
   }
-  .cs-body :global(blockquote) {
-    border-left: 1px solid var(--hairline);
-    padding-left: 16px;
-    color: var(--ink-soft);
-    font-style: italic;
-    margin: 16px 0;
-  }
 
-  @media (max-width: 900px) {
+  @media (max-width: 768px) {
+    .cs-body :global(.feature-card) {
+      grid-template-columns: 1fr;
+      gap: 20px;
+      padding: 20px;
+    }
+    .cs-body :global(.feature-media img) {
+      max-width: 200px;
+      margin-inline: auto;
+    }
     .cs-body :global(.screen-gallery) {
       grid-template-columns: repeat(2, minmax(0, 1fr));
       margin-inline: 0;
-      gap: 24px;
+      gap: 20px;
     }
   }
 
   @media (max-width: 520px) {
     .cs-body :global(.screen-gallery) {
-      gap: 18px;
+      grid-template-columns: 1fr;
+      gap: 16px;
     }
   }
 </style>

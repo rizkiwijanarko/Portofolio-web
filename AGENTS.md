@@ -36,6 +36,15 @@ Use `agent-browser` (CDP-based Chrome automation) to inspect and verify the site
 
 For any change affecting look, layout, or a11y: screenshot before/after, verify with the vision tool, and check the snapshot for heading structure and link/button names. Prefer `agent-browser` over screenshots-only checks — the a11y snapshot catches what pixels miss.
 
+## Codebase navigation & token efficiency
+
+Use `token-savior` MCP server for efficient symbol retrieval, semantic structure queries, and targeted code inspection without context bloat:
+- `set_project_root` / `switch_project` — select active project root
+- `get_project_summary` / `get_structure_summary` — high-level project and directory map
+- `find_symbol` / `search_codebase` / `search_in_symbols` — targeted code discovery
+- `get_function_source` / `get_class_source` / `get_edit_context` — compact AST-level context extraction
+
+
 ## Documentation
 
 Full documentation: https://docs.astro.build
