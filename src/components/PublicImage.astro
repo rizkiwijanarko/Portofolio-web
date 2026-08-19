@@ -12,4 +12,4 @@ const normalizedSrc = src.startsWith('/') ? src.slice(1) : src;
 const imageSrc = src.startsWith('http://') || src.startsWith('https://') ? src : base + normalizedSrc;
 ---
 
-<img src={imageSrc} alt={alt} width={width} height={height} loading="lazy" />
+<img src={imageSrc} alt={alt} width={width} height={height} loading="lazy" decoding="async" />

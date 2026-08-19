@@ -12,7 +12,7 @@ const { Content } = await render(project);
 const base = import.meta.env.BASE_URL;
 ---
 
-<Layout title={project.data.title} active="projects" description={project.data.summary}>
+<Layout title={project.data.title} active="projects" description={project.data.summary} image={project.data.preview}>
   <article class="case-study">
     <div class="wrap">
       <nav class="crumbs" aria-label="Breadcrumb">
@@ -40,7 +40,7 @@ const base = import.meta.env.BASE_URL;
 
       <div class="preview-panel cs-preview">
         {project.data.previewAvailable && project.data.preview ? (
-          <img class="preview-img" src={base + project.data.preview.replace(/^\//, '')} alt={project.data.title + ' preview'} width="800" height="500" />
+          <img class="preview-img" src={base + project.data.preview.replace(/^\//, '')} alt={project.data.title + ' preview'} width="800" height="500" fetchpriority="high" />
         ) : (
           <span>Product preview coming soon</span>
         )}
@@ -145,11 +145,39 @@ const base = import.meta.env.BASE_URL;
   .cs-body :global(li) {
     margin-bottom: 6px;
   }
+  .cs-body :global(.screen-gallery) {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 28px;
+    margin: 28px -72px 0;
+  }
+  .cs-body :global(.screen-gallery img) {
+    width: 100%;
+    height: auto;
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius-md);
+    background: var(--card);
+    box-shadow: var(--shadow-soft);
+  }
   .cs-body :global(blockquote) {
-    border-left: 3px solid var(--accent);
+    border-left: 1px solid var(--hairline);
     padding-left: 16px;
     color: var(--ink-soft);
     font-style: italic;
     margin: 16px 0;
+  }
+
+  @media (max-width: 900px) {
+    .cs-body :global(.screen-gallery) {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      margin-inline: 0;
+      gap: 24px;
+    }
+  }
+
+  @media (max-width: 520px) {
+    .cs-body :global(.screen-gallery) {
+      gap: 18px;
+    }
   }
 </style>

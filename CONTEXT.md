@@ -25,7 +25,7 @@ A screenshot or visual showing how an app looks — the primary visual for a Pro
 _Avoid_: App screenshot, Preview image
 
 **Source of truth**:
-The canonical factual assets (resume YAML, CV PDF, professional photo, architecture diagrams, screenshots, logos) from which all site content is derived. Missing content becomes a TODO placeholder, never a fabrication.
+The canonical factual assets (raw materials in `sources/`, master resume, CV PDF, professional photo, architecture diagrams, screenshots, logos) from which all site content is derived. Missing content becomes a TODO placeholder, never a fabrication.
 _Avoid_: Reference material, Truth data
 
 **Engineering journey**:

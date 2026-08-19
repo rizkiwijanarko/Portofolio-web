@@ -86,6 +86,7 @@ achievements:
 
 projects:
   - name: Ningsih App
+    caseStudyId: ningsih-app
     startDate: "2026-07"
     summary: AI personal chief of staff mobile SaaS — proactive scheduling, habit tracking, 3-tier micro-task decomposition, and voice input via natural conversation.
     tech: [Expo, React Native, Convex, DeepSeek V4 Flash, OpenRouter, Clerk, RevenueCat]
@@ -97,6 +98,7 @@ projects:
       - Engineered a deep agent engine with a 10-tool registry (scheduleEvent, suggestMicroTask, alignGoal, rememberContext, generateWeeklyReview) powered by DeepSeek V4 Flash via OpenRouter with OpenAI fallback.
       - "Designed ADHD-focused features: 3-tier micro-task generator (2m/3m/5m), distraction-recovery check-ins, 30-day habit consistency scoring, and day-part routines; monetized via RevenueCat Free/Plus tiers with server-authoritative entitlements."
   - name: Orla E-Commerce
+    caseStudyId: orla
     startDate: "2026-06"
     summary: Paid client project — an editorial luxury modest fashion e-commerce platform with two-step order-first checkout, Biteship multi-courier logistics, and an isolated admin portal.
     tech: [Next.js, TypeScript, Prisma, PostgreSQL, Tailwind CSS, Biteship API, Leaflet]
@@ -109,6 +111,7 @@ projects:
       - Integrated Biteship logistics aggregator for live multi-courier rates (JNE, SiCepat, J&T, instant), automated pickup booking, AWB generation, and signature-verified delivery webhooks.
       - Built passwordless 6-digit OTP customer auth and an isolated bcrypt-authenticated admin portal; 89 Vitest tests passing across API contracts, stock reservation, and RBAC middleware.
   - name: SignalAtlas
+    caseStudyId: signalatlas
     startDate: "2026-06"
     summary: AI market intelligence platform that discovers business opportunities by mining and clustering customer pain points from unstructured online discussions.
     tech: [Python, FastAPI, PostgreSQL, Vector DB, LLMs]
@@ -131,6 +134,7 @@ projects:
       - Implemented tool-calling architecture with persistent context, structured outputs (JSON schema matching), and background scheduling using FastAPI, Supabase, and OpenAI models.
       - Engineered the platform for multi-tenant scalability, deploying Docker containers and designing modular APIs to handle concurrent task scheduling.
   - name: VentureForge
+    caseStudyId: ventureforge
     startDate: "2026-05"
     summary: Multi-agent workflow using LangGraph to analyze and score startup ideas via real-time integrations with Hacker News, Product Hunt, and YouTube APIs.
     tech: [LangGraph, vLLM, Qwen3-35B, AMD MI300X, Gradio]
@@ -153,6 +157,7 @@ projects:
       - Enhanced retrieval accuracy by 25%+ by implementing query rewriting (LLM-based) and reranking (Cohere/BGE) to filter out noise from the knowledge base.
       - Integrated Telegram API webhooks for real-time alerting on unanswered queries, tracking user interactions.
   - name: Ensemble Wayang Kulit Classification
+    caseStudyId: wayang-classification
     startDate: "2025-07"
     summary: Ensemble CNN classifier (InceptionV3, EfficientNetB2, ResNet101V2) achieving 99.80% test accuracy on 22 classes.
     tech: [TensorFlow, InceptionV3, EfficientNetB2, ResNet101V2, Flask]

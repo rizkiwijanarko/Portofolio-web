@@ -11,6 +11,7 @@ const projects = defineCollection({
   schema: z.object({
     title: z.string(),
     summary: z.string(),
+    proof: z.string(),
     status: z.enum(['building', 'shipped', 'open-source', 'research']),
     category: z.string(),
     role: z.string(),
@@ -85,6 +86,7 @@ const resume = defineCollection({
     projects: z.array(
       z.object({
         name: z.string(),
+        caseStudyId: z.string().optional(),
         startDate: z.string().optional(),
         endDate: z.string().optional(),
         date: z.string().optional(),

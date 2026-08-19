@@ -6,10 +6,11 @@ import SiteFooter from '../components/SiteFooter.astro';
 interface Props {
   title: string;
   description?: string;
+  image?: string;
   active?: string;
 }
 
-const { title, description, active } = Astro.props;
+const { title, description, image, active } = Astro.props;
 const siteTitle = 'Kharisma Rizki Wijanarko — AI Engineer';
 const base = import.meta.env.BASE_URL;
 const canonical = new URL(Astro.url.pathname, Astro.site);
@@ -28,6 +29,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <meta property="og:title" content={title + ' — ' + siteTitle} />
     <meta property="og:description" content={description ?? siteTitle} />
     <meta property="og:type" content="website" />
+    {image && <meta property="og:image" content={new URL(image, Astro.site ?? Astro.url).toString()} />}
     <title>{title} — {siteTitle}</title>
   </head>
   <body id="top">
