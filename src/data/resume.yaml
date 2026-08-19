@@ -100,16 +100,15 @@ projects:
   - name: Orla E-Commerce
     caseStudyId: orla
     startDate: "2026-06"
-    summary: Paid client project — an editorial luxury modest fashion e-commerce platform with two-step order-first checkout, Biteship multi-courier logistics, and an isolated admin portal.
+    summary: Paid client project — an editorial luxury modest fashion e-commerce platform with two-step order-first checkout, Biteship multi-courier logistics, and an isolated admin portal; currently in final testing preparing for VPS deployment.
     tech: [Next.js, TypeScript, Prisma, PostgreSQL, Tailwind CSS, Biteship API, Leaflet]
     category: E-Commerce
-    status: shipped
+    status: building
     featured: true
-    demoUrl: https://orla.co
     highlights:
-      - Delivered a paid client e-commerce platform (Next.js 15 + TypeScript + Prisma) with an editorial storefront, two-step order-first checkout with atomic inventory reservation, and QRIS/BCA payment proof verification.
+      - Engineered a paid client e-commerce platform (Next.js 15 + TypeScript + Prisma) with an editorial storefront, two-step order-first checkout with atomic inventory reservation, and QRIS/BCA payment proof verification.
       - Integrated Biteship logistics aggregator for live multi-courier rates (JNE, SiCepat, J&T, instant), automated pickup booking, AWB generation, and signature-verified delivery webhooks.
-      - Built passwordless 6-digit OTP customer auth and an isolated bcrypt-authenticated admin portal; 89 Vitest tests passing across API contracts, stock reservation, and RBAC middleware.
+      - Built passwordless 6-digit OTP customer auth and an isolated bcrypt-authenticated admin portal; 89 Vitest tests passing across API contracts, stock reservation, and RBAC middleware; currently preparing for VPS production rollout.
   - name: SignalAtlas
     caseStudyId: signalatlas
     startDate: "2026-06"

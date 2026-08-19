@@ -2,7 +2,7 @@
 title: "Orla.co: Luxury Modest Fashion E-Commerce"
 summary: "A paid client project — an editorial luxury modest fashion storefront with a reliable order-first checkout, inventory protection, and integrated Indonesian courier logistics."
 proof: "Reserves inventory before payment proof to prevent overselling."
-status: "shipped"
+status: "building"
 category: "E-Commerce"
 role: "Fullstack Engineer"
 startDate: "2026-06"
@@ -10,7 +10,6 @@ tech: ["Next.js", "TypeScript", "Prisma", "PostgreSQL", "Tailwind CSS", "Biteshi
 featured: true
 previewAvailable: true
 preview: "/previews/orla-storefront.jpg"
-demoUrl: "https://orla.co"
 order: 2
 ---
 
@@ -18,89 +17,107 @@ import PublicImage from '../../components/PublicImage.astro';
 
 ## Overview
 
-**Orla.co** is a boutique digital fashion platform for modern Indonesian women seeking modest, versatile, and elegant everyday apparel. It combines an editorial storefront with practical local commerce workflows, including BCA bank transfer and QRIS payments, delivery location selection, and multi-courier shipping.
+**Orla.co** is a boutique digital fashion platform for modern Indonesian women seeking modest, versatile, and elegant everyday apparel. It combines an editorial storefront with practical local commerce workflows, including BCA bank transfer and QRIS payments, map-based delivery pin location selection, and multi-courier shipping via Biteship.
 
-<PublicImage src="/previews/orla.jpg" alt="Orla.co storefront homepage" />
+Built with **Next.js 15 (App Router)**, **TypeScript**, **Prisma ORM**, and **PostgreSQL**, the platform bridges high-fashion editorial aesthetics with robust transactional integrity.
 
-## Problem
+## The Problem
 
-The client needed more than a product catalog. They needed a storefront that reflected a luxury brand while supporting the realities of Indonesian commerce: manual payment confirmation, changing delivery rates, and stock that must remain accurate while an order is being completed.
+The client needed more than a basic product catalog. They required a custom digital storefront reflecting luxury brand craftsmanship while addressing the operational realities of Indonesian e-commerce:
 
-## Solution
+- **Inventory overselling**: Manual payment confirmation (BCA transfer / QRIS) takes time. Traditional platforms allow stock to be claimed by multiple buyers while payment verification is pending.
+- **Dynamic Indonesian logistics**: Couriers vary by price, coverage, and speed. Customers need pinpoint map selection and real-time rate comparison (JNE, SiCepat, J&T, instant couriers).
+- **Client & server leakage**: E-commerce apps often bundle server-only logic, payment secrets, and image manipulation libraries into client bundles, causing bloat and security hazards.
 
-- **Editorial storefront** — hero carousel, category filtering, search, and curated collection grids designed around the brand's visual identity.
-- **Order-first checkout** — creates the order and reserves inventory before the customer uploads payment proof, preventing overselling during manual payment flows.
-- **Local logistics integration** — compares courier rates, accepts a map-based delivery location, and keeps shipment details connected to the order.
-- **Clear customer journey** — separates checkout, payment confirmation, account history, and shipment tracking into focused steps.
-- **Reliable inventory lifecycle** — locks stock when an order is placed and restores it when an order is cancelled or expires.
+## The Solution: Core Experience
 
-## Architecture
+Orla solves these operational challenges through an **order-first checkout** pipeline, an isolated admin workspace, and a seamless customer experience.
 
-<PublicImage src="/projects/orla/system-architecture.png" alt="Orla.co system architecture showing the storefront, application services, database, payment flow, and logistics integration" />
+<div class="figure-card">
+  <PublicImage src="/projects/orla/storefront.jpg" alt="Orla.co Storefront Homepage" />
+  <div class="figure-caption">Editorial Storefront: Hero banner, collection grids, category navigation, and typography tailored to luxury fashion.</div>
+</div>
+
+<div class="figure-card">
+  <PublicImage src="/projects/orla/product-detail.jpg" alt="Orla.co Product Detail Page" />
+  <div class="figure-caption">Product Detail: Multi-angle image galleries, color variant selection, real-time stock status, and fabric care guidance.</div>
+</div>
+
+<div class="figure-card">
+  <PublicImage src="/projects/orla/checkout.jpg" alt="Orla.co Checkout and Map Pin Selection" />
+  <div class="figure-caption">Interactive Checkout: Leaflet-powered delivery coordinate picker with real-time Biteship multi-courier rate calculation.</div>
+</div>
+
+<div class="figure-card">
+  <PublicImage src="/projects/orla/payment.jpg" alt="Orla.co Two-Step Payment Confirmation" />
+  <div class="figure-caption">Two-Step Payment: Dynamic payment deadline timer, QRIS display, bank details, and receipt upload verification.</div>
+</div>
+
+<div class="figure-card">
+  <PublicImage src="/projects/orla/account.jpg" alt="Orla.co Customer Account and Order History" />
+  <div class="figure-caption">Customer Account: Passwordless 6-digit OTP login, order status timelines, and live shipment tracking.</div>
+</div>
+
+<div class="figure-card">
+  <PublicImage src="/projects/orla/admin.jpg" alt="Orla.co Admin Portal" />
+  <div class="figure-caption">Admin Operations: Shopify-inspired order fulfillment, payment review, AWB generation, and catalog management.</div>
+</div>
+
+## System Architecture & Data Flow
+
+Orla is architected around Domain-Driven Design (DDD) principles with strict client/server seams separating browser rendering from transactional commerce services.
+
+<div class="figure-card">
+  <PublicImage src="/projects/orla/system-architecture.png" alt="Orla.co System Architecture Diagram" />
+  <div class="figure-caption">System Architecture: Next.js Client Layer, Edge Routing Guards, Server App Router Backend, and External Gateways.</div>
+</div>
 
 ### Checkout & Stock Reservation Lifecycle
 
-<PublicImage src="/projects/orla/checkout-lifecycle.png" alt="Orla.co checkout lifecycle from order creation and stock reservation through payment confirmation and delivery" />
+<div class="figure-card">
+  <PublicImage src="/projects/orla/checkout-lifecycle.png" alt="Orla.co Checkout Lifecycle" />
+  <div class="figure-caption">Checkout Lifecycle: Atomic stock reservation at order creation &rarr; Payment verification &rarr; Automated Biteship pickup & dispatch.</div>
+</div>
 
-The order flow protects inventory at the moment an order is created. Payment confirmation and fulfilment can then happen asynchronously without allowing two customers to claim the same stock.
+The checkout pipeline locks stock at the exact millisecond an order is created. Payment confirmation and admin review happen asynchronously without allowing competing claims for limited inventory.
 
 ### Client and Server Boundaries
 
-<PublicImage src="/projects/orla/seam-boundaries.png" alt="Orla.co client and server boundaries separating browser features from server-only data and services" />
+<div class="figure-card">
+  <PublicImage src="/projects/orla/seam-boundaries.png" alt="Orla.co Seam Boundaries" />
+  <div class="figure-caption">Seam Architecture: Strict isolation keeping database credentials, image processing, and courier APIs on the server.</div>
+</div>
 
-The application keeps sensitive operations and server-only dependencies away from the browser. This makes the client experience lighter and reduces the chance of exposing secrets or operational logic.
+## Key Engineering Decisions & Trade-Offs
 
-## Tech Stack
+- **Order-First Atomic Stock Reservation**:
+  - *Context*: In manual transfer and QRIS flows, payment is not instantaneous.
+  - *Decision*: Orders atomically decrement available stock on creation and set a 2-hour payment window. If payment proof is not uploaded, an automated cron restores inventory.
+- **Decoupled Order Creation from Payment Verification**:
+  - *Context*: Requiring instant payment confirmation before order creation creates race conditions.
+  - *Decision*: Separated the checkout transaction from receipt upload and admin review, ensuring inventory state remains unambiguous.
+- **Single Logistics Aggregator (Biteship)**:
+  - *Context*: Managing separate APIs for JNE, SiCepat, J&T, and Grab is fragile and high maintenance.
+  - *Decision*: Integrated Biteship as a unified gateway for rate calculation, automated AWB generation, and webhook-driven tracking.
+- **Strict Seam Pattern for Zero Bundle Leaks**:
+  - *Context*: Accidental imports of Node utilities (`sharp`, `crypto`, `fs`) in React components cause hydration failures and security vulnerabilities.
+  - *Decision*: Enforced strict directory boundaries where UI components only communicate with backend domains through typed server actions and route handlers.
 
-- **Framework**: Next.js App Router, React, TypeScript
-- **Data**: Prisma and PostgreSQL
-- **Styling**: Tailwind CSS, EB Garamond, and Hanken Grotesk
-- **Commerce**: persistent shopping bag, product variants, and inventory validation
-- **Geospatial and logistics**: Leaflet and Biteship for delivery selection, rates, and tracking
-- **Payments**: bank-transfer and QRIS payment confirmation flow
-- **Testing**: Vitest covering checkout, inventory, authentication, fulfilment, and integrations
+## Hard Engineering Challenges
 
-## Key Features
+### Concurrent Checkout Race Conditions
+- **The Challenge**: Multiple customers attempting to purchase the last available unit of a popular dress simultaneously.
+- **Solution**: Implemented PostgreSQL serializable transactions via Prisma to perform atomic conditional decrements (`WHERE stock >= requested_quantity`), immediately failing competing requests with friendly out-of-stock messages.
 
-### Customer Experience
+### Geocoded Delivery Pin Mapping & Rate Calculations
+- **The Challenge**: Indonesian street addresses often lack precise postal matching, resulting in incorrect delivery fees.
+- **Solution**: Built an interactive Leaflet coordinate picker that geocodes the customer's exact pin location and feeds high-precision latitude/longitude directly into Biteship's routing engine.
 
-- Editorial homepage with hero carousel, category filters, search, and responsive collection grids
-- Product pages with galleries, colour variants, sizes, and fabric-care details
-- Persistent shopping bag with live stock validation
-- Map-based delivery location selection with real-time courier rates
-- Dedicated payment confirmation view with deadline, bank details, QRIS display, and receipt upload
-- Customer account with order history, status timeline, and shipment tracking
+## Current Status & Roadmap
 
-### Business Operations
-
-- Product and variant management for the catalogue
-- Order fulfilment workflow for payment review and shipment preparation
-- Courier booking and tracking details connected to each order
-- Separate access controls for customer-facing and business-facing workflows
-
-## Engineering Decisions
-
-- **Reserve stock at order creation** so offline payment does not create competing claims for the same item.
-- **Separate order creation from payment confirmation** so the customer can complete a familiar local payment flow without making inventory state ambiguous.
-- **Use one logistics integration** to present consistent delivery options while keeping courier-specific complexity out of the shopping experience.
-- **Keep sensitive operations server-side** to protect credentials and reduce browser-side complexity.
-
-## Screens
-
-<PublicImage src="/projects/orla/storefront.jpg" alt="Orla.co storefront product collection" />
-
-<PublicImage src="/projects/orla/product-detail.jpg" alt="Orla.co product detail page with product options" />
-
-<PublicImage src="/projects/orla/checkout.jpg" alt="Orla.co checkout with delivery options and courier rates" />
-
-<PublicImage src="/projects/orla/payment.jpg" alt="Orla.co payment confirmation page" />
-
-<PublicImage src="/projects/orla/account.jpg" alt="Orla.co customer account and order timeline" />
-
-<PublicImage src="/projects/orla/admin.jpg" alt="Orla.co catalogue and order management workspace" />
-
-## Results
-
-- **Delivered and shipped** — the platform is live at [orla.co](https://orla.co)
-- **Reliable checkout** — inventory reservation, payment confirmation, and fulfilment are covered by automated tests
-- **Ready for day-to-day use** — the business can manage products, orders, payment proofs, and courier dispatch without engineering intervention
+- **Status**: Near completion — all core storefront features, admin workflows, and 89 automated Vitest tests completed.
+- **Current Focus**: Preparing production deployment on a self-hosted VPS (Nginx reverse proxy, PostgreSQL containerization, SSL certification, and CI/CD deployment pipeline).
+- **Next Milestones**:
+  - Production launch for the client at `orla.co`.
+  - Client staff onboarding and catalog population.
+  - Post-launch analytics monitoring and order fulfillment tracking.
