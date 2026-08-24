@@ -1,75 +1,134 @@
 ---
-title: "VentureForge: Autonomous Startup Discovery"
-summary: "A multi-agent LangGraph workflow that analyzes and scores startup ideas via real-time Hacker News, Product Hunt, and YouTube integrations."
-proof: "Scores startup ideas against live signals instead of intuition alone."
+title: "VentureForge: Autonomous Startup Discovery & Validation"
+summary: "An autonomous hierarchical multi-agent pipeline built for the AMD AI Hackathon that mines real user pain points across online communities, clusters verified complaints, scores solutions against binary Paul Graham rubrics, and drafts investor-ready pitch briefs with adversarial verification."
+proof: "Replaces generic LLM hallucinations with live evidence-backed pain points, binary rubric scoring, and an adversarial critic loop."
 status: "open-source"
 category: "AI Agent"
 role: "AI Engineer"
 startDate: "2026-05"
-tech: ["LangGraph", "vLLM", "Qwen3-35B", "AMD MI300X", "Gradio"]
+tech: ["LangGraph", "Pydantic v2", "SQLite", "Gradio", "vLLM", "AMD MI300X", "Python", "Hugging Face"]
 featured: true
 previewAvailable: true
-preview: "/previews/ventureforge.svg"
+preview: "/previews/ventureforge.png"
 order: 4
+demoUrl: "https://huggingface.co/spaces/Raiquia/VentureForge"
 repoUrl: "https://github.com/rizkiwijanarko/KickUp"
 ---
 
+import PublicImage from '../../components/PublicImage.astro';
+
 ## Overview
 
-VentureForge is a multi-agent workflow that takes a startup idea and scores it against real-time signals from Hacker News, Product Hunt, and YouTube. It evaluates market relevance and product-market fit with structured LLM pipelines instead of vibes.
+**VentureForge** is an autonomous hierarchical multi-agent pipeline built for the **AMD AI Hackathon (Track 1: AI Agents & Agentic Workflows)**. It transforms the unpredictable, vibe-based process of startup ideation into an evidence-first, deterministic discovery and validation engine.
 
-## Problem
+Rather than relying on ungrounded LLM brainstorming, VentureForge concurrently mines real-world user complaints and friction from **Hacker News**, **Reddit**, **Product Hunt**, **YouTube Comments**, and **Tavily Search**, clusters them into thematic market pain points with verbatim citations, synthesizes targeted startup concepts, rigorously scores them against **8 binary Paul Graham rubrics**, and drafts executive **2-Column Bento Grid pitch briefs** validated through an adversarial reflection loop.
 
-Validating a startup idea means scanning multiple real-time sources and synthesizing whether the market actually cares. Doing that by hand is slow, inconsistent, and biased by whatever you happened to read last.
+The entire workflow is orchestrated with **LangGraph**, persisted via **SQLite state checkpointing**, and served through an enterprise dark-mode **Gradio Studio UI** powered by accelerated open-weights inference (Qwen3-35B served with vLLM on AMD ROCm / MI300X GPUs).
 
-## Solution
+<div class="figure-card">
+  <PublicImage src="/projects/ventureforge/app-preview.png" alt="VentureForge Studio Gradio Web UI" />
+  <div class="figure-caption"><strong>VentureForge Studio</strong>: Enterprise zero-emoji dark theme, real-time pipeline stepper rail with per-stage timing telemetry, interactive rubric inspectors, and one-click Markdown/JSON exports.</div>
+</div>
 
-A LangGraph multi-agent graph where each agent owns a source:
+## The Problem: The Hallucination & Validation Gap
 
-- **Source agents** ingest real-time data from Hacker News, Product Hunt, and YouTube APIs.
-- **Evaluation pipelines** assess market relevance and product-market fit against the ingested data.
-- **Scoring** produces a structured verdict per idea.
+Traditional startup validation and AI ideation tools suffer from three fundamental flaws:
 
-The inference layer runs a self-hosted open-source LLM — Qwen3-35B served with vLLM on AMD MI300X GPUs — for low-latency, cost-controlled evaluation.
+1. **Synthetic Hallucinations & Echo Chambers**: Generic LLM prompts produce plausibly sounding business ideas disconnected from genuine market demand, lacking provenance or real customer quotes.
+2. **Arbitrary Floating-Point Scoring**: Conventional AI evaluators rate ideas on subjective 1–10 scales (e.g., *"Market size: 7.8/10"*), producing noisy, non-deterministic scores that cannot be audited or compared across runs.
+3. **Stale State & Cascading Errors**: When an evaluator criticizes a downstream pitch brief, naive agent loops fail to invalidate upstream artifacts, resulting in contradictory decks and hallucinated URLs.
 
-## Architecture
+## The Solution: Grounded Multi-Agent Pipeline
 
-The workflow routes an idea through dedicated source collectors, a shared evaluation stage, and a final scoring step. Each stage contributes structured evidence so the result can be traced back to the signals that influenced it.
+VentureForge replaces subjective guessing with a closed-loop, adversarial verification pipeline governed by strict state boundaries and immutable checkpoints.
 
-## Tech Stack
+<div class="figure-card">
+  <PublicImage src="/projects/ventureforge/architecture.png" alt="VentureForge Multi-Agent Hierarchical Architecture Diagram" />
+  <div class="figure-caption"><strong>System Architecture</strong>: Hierarchical Supervisor Pattern in LangGraph with 6 specialized agents, immutable state snapshots, SQLite checkpoint persistence, and downstream invalidation cascade. </div>
+</div>
 
-- **Orchestration**: LangGraph (multi-agent graph)
-- **Inference**: vLLM serving Qwen3-35B on AMD MI300X
-- **Interface**: Gradio
-- **Integrations**: Hacker News, Product Hunt, YouTube APIs
+### The 6 Specialized Agents
 
-## Key Features
+| Agent | Responsibility | Reflection Target? | Invalidation Scope |
+|---|---|:---:|---|
+| **👑 Orchestrator** | Central supervisor; manages `VentureForgeState`, routes tasks, enforces evaluation gates, executes invalidation cascade | — | Global State Coordinator |
+| **⛏️ Pain Point Miner** | Ingests from 5 sources in parallel within SLA budget (5s); deduplicates & clusters complaints with verbatim quotes | ✅ | Invalidates Ideas, Scored Ideas, Pitches |
+| **💡 Idea Generator** | Transforms clustered pain points into actionable startup concepts with 3–5 concrete key features | ✅ | Invalidates Scored Ideas, Pitches |
+| **📊 Scorer** | Evaluates ideas via 8 Paul Graham binary criteria + fatal flaw detection; outputs `pursue`, `explore`, or `park` | — | Gating Filter |
+| **✍️ Pitch Writer** | Writes structured pitch briefs for `pursue`-verdict ideas (problem/solution fit, key features, business model, moat, discovery milestones) | ✅ | Invalidates Critic Reports |
+| **🔍 Critic** | Adversarial auditor enforcing 8 binary groundedness & positioning checks (URL provenance, contained fire, competitive thesis, validation questions) | — | Emits Targeted Feedback |
 
-- Multi-agent source ingestion
-- Structured startup scoring
-- Self-hosted open-source LLM inference
-- Interactive Gradio client
+## Binary Evaluation & Adversarial Verification
 
-## Engineering Decisions
+VentureForge replaces subjective floats with strict boolean decision trees inspired by **Paul Graham** (co-founder of Y Combinator and author of seminal startup essays like *"Do Things that Don't Scale"* and *"Schlep Blindness"*) and rigorous venture capital due diligence:
 
-- **LangGraph** over a hand-rolled loop — the graph shape maps naturally to agent pipelines
-- **Self-hosted Qwen3-35B on vLLM/AMD** — open weights, no per-token API cost, low-latency GPU inference
-- **Gradio** for a quick interactive surface over the graph
+### 1. Scorer Agent (8 Paul Graham Criteria & Fatal Flaw Filter)
 
-## Challenges
+An idea must achieve a **Pursue** verdict by passing the binary rubrics and avoiding fatal flaws before any pitch brief is drafted (**Pursue-First Filtering**):
 
-The main challenge is keeping the evaluation grounded in current evidence without letting one noisy source dominate the result. Separating collection, analysis, and scoring makes each stage easier to inspect and calibrate.
+- **Feasibility Rubric**:
+  - *Do things that don't scale*: Can this be solved manually first?
+  - *Schlep advantage*: Does it tackle an unsexy operational hurdle incumbents avoid?
+  - *Execution timeline*: Can a 2–3 person engineering team build an MVP within 6 months?
+- **Demand Rubric**:
+  - *Pain point grounding*: Does it address at least 2 distinct extracted complaint clusters?
+  - *Painkiller vs. Vitamin*: Is it an urgent, acute bleeding neck rather than a nice-to-have?
+  - *Early adopter vein*: Is there a clear, reachable community with urgent buying power?
+- **Novelty & Expansion Rubric**:
+  - *Differentiated behavior*: Does it offer a 10x improvement over existing manual workarounds?
+  - *Expansion path*: Is there a viable expansion roadmap out of the initial niche?
+- **Fatal Flaw Filter**: Instant disqualification for regulatory/legal blockades, unwinnable incumbent distribution moats, or severe technical impossibility.
 
-## Results
+### 2. Adversarial Critic Agent (8 Groundedness & Strategy Checks)
 
-The working prototype combines multiple live sources, produces a structured score, and exposes the workflow through an interactive Gradio interface. Calibration against known outcomes remains part of the next iteration.
+Every drafted pitch brief is audited by an independent Critic agent before presentation:
 
-## Lessons Learned
+1. `all_claims_evidence_backed`: Every market assertion traces directly to verified pain point quotes.
+2. `no_hallucinated_source_urls`: URLs cross-referenced against scraped evidence URLs.
+3. `tagline_under_12_words`: Concise, punchy executive framing.
+4. `target_is_contained_fire`: Specific, highly reachable initial user base (e.g., Facebook at Harvard).
+5. `competition_embraced_with_thesis`: Identifies direct competitors and incumbent blindspots.
+6. `minimum_evidence_sources`: At least 2 distinct primary source citations.
+7. `scorer_verdict_justified`: Explicit alignment between rubric scoring and pitch claims.
+8. `validation_plan_complete`: Exactly 5 open-ended customer discovery questions + falsifiable milestone.
 
-Multi-agent workflows are most useful when each stage has a narrow responsibility and produces an inspectable intermediate result.
+<div class="figure-card">
+  <PublicImage src="/projects/ventureforge/pitch-brief-preview.png" alt="VentureForge Bento Grid Pitch Brief and Critic Diagnostics" />
+  <div class="figure-caption"><strong>Executive Bento Grid Pitch Brief</strong>: Certified and Quarantined Pitch Briefs rendered as high-density 2-Column Bento Grid cards with Key Features, Critic Diagnostics, 8-Point Rubric Matrices, and Collapsible Canonical Markdown Drawers.</div>
+</div>
 
-## Roadmap
+## Key Architectural Innovations & ADRs
 
-- **Completed**: multi-agent graph, source integrations, scoring, Gradio client
-- **In Progress**: scoring calibration against known outcomes
-- **Planned**: more sources, deeper market-fit analysis
+Key architectural decisions are documented across 13 Architecture Decision Records:
+
+- **Strict Downstream Invalidation Cascade (ADR 0008)**: When the Critic flags a defect and routes a revision back to the Idea Generator or Miner, all downstream artifacts (scored ideas, pitch briefs, critic reports) are atomically invalidated to eliminate stale state contamination.
+- **Quarantine Segregation Policy (ADR 0006 & ADR 0010)**: If a pitch brief fails Critic checks after reaching `max_revisions`, it is graduated into an isolated quarantined partition with attached diagnostic cards rather than corrupting certified outputs.
+- **Pursue-First Filtering (ADR 0009)**: Pitch briefs are only generated for concepts passing all demand and feasibility hurdles without fatal flaws, preserving LLM compute.
+- **Hybrid Bento Grid UI + Deterministic Compiler (ADR 0013)**: Eliminates raw Markdown dumps by presenting structured visual bento cards while generating 100% consistent 9-part investor briefs via a deterministic compiler (`compile_pitch_markdown`).
+- **SQLite Checkpoint Persistence (ADR 0007)**: LangGraph state transitions persist automatically to `.cache/ventureforge.db` (`SqliteSaver` with resilient `MemorySaver` fallback), allowing runs to be inspected, paused, and resumed.
+- **Dual-Tier LLM Architecture**: Configurable fast LLM tier for mining, idea generation, and pitch drafting, paired with a deep reasoning LLM tier for rubric scoring and adversarial critique.
+- **Resilient Multi-Source Mining Subsystem (ADR 0003 & ADR 0005)**: Concurrent async ingestion with 5-second SLA budgets per source and engagement-weighted ranking (HN points, Reddit upvotes, Product Hunt votes, YouTube likes).
+
+## Technology Stack
+
+| Component | Technology | Role in VentureForge |
+|---|---|---|
+| **Orchestration** | LangGraph (StateGraph) | Stateful multi-agent graph, conditional routing, reflection loops, checkpoint persistence |
+| **Data Validation** | Pydantic v2 | Strict JSON schema serialization, structured LLM outputs, deterministic model validators |
+| **Persistence** | SQLite (`SqliteSaver`) | Checkpoint storage with resilient in-memory fallback |
+| **Web Interface** | Gradio | Interactive UI with live timers, Bento Grid layouts, stepper rail, and tabbed exports |
+| **Data Mining** | Async HTTP / Strategy Adapters | Hacker News API, Reddit JSON, Product Hunt API, YouTube v3, Tavily API |
+| **Compute / Hardware** | AMD ROCm & MI300X / vLLM | Accelerated inference using OpenAI-compatible vLLM endpoints |
+
+## Engineering Decisions & Trade-Offs
+
+- **LangGraph over Hand-Rolled Loops**: The state graph abstraction makes cyclic reflection loops, conditional supervisor routing, and checkpoint rollbacks declarative and inspectable.
+- **Binary Rubrics over Numerical Ratings**: Replaced arbitrary 1–10 float scores with deterministic boolean criteria, making evaluations reproducible, auditable, and actionable for upstream revision.
+- **Quarantine over Hard Failure**: Rather than failing a run when an idea fails adversarial critique after maximum revisions, VentureForge presents the quarantined brief alongside specific critic diagnostics, delivering valuable negative validation signal.
+- **Self-Hosted Open Weights on AMD MI300X**: Enabled high-throughput, low-latency parallel inference across all 6 agent roles without token rate limits or recurring API costs.
+
+## Results & Demo
+
+- **Hackathon Track**: Built for AMD AI Hackathon (Track 1: AI Agents & Agentic Workflows).
+- **Live Demo**: Deployed and accessible on [Hugging Face Spaces](https://huggingface.co/spaces/Raiquia/VentureForge).
+- **Open-Source Codebase**: Full source code, test suites (`pytest`, `mypy`, `ruff`), and ADR documentation available on [GitHub](https://github.com/rizkiwijanarko/KickUp).

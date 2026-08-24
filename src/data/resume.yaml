@@ -135,16 +135,17 @@ projects:
   - name: VentureForge
     caseStudyId: ventureforge
     startDate: "2026-05"
-    summary: Multi-agent workflow using LangGraph to analyze and score startup ideas via real-time integrations with Hacker News, Product Hunt, and YouTube APIs.
-    tech: [LangGraph, vLLM, Qwen3-35B, AMD MI300X, Gradio]
+    summary: Built for AMD AI Hackathon (Track 1) — an autonomous hierarchical multi-agent pipeline (LangGraph + Pydantic v2) that mines real user complaints across 5 platforms, scores startup ideas via 8 Paul Graham binary rubrics, and drafts investor-ready pitch briefs with adversarial verification.
+    tech: [LangGraph, Pydantic v2, SQLite, Gradio, vLLM, AMD MI300X, Python]
     category: AI Agent
     status: open-source
     featured: true
     repoUrl: https://github.com/rizkiwijanarko/KickUp
     highlights:
-      - Built a multi-agent workflow using LangGraph to analyze and score startup ideas via real-time integrations with Hacker News, Product Hunt, and YouTube APIs.
-      - Designed structured LLM-based evaluation pipelines to assess market relevance and product-market fit based on real-time data ingestion.
-      - Deployed open-source LLM inference (Qwen 3.5 35B) using vLLM on high-performance AMD MI300X GPUs, achieving low-latency inference for interactive Gradio clients.
+      - Built an autonomous 6-agent hierarchical pipeline with LangGraph and SQLite checkpointing for the AMD AI Hackathon, featuring a supervisor orchestrator, SLA-budgeted data mining, and strict downstream reflection invalidation cascades.
+      - Engineered a concurrent multi-source evidence subsystem ingesting and clustering live user complaints across Hacker News, Reddit, Product Hunt, YouTube, and Tavily with engagement-weighted ranking.
+      - Designed an 8-point Paul Graham binary rubric scoring engine with pursue-first filtering and an adversarial critic loop that audits URL provenance, contained fire positioning, and strategic differentiation.
+      - Implemented a hybrid Gradio Studio interface rendering 2-column Bento Grid pitch briefs with interactive rubric breakdown matrices, quarantined pitch segregation, and deterministic canonical Markdown export.
   - name: Rizclone
     startDate: "2026-05"
     summary: RAG-based chatbot with custom tool calling, deployed on Hugging Face Spaces, with query rewriting and reranking for improved retrieval.
