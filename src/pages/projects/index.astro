@@ -3,14 +3,33 @@ import Layout from '../../layouts/Layout.astro';
 import { getCollection } from 'astro:content';
 
 const resume = (await getCollection('resume'))[0]?.data;
-const caseStudies = (await getCollection('projects')).sort((a, b) => a.data.order - b.data.order);
-const caseStudyIds = new Set(caseStudies.map((p) => p.id));
-const otherProjects = (resume?.projects ?? []).filter((p) => !p.caseStudyId || !caseStudyIds.has(p.caseStudyId));
 const base = import.meta.env.BASE_URL;
+const allProjects = (await getCollection('projects')).sort((a, b) => a.data.order - b.data.order);
+const caseStudyOrder = ['ningsih-app', 'ventureforge', 'orla', 'rizclone'];
+const caseStudies = allProjects.filter((p) => p.data.featured).sort((a, b) => caseStudyOrder.indexOf(a.id) - caseStudyOrder.indexOf(b.id));
+const otherProjects = [
+  ...allProjects
+    .filter((p) => ['signalatlas', 'wayang-classification'].includes(p.id))
+    .map((p) => ({
+      id: p.id,
+      name: p.data.title,
+      summary: p.data.summary,
+      category: p.data.category,
+      context: p.data.context,
+      status: p.data.status,
+      maturity: p.data.maturity,
+      startDate: p.data.startDate,
+      caseStudyId: p.id,
+      repoUrl: p.data.repoUrl,
+      demoUrl: p.data.demoUrl,
+    })),
+  ...(resume?.projects ?? []).filter((p) => ['Sustainable Urbanization Clustering Analysis', 'Lapor Pak'].includes(p.name)),
+];
 
-const getAvailability = (project: { demoUrl?: string; repoUrl?: string; status?: string }) => {
-  if (project.demoUrl) return { label: 'Live demo', href: project.demoUrl };
-  if (project.repoUrl) return { label: 'View source', href: project.repoUrl };
+const getAvailability = (project: { caseStudyId?: string; demoUrl?: string; repoUrl?: string; status?: string }) => {
+  if (project.caseStudyId) return { label: 'Read case study', href: base + 'projects/' + project.caseStudyId + '/' };
+  if (project.demoUrl) return { label: 'Live demo', href: project.demoUrl, external: true };
+  if (project.repoUrl) return { label: 'View source', href: project.repoUrl, external: true };
   if (project.status === 'building') return { label: 'Private build' };
   return { label: 'No public link' };
 };
@@ -23,25 +42,25 @@ const formatDate = (value?: string) => {
 };
 ---
 
-<Layout title="Projects" active="projects" description="Projects and case studies by Kharisma Rizki Wijanarko — AI systems, agents, and machine learning.">
+<Layout title="Projects" active="projects" description="Selected projects by Kharisma Rizki Wijanarko, including AI products, client delivery, and applied machine learning.">
   <section class="page-head">
     <div class="wrap">
       <span class="eyebrow">Projects</span>
-      <h1 class="page-title">AI systems built for real constraints</h1>
-      <p class="page-sub">Production-minded AI systems, product engineering, and ML research — from protecting inventory during local payments to making model results trustworthy.</p>
+      <h1 class="page-title">Selected projects</h1>
+      <p class="page-sub">A focused set of AI products, client delivery, and applied machine-learning work. Each project is labeled by its current status and available evidence.</p>
     </div>
   </section>
 
   <!-- Featured case studies -->
   <section class="section">
     <div class="wrap">
-      <h2 class="sec-title">Featured case studies</h2>
+      <h2 class="sec-title">Selected case studies</h2>
       <div class="featured-list">
         {caseStudies.map((p) => {
           const availability = getAvailability(p.data);
           return (
           <article class="case-card">
-            <a href={base + 'projects/' + p.id + '/'} class="case-link">
+            <a href={base + 'projects/' + p.id + '/'} class="case-link" aria-label={'Read the ' + p.data.title + ' case study'}>
               <div class="preview-panel">
                 {p.data.previewAvailable && p.data.preview ? (
                   <img class="preview-img" src={base + p.data.preview.replace(/^\//, '')} alt={p.data.title + ' preview'} width="800" height="500" loading="lazy" />
@@ -52,12 +71,10 @@ const formatDate = (value?: string) => {
               <div class="case-body">
                 <div class="case-top">
                   <h3>{p.data.title}</h3>
-                  <span class:list={['status-pill', 'status-' + p.data.status]}>{p.data.status}</span>
+                  <span class:list={['status-pill', 'status-' + p.data.status]}>{p.data.maturity ?? p.data.status}</span>
                 </div>
-                <p class="case-proof">{p.data.proof}</p>
-                <p class="case-category">{p.data.category} &middot; {p.data.role} &middot; {formatDate(p.data.startDate)}</p>
-                <p class="case-summary">{p.data.summary}</p>
-                <div class="case-tech">{p.data.tech.map((t) => <span class="chip">{t}</span>)}</div>
+                <p class="case-category">{p.data.context} &middot; {p.data.category} &middot; {p.data.role} &middot; {formatDate(p.data.startDate)}</p>
+                <p class="case-proof">{p.data.summary}</p>
                 <div class="case-actions">
                   <span class="case-cta">Read case study &rarr;</span>
                   <span class="availability">{availability.label}</span>
@@ -79,21 +96,21 @@ const formatDate = (value?: string) => {
       <div class="archive-list">
         {otherProjects.map((p) => {
           const availability = getAvailability(p);
-          const details = `${p.category ?? 'Project'} · ${formatDate(p.startDate ?? p.date)}`;
+          const details = `${p.context ? p.context + ' · ' : ''}${p.category ?? 'Project'} · ${formatDate(p.startDate ?? p.date)}`;
           return (
             <article class="archive-item">
               {availability.href ? (
-                <a href={availability.href} target="_blank" rel="noopener" class="archive-link" aria-label={`${p.name} — ${availability.label}, opens in a new tab`}>
+                  <a href={availability.href} target={availability.external ? '_blank' : undefined} rel={availability.external ? 'noopener' : undefined} class="archive-link" aria-label={`${p.name} — ${availability.label}${availability.external ? ', opens in a new tab' : ''}`}>
                   <span class="archive-name">{p.name}</span>
                   <span class="archive-details">{details}</span>
-                  {p.status && <span class:list={['status-pill', 'status-' + p.status]}>{p.status}</span>}
+                  {p.status && <span class:list={['status-pill', 'status-' + p.status]}>{p.maturity ?? p.status}</span>}
                   <span class="archive-action">{availability.label} &rarr;</span>
                 </a>
               ) : (
                 <div class="archive-link">
                   <span class="archive-name">{p.name}</span>
                   <span class="archive-details">{details}</span>
-                  {p.status && <span class:list={['status-pill', 'status-' + p.status]}>{p.status}</span>}
+                  {p.status && <span class:list={['status-pill', 'status-' + p.status]}>{p.maturity ?? p.status}</span>}
                   <span class="archive-action archive-action-muted">{availability.label}</span>
                 </div>
               )}
@@ -171,6 +188,7 @@ const formatDate = (value?: string) => {
   }
 
   .case-top h3 {
+    min-width: 0;
     font-size: 1.25rem;
   }
   .case-category {
@@ -230,6 +248,9 @@ const formatDate = (value?: string) => {
   .archive-link:hover {
     text-decoration: none;
     background: rgba(255, 255, 255, 0.45);
+  }
+  .archive-link > * {
+    min-width: 0;
   }
   .archive-name {
     font-weight: 700;

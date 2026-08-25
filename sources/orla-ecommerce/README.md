@@ -53,7 +53,7 @@
 
 ## 🖼️ Visual Tour
 
-Here is a visual walk-through of the core application views captured from the live platform:
+Here is a visual walk-through of the core application views captured from the functional staging build:
 
 ### 1. Editorial Storefront
 *Hero carousel, serene typography, category filters, and curated apparel collections.*

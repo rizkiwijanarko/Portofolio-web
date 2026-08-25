@@ -19,7 +19,6 @@ Personal engineering portfolio website built with [Astro](https://astro.build), 
 │   ├── data/                   # Structured data collections (resume.yaml)
 │   ├── layouts/                # Astro layout templates
 │   ├── pages/                  # Route entrypoints
-│   │   ├── contact/
 │   │   ├── experience/
 │   │   ├── projects/           # /projects list and /projects/[id] detail routes
 │   │   ├── resume/

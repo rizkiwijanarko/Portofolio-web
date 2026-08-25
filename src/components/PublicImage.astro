@@ -4,12 +4,14 @@ interface Props {
   alt: string;
   width?: number;
   height?: number;
+  loading?: 'eager' | 'lazy';
+  fetchpriority?: 'high' | 'low' | 'auto';
 }
 
-const { src, alt, width, height } = Astro.props;
+const { src, alt, width, height, loading = 'lazy', fetchpriority } = Astro.props;
 const base = import.meta.env.BASE_URL;
 const normalizedSrc = src.startsWith('/') ? src.slice(1) : src;
 const imageSrc = src.startsWith('http://') || src.startsWith('https://') ? src : base + normalizedSrc;
 ---
 
-<img src={imageSrc} alt={alt} width={width} height={height} loading="lazy" decoding="async" />
+<img src={imageSrc} alt={alt} width={width} height={height} loading={loading} fetchpriority={fetchpriority} decoding="async" />

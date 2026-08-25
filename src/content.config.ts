@@ -2,9 +2,9 @@ import { defineCollection, z } from 'astro:content';
 import { glob } from 'astro/loaders';
 
 // ---------------------------------------------------------------------------
-// Projects — the 4 featured case studies (MDX long-form).
-// Structured metadata in frontmatter; body holds problem/solution/architecture
-// /decisions/results/lessons. Card-only projects live in the resume YAML.
+// Projects — selected case studies and secondary project pages (MDX).
+// Structured metadata in frontmatter; body holds the reader-first narrative and
+// focused technical evidence.
 // ---------------------------------------------------------------------------
 const projects = defineCollection({
   loader: glob({ pattern: '**/*.mdx', base: './src/content/projects' }),
@@ -12,7 +12,13 @@ const projects = defineCollection({
     title: z.string(),
     summary: z.string(),
     proof: z.string(),
+    problem: z.string().optional(),
+    deliverable: z.string().optional(),
+    nextStep: z.string().optional(),
     status: z.enum(['building', 'shipped', 'open-source', 'research']),
+    context: z.string().optional(),
+    maturity: z.string().optional(),
+    evidence: z.array(z.string()).default([]),
     category: z.string(),
     role: z.string(),
     startDate: z.string(),
@@ -95,6 +101,9 @@ const resume = defineCollection({
         repoUrl: z.string().optional(),
         category: z.string().optional(),
         status: z.enum(['building', 'shipped', 'open-source', 'research']).optional(),
+        context: z.string().optional(),
+        maturity: z.string().optional(),
+        evidence: z.array(z.string()).default([]),
         featured: z.boolean().default(false),
         highlights: z.array(z.string()),
       })

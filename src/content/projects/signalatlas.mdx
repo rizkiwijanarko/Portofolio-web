@@ -1,72 +1,36 @@
 ---
-title: "SignalAtlas: AI Market Intelligence Platform"
-summary: "A SaaS-ready AI platform that discovers business opportunities by mining and clustering customer pain points from unstructured online discussions."
-proof: "Turns scattered customer complaints into scored opportunity clusters."
+title: "SignalAtlas: AI Market Intelligence"
+summary: "A private AI product in development that groups customer complaints into potential opportunity areas."
+proof: "Connects scattered customer discussions to a repeatable research workflow."
+problem: "Finding what to build next often means reading many disconnected discussions without a consistent way to group and compare the problems people describe."
+deliverable: "An in-development research workflow that collects discussions, extracts pain points, groups related problems, and presents opportunity areas."
+nextStep: "Continue developing the product and validate the opportunity-scoring workflow with real research use cases."
 status: "building"
-category: "AI SaaS"
+context: "Independent research"
+maturity: "Build · In development"
+evidence: ["Architecture overview", "Private build"]
+category: "AI Product"
 role: "AI Engineer"
 startDate: "2026-06"
-tech: ["Python", "FastAPI", "PostgreSQL", "Vector DB", "LLMs"]
-featured: true
+tech: ["Python", "FastAPI", "PostgreSQL", "Vector search", "LLMs"]
+featured: false
 previewAvailable: true
 preview: "/previews/signalatlas.svg"
 order: 3
 ---
 
-## Overview
+## What I built
 
-SignalAtlas is an AI market intelligence platform that discovers business opportunities by mining and clustering customer pain points from unstructured online discussions. It turns scattered complaints and requests across forums and social threads into scored, actionable opportunity clusters.
+I am developing a workflow that collects unstructured customer discussions, extracts pain points, groups related problems, and presents opportunity areas for further research.
 
-## Problem
+## Evidence and outcome
 
-Finding what to build next usually means reading thousands of scattered discussions, guessing which problems are common enough to matter, and hoping the guess is right. There was no systematic way to aggregate pain points and rank them by business opportunity.
+The available evidence is the architecture and current product material. The workflow is functional in development, but it has not been publicly launched or validated as a market-research product.
 
-## Solution
+## Technical approach
 
-An end-to-end LLM pipeline that combines concurrent web scraping, embedding-based clustering, and automated opportunity scoring:
+The system separates collection, language-model extraction, grouping, and scoring into distinct stages. This makes each stage easier to inspect while the product is being developed.
 
-- **Ingestion**: concurrent scrapers pull unstructured discussions from online sources.
-- **Understanding**: LLMs extract and normalize pain points from raw text.
-- **Clustering**: embedding-based clustering groups related pain points into opportunity themes.
-- **Scoring**: automated opportunity scoring ranks clusters by size, intensity, and fit.
+## Next step
 
-## Architecture
-
-The system separates source ingestion, language-model extraction, embedding-based clustering, and opportunity scoring into scheduled stages. Containerized APIs expose the processed results to an authenticated dashboard while keeping long-running analysis jobs isolated from the user interface.
-
-## Tech Stack
-
-- **Backend**: FastAPI, PostgreSQL
-- **AI**: LLM pipeline, embedding-based clustering, vector search
-- **Infrastructure**: Docker, APScheduler, dashboard
-
-## Key Features
-
-- Concurrent web scraping of online discussions
-- LLM-based pain point extraction and normalization
-- Embedding-based clustering of related issues
-- Automated opportunity scoring
-
-## Engineering Decisions
-
-- **PostgreSQL + vector search** for relational and similarity data in one store
-- **Scheduled pipelines (APScheduler)** instead of purely event-driven ingestion, for predictable batch freshness
-- **Docker containerization** for reproducible deploys
-
-## Challenges
-
-The central challenge is turning inconsistent, informal language into comparable problem signals without losing the context that makes each complaint meaningful. Normalization and clustering are kept as separate stages so their quality can be evaluated independently.
-
-## Results
-
-The prototype connects ingestion, pain-point extraction, clustering, and scoring into one repeatable workflow, with the resulting opportunity themes available through a dashboard.
-
-## Lessons Learned
-
-Opportunity discovery benefits from a pipeline that makes the evidence behind each recommendation visible instead of presenting a score without context.
-
-## Roadmap
-
-- **Completed**: pipeline design, clustering, scoring, dashboard
-- **In Progress**: hardening for multi-tenant SaaS
-- **Planned**: public launch
+The next step is to test the workflow against real research questions and improve the product before considering a public release.

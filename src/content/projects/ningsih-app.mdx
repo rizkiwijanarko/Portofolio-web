@@ -1,8 +1,14 @@
 ---
-title: "Ningsih App: AI Personal Chief of Staff"
-summary: "A proactive mobile SaaS that turns natural language and messy voice notes into structured daily momentum — calendar, habits, goals, and long-term memory via conversational AI."
+title: "Ningsih: Turning Thoughts into Next Steps"
+summary: "A personal SaaS that turns messy thoughts and voice notes into organized next steps."
 proof: "Turns an overwhelming thought into one approachable next step."
+problem: "People with full calendars and many goals often need help turning an unstructured thought into a manageable next action."
+deliverable: "A mobile SaaS that turns natural-language and voice input into calendar actions, goals, habits, and smaller next steps."
+nextStep: "Finish UI/UX refinement, complete billing integration, and prepare the product for launch testing."
 status: "building"
+context: "Personal product"
+maturity: "Build · Pre-launch"
+evidence: ["Screenshots", "Architecture overview", "Guided demo"]
 category: "AI SaaS"
 role: "AI Engineer"
 startDate: "2026-07"
@@ -15,179 +21,39 @@ order: 1
 
 import PublicImage from '../../components/PublicImage.astro';
 
-## Overview
+## What I built
 
-**Ningsih** is a proactive mobile SaaS that acts as an intelligent digital chief of staff. Rather than forcing users into rigid boards and complex nested menus, Ningsih turns natural conversation and voice notes into structured daily momentum — managing calendars, tracking habits and milestones, recording personal context, and orchestrating routines.
+The functional build includes the mobile experience, conversational actions, scheduling, goals, habits, memory flows, and voice input. I designed it so people can use natural language instead of filling out several separate productivity forms.
 
-The project originated as an autonomous Telegram bot prototype and has evolved into a full-stack, multi-tenant mobile product backed by a reactive serverless backend and a low-latency agent tool execution engine.
+Ningsih turns an unclear thought into a short action while keeping related calendar and personal context available in the same conversation.
 
-## The Problem
+## Current status and limitations
 
-Busy professionals, independent builders, and ADHD minds frequently struggle with **executive dysfunction, time blindness, and calendar overload**.
+Billing integration, broader external-user validation, launch preparation, and the next stage of product rollout are still in progress. The current evidence shows a working development build, not a launched SaaS with validated adoption.
 
-Traditional productivity tools exacerbate this friction:
-- **High initiation overhead**: Creating a task requires filling forms, setting dates, tags, and priorities — the exact cognitive friction that causes task paralysis.
-- **Vague, overwhelming goals**: Large ambitions like *"Launch SaaS"* or *"Write client proposal"* lack actionable next steps.
-- **All-or-nothing streak guilt**: Missing a single day wipes out a habit streak, causing users to abandon the tool entirely.
-- **Disconnected context**: Calendars, to-do lists, habit trackers, and notes live in separate silos that don't communicate.
+## My role
 
-## The Solution: Inlined Walkthrough
+I am responsible for the product and engineering work across the mobile client, backend data flows, conversational behavior, and third-party integrations. I also define the product decisions that keep the experience focused on reducing the effort required to begin a task.
 
-Ningsih replaces manual data entry with natural dialogue, proactive morning briefings, and ADHD-friendly momentum mechanics.
+## Evidence and outcome
 
-<div class="feature-card">
-  <div class="feature-media">
-    <PublicImage src="/projects/ningsih-app/screen-home.jpg" alt="Ningsih Today Dashboard" width={700} height={1556} />
-  </div>
-  <div class="feature-content">
-    <span class="feature-pain">Overcoming Morning Overwhelm</span>
-    <h3>1. Proactive Morning Kickoff & Day-Part Routines</h3>
-    <div class="feature-desc">
-      Users don't need to manually configure their day. Ningsih synthesizes calendar commitments, active sprint tasks, and energy patterns into a clear morning briefing tailored to chronotypes (Early Bird vs. Night Owl), structuring the day into manageable routines.
-    </div>
-    <div class="feature-tags">
-      <span class="chip-sm">Day-Part Routines</span>
-      <span class="chip-sm">Smart Briefing</span>
-      <span class="chip-sm">Schedule Projection</span>
-    </div>
-  </div>
+The available evidence is a set of real mobile screens, architecture material, and a guided walkthrough. Ningsih is currently being improved through UI/UX work, billing integration with RevenueCat and Google Play, and launch preparation. There is no formal external-user benchmark yet.
+
+## How it works
+
+Under the interface, a language model interprets a request and chooses an action such as scheduling an event, creating a goal, suggesting a smaller task, or saving useful context. A Convex backend stores the resulting state and keeps the mobile screens synchronized. Voice notes are transcribed before the request is handled.
+
+<div class="figure-card architecture-figure">
+  <PublicImage src="/projects/ningsih-app/architecture.jpg" alt="Ningsih mobile product architecture" />
+  <div class="figure-caption">The product connects the mobile client, real-time backend, conversational actions, and external services.</div>
 </div>
 
-<div class="feature-card">
-  <div class="feature-media">
-    <PublicImage src="/projects/ningsih-app/screen-chat.jpg" alt="Ningsih AI Chief of Staff Chat" width={700} height={1556} />
-  </div>
-  <div class="feature-content">
-    <span class="feature-pain">Zero-Friction Capture</span>
-    <h3>2. Natural Voice & Text Secretary</h3>
-    <div class="feature-desc">
-      Users can send messy voice notes or raw brain-dumps (e.g. <em>"Overwhelmed with the proposal, need to fit in a 45-min gym session before 4 PM"</em>). Transcribed instantly via Whisper, Ningsih extracts actionable intents, checks calendar availability, and resolves scheduling conflicts.
-    </div>
-    <div class="feature-tags">
-      <span class="chip-sm">Whisper Voice-to-Text</span>
-      <span class="chip-sm">DeepSeek V4 Tool Calling</span>
-      <span class="chip-sm">Conflict Detection</span>
-    </div>
-  </div>
-</div>
+## Technical decisions
 
-<div class="feature-card">
-  <div class="feature-media">
-    <PublicImage src="/projects/ningsih-app/screen-goals.jpg" alt="Ningsih Socratic Goal Cascade" width={700} height={1556} />
-  </div>
-  <div class="feature-content">
-    <span class="feature-pain">Breaking Task Paralysis</span>
-    <h3>3. Socratic Goal Cascade & Micro-Steps</h3>
-    <div class="feature-desc">
-      Vague goals are broken into an interactive 3-tier cascade: <strong>Strategic Goal &rarr; Sub-milestones &rarr; Sprint Tasks</strong>. When a task feels daunting, Ningsih generates a 3-tier difficulty breakdown with an effortless 2-minute initiation step (<em>"Just do step 1"</em>) to build momentum.
-    </div>
-    <div class="feature-tags">
-      <span class="chip-sm">Socratic Alignment</span>
-      <span class="chip-sm">3-Tier Decomposition</span>
-      <span class="chip-sm">Inertia Breaker</span>
-    </div>
-  </div>
-</div>
+- I used a real-time backend so calendar, task, and habit changes can appear across the app without manual refreshes.
+- I kept conversational actions separate from the interface so a request can update structured product data instead of returning text only.
+- I designed smaller task suggestions and recovery flows around the product goal of helping users regain momentum without punitive streak behavior.
 
-<div class="feature-card">
-  <div class="feature-media">
-    <PublicImage src="/projects/ningsih-app/screen-focus.jpg" alt="Ningsih Focus Session Timer" width={700} height={1556} />
-  </div>
-  <div class="feature-content">
-    <span class="feature-pain">Low-Pressure Momentum</span>
-    <h3>4. Focus Sessions & Zero-Guilt Recovery</h3>
-    <div class="feature-desc">
-      A calm dark-mode focus timer with ambient soundscapes and haptic pulses keeps users locked in. If attention drifts to social media, Ningsih provides gentle physical reset prompts and 5-minute re-entry timers rather than punitive notifications.
-    </div>
-    <div class="feature-tags">
-      <span class="chip-sm">Native Timer</span>
-      <span class="chip-sm">Haptic Cues</span>
-      <span class="chip-sm">Distraction Recovery</span>
-    </div>
-  </div>
-</div>
+## Result and next step
 
-<div class="feature-card">
-  <div class="feature-media">
-    <PublicImage src="/projects/ningsih-app/screen-habits.jpg" alt="Ningsih Habit Consistency Engine" width={700} height={1556} />
-  </div>
-  <div class="feature-content">
-    <span class="feature-pain">Sustainable Consistency</span>
-    <h3>5. Habit Consistency & Rest-Day Buffers</h3>
-    <div class="feature-desc">
-      Traditional streaks punish sick days and rest days. Ningsih uses a 30-day rolling consistency score with built-in rest tolerance buffers and comeback celebrations, maintaining psychological safety and long-term habit retention.
-    </div>
-    <div class="feature-tags">
-      <span class="chip-sm">30-Day Rolling Score</span>
-      <span class="chip-sm">Rest-Day Tolerance</span>
-      <span class="chip-sm">Visual Analytics</span>
-    </div>
-  </div>
-</div>
-
-## System Architecture & Agent Data Flow
-
-Ningsih is designed around a reactive, serverless architecture that connects an Expo/React Native mobile client to a real-time Convex backend and external AI inference endpoints.
-
-<div class="figure-card">
-  <PublicImage src="/projects/ningsih-app/architecture.jpg" alt="Ningsih Full-Stack Architecture Diagram" />
-  <div class="figure-caption">System Architecture: Client Layer, Serverless Real-Time Backend, AI Tool Dispatcher, and External Integrations.</div>
-</div>
-
-<div class="figure-card">
-  <PublicImage src="/projects/ningsih-app/agentic-lifecycle.jpg" alt="Ningsih Agent Execution Lifecycle" />
-  <div class="figure-caption">Agent Lifecycle: Natural Language Input &rarr; Context & Memory Retrieval &rarr; Tool Selection &rarr; State Mutation &rarr; Real-Time Client Update.</div>
-</div>
-
-### Architectural Layers
-
-1. **Client Layer (Mobile Application)**: Built with Expo SDK 57 and React Native using NativeWind (Tailwind CSS) and the Ember Studio design system. Uses reactive Convex query hooks (`useQuery`, `useMutation`) for instant, optimistic UI updates.
-2. **Backend Layer (Convex Serverless)**: Real-time relational document store managing multi-tenant data (users, goals, milestones, tasks, activities, calendar events, memories, and routines) with strict tenant isolation.
-3. **Agent Intelligence Engine**: Fast LLM reasoning and unified tool dispatcher executing 10 atomic tools, validating arguments, and performing structured state mutations.
-4. **External Services**: Two-way Google Calendar OAuth sync, OpenAI Whisper audio transcription, Clerk authentication, and RevenueCat subscription webhook validation.
-
-### Agent Tool Execution Mapping
-
-Instead of returning plain text advice, the agent translates conversational requests into transactional backend mutations:
-
-| User Request Intent | Agent Tool Invoked | Real-Time State Mutation |
-| :--- | :--- | :--- |
-| *"Add gym at 4 PM after client call"* | `scheduleEvent` | Verifies Google Calendar availability, creates event, projects daily agenda |
-| *"I'm overwhelmed starting this proposal"* | `suggestMicroTask` | Generates 3-tier difficulty decomposition with 2-min initiation micro-step |
-| *"I want to launch my MVP next month"* | `alignGoal` / `manageGoal` | Socratic goal refinement &rarr; 3-tier milestone cascade in database |
-| *"Distracted for an hour on YouTube"* | `logActivity` | Logs activity, starts 5-min gentle re-entry timer without streak penalties |
-| *"Remember I prefer deep work mornings"* | `rememberContext` | Upserts long-term user memory record applied in future morning briefings |
-
-## Key Engineering Decisions & Trade-Offs
-
-- **Real-Time Reactive State (Convex) over REST Polling**:
-  - *Context*: Calendar updates, task completions, and agent actions must reflect instantly across all screens.
-  - *Decision*: Adopted Convex reactive subscriptions. Mutations trigger automatic delta updates to all active queries, eliminating polling overhead and stale client state.
-- **DeepSeek V4 Flash for Low-Latency Tool Calling**:
-  - *Context*: Mobile conversational interfaces require sub-second responses for tool execution.
-  - *Decision*: Deployed DeepSeek V4 Flash via OpenRouter for high-throughput, low-latency reasoning and structured tool calling, backed by an OpenAI API fallback mechanism.
-- **Server-Authoritative Entitlements & Security (Clerk + RevenueCat)**:
-  - *Context*: Freemium tiers (Free vs. Plus) and Google Calendar tokens must remain tamper-proof.
-  - *Decision*: Authorization and tier gating are strictly enforced on serverless backend functions and validated via webhooks. Sensitive tokens are never stored on the mobile device.
-- **Deterministic 2-Minute Micro-Task Logic**:
-  - *Context*: Standard AI task breakdowns often output multi-hour steps that still induce paralysis.
-  - *Decision*: Constrained prompt schemas to enforce a 3-tier progressive structure where Tier 1 must be executable in under 2 minutes.
-
-## Hard Engineering Challenges
-
-### Two-Way Google Calendar Conflict Resolution & RRULE
-- **The Challenge**: Merging third-party Google Calendar events with in-app scheduled tasks without causing race conditions or duplicate entries during offline-online transitions.
-- **Solution**: Implemented a two-tier synchronization pipeline: 15-minute background cron sync paired with immediate on-write write-through projections. Evaluated recurring event rules (RRULE) server-side and maintained optimistic client caches.
-
-### Low-Latency Native Audio Processing
-- **The Challenge**: Recording audio on native devices and streaming it to transcription models without freezing the JS event loop or delaying user feedback.
-- **Solution**: Utilized `expo-audio` with direct buffer streaming to serverless Whisper actions, immediately chaining transcript output into the DeepSeek tool dispatcher in a single asynchronous transaction.
-
-## Current Status & Roadmap
-
-- **Status**: Active development and dogfooding as a private multi-tenant mobile SaaS on Android (Pixel test builds).
-- **Current Focus**: Refining Socratic goal-alignment prompts, hardening Google Calendar token rotation, and optimizing paywall conversion flows via RevenueCat.
-- **Next Milestones**:
-  - iOS TestFlight distribution.
-  - Expanded integrations (Notion, Slack, Apple Health sleep/readiness sync).
-  - Multi-user private beta cohort testing.
+The current build demonstrates the core product direction and the main interaction loop. The next step is to finish the experience and billing work, then test the product with people beyond my own development workflow.

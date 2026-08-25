@@ -3,15 +3,14 @@ import Layout from '../../layouts/Layout.astro';
 import { getCollection } from 'astro:content';
 
 const resume = (await getCollection('resume'))[0]?.data;
-const base = import.meta.env.BASE_URL;
 ---
 
-<Layout title="Experience" active="experience" description="Work experience of Kharisma Rizki Wijanarko — AI evaluation, fullstack development, and research engineering.">
+<Layout title="Experience" active="experience" description="Professional experience of Kharisma Rizki Wijanarko in AI evaluation, backend development, and research engineering.">
   <section class="page-head">
     <div class="wrap">
       <span class="eyebrow">Experience</span>
       <h1 class="page-title">Where I've worked</h1>
-      <p class="page-sub">Three roles that shaped how I build: production AI evaluation, enterprise backend, and research engineering.</p>
+      <p class="page-sub">Three roles spanning AI evaluation, backend development, and research engineering.</p>
     </div>
   </section>
 
@@ -45,14 +44,13 @@ const base = import.meta.env.BASE_URL;
               <h3>{ed.institution}</h3>
               <p class="edu-degree">{ed.degree}</p>
               <p class="edu-meta">{ed.startDate} &ndash; {ed.endDate} &middot; {ed.location}</p>
-              <ul>{ed.highlights.map((h) => <li>{h}</li>)}</ul>
             </article>
           ))}
         </div>
       </div>
 
       <div class="cert-block">
-        <h2 class="sec-title">Certifications</h2>
+        <h2 class="sec-title">Selected credentials</h2>
         <ul class="cert-list">
           {resume?.certifications.map((c) => <li>{c}</li>)}
         </ul>
@@ -65,9 +63,6 @@ const base = import.meta.env.BASE_URL;
         </ul>
       </div>
 
-      <div class="center-link">
-        <a class="btn btn-primary" href={base + 'Kharisma_Rizki_Wijanarko_CV.pdf'}>Download full resume</a>
-      </div>
     </div>
   </section>
 </Layout>

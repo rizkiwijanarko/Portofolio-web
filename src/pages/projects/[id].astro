@@ -12,7 +12,7 @@ const { Content } = await render(project);
 const base = import.meta.env.BASE_URL;
 ---
 
-<Layout title={project.data.title} active="projects" description={project.data.summary} image={project.data.preview}>
+<Layout title={project.data.title} active="projects" description={project.data.summary} image={project.data.preview ? base + project.data.preview.replace(/^\//, '') : undefined}>
   <article class="case-study">
     <div class="wrap">
       <nav class="crumbs" aria-label="Breadcrumb">
@@ -21,11 +21,12 @@ const base = import.meta.env.BASE_URL;
 
       <header class="cs-head">
         <div class="cs-meta">
-          <span class:list={['status-pill', 'status-' + project.data.status]}>{project.data.status}</span>
-          <span class="cs-category">{project.data.category} &middot; {project.data.role} &middot; {project.data.startDate}</span>
+          <span class:list={['status-pill', 'status-' + project.data.status]}>{project.data.maturity ?? project.data.status}</span>
+          <span class="cs-category">{project.data.context} &middot; {project.data.category} &middot; {project.data.role} &middot; {project.data.startDate}</span>
         </div>
         <h1 class="cs-title">{project.data.title}</h1>
         <p class="cs-summary">{project.data.summary}</p>
+        <p class="cs-proof"><strong>What this proves:</strong> {project.data.proof}</p>
         <div class="cs-tech">{project.data.tech.map((t) => <span class="chip">{t}</span>)}</div>
         <div class="cs-actions">
           {project.data.repoUrl && (
@@ -45,6 +46,18 @@ const base = import.meta.env.BASE_URL;
           <span>Product preview coming soon</span>
         )}
       </div>
+
+      <section class="glance" aria-labelledby="glance-title">
+        <h2 id="glance-title">At a glance</h2>
+        <dl class="glance-grid">
+          <div><dt>Problem</dt><dd>{project.data.problem ?? project.data.summary}</dd></div>
+          <div><dt>What I built</dt><dd>{project.data.deliverable ?? project.data.summary}</dd></div>
+          <div><dt>My role</dt><dd>{project.data.role}</dd></div>
+          <div><dt>Status</dt><dd>{project.data.maturity ?? project.data.status}</dd></div>
+          <div><dt>Evidence</dt><dd>{project.data.evidence.length ? project.data.evidence.join(' · ') : 'Project details and implementation'}</dd></div>
+          <div><dt>Next step</dt><dd>{project.data.nextStep ?? 'Continue testing and documenting the project.'}</dd></div>
+        </dl>
+      </section>
 
       <div class="cs-body">
         <Content />
@@ -100,6 +113,18 @@ const base = import.meta.env.BASE_URL;
     margin: 14px 0 0;
     max-width: 60ch;
   }
+  .cs-proof {
+    color: var(--ink);
+    max-width: 62ch;
+    margin: 18px 0 0;
+    padding: 12px 16px;
+    border-left: 3px solid var(--accent);
+    background: var(--accent-tint);
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  }
+  .cs-proof strong {
+    color: var(--accent-deep);
+  }
   .cs-tech {
     margin-top: 16px;
   }
@@ -108,6 +133,38 @@ const base = import.meta.env.BASE_URL;
     flex-wrap: wrap;
     gap: 12px;
     margin-top: 24px;
+  }
+  .glance {
+    margin-top: 36px;
+    padding: 24px;
+    background: #fdfbf7;
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius-lg);
+  }
+  .glance h2 {
+    font-size: 1.25rem;
+    margin-bottom: 18px;
+  }
+  .glance-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px 24px;
+    margin: 0;
+  }
+  .glance-grid div {
+    min-width: 0;
+  }
+  .glance-grid dt {
+    color: var(--accent-deep);
+    font-size: 0.74rem;
+    font-weight: 750;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .glance-grid dd {
+    color: var(--ink-soft);
+    font-size: 0.92rem;
+    margin: 4px 0 0;
   }
   .cs-preview {
     margin: 40px 0;
@@ -210,6 +267,33 @@ const base = import.meta.env.BASE_URL;
   }
 
   /* Figure cards for architecture / diagrams */
+  .cs-body :global(.gallery-grid) {
+    display: grid;
+    gap: 20px;
+    margin: 28px 0 36px;
+  }
+  .cs-body :global(.gallery-grid .figure-card) {
+    margin: 0;
+  }
+  .cs-body :global(.media-lead) {
+    margin: 28px 0 20px;
+  }
+  .cs-body :global(.media-lead .figure-card) {
+    margin: 0;
+  }
+  .cs-body :global(.media-lead img) {
+    width: 100%;
+  }
+  .cs-body :global(.media-supporting) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    margin-top: 20px;
+  }
+  .cs-body :global(.media-supporting .figure-card) {
+    margin: 0;
+  }
+  .cs-body :global(.gallery-grid:not(.media-supporting)) {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
   .cs-body :global(.figure-card) {
     margin: 32px 0;
     border-radius: var(--radius-md);
@@ -229,6 +313,10 @@ const base = import.meta.env.BASE_URL;
     color: var(--ink-faint);
     background: #fdfbf7;
     border-top: 1px solid var(--hairline);
+  }
+  .cs-body :global(.architecture-figure) {
+    max-width: 520px;
+    margin-inline: auto;
   }
 
   /* Inlined Feature Cards */
@@ -321,6 +409,13 @@ const base = import.meta.env.BASE_URL;
   }
 
   @media (max-width: 768px) {
+    .cs-body :global(.gallery-grid) {
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+    .glance-grid {
+      grid-template-columns: 1fr;
+    }
     .cs-body :global(.feature-card) {
       grid-template-columns: 1fr;
       gap: 20px;

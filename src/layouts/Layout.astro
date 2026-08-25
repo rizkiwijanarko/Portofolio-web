@@ -29,6 +29,11 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <meta property="og:title" content={title + ' — ' + siteTitle} />
     <meta property="og:description" content={description ?? siteTitle} />
     <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:site_name" content="Kharisma Rizki Wijanarko" />
+    <meta name="twitter:card" content={image ? 'summary_large_image' : 'summary'} />
+    <meta name="twitter:title" content={title + ' — ' + siteTitle} />
+    <meta name="twitter:description" content={description ?? siteTitle} />
     {image && <meta property="og:image" content={new URL(image, Astro.site ?? Astro.url).toString()} />}
     <title>{title} — {siteTitle}</title>
   </head>

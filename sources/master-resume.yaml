@@ -13,15 +13,15 @@ cv:
       url: "https://github.com/rizkiwijanarko"
   sections:
     professional_summary:
-      - text: "Computer Science graduate and certified TensorFlow Developer specializing in applied AI, machine learning systems, and LLM engineering. Proven track record in building and deploying production-ready AI workflows, including RAG pipelines, multi-agent systems, and computer vision models. Passionate about engineering scalable, backend-integrated AI applications that solve complex data problems and drive operational efficiency."
+      - text: "Computer Science graduate and certified TensorFlow Developer specializing in applied AI, machine learning systems, and LLM engineering. Experienced in building and deploying AI workflows, including RAG pipelines, multi-agent systems, and computer vision models. Interested in backend-integrated AI applications that solve complex data problems and improve operational workflows."
         roles: ["ai_engineer"]
-      - text: "Computer Science graduate and certified TensorFlow Developer specializing in machine learning systems, deep learning models, and MLOps. Experienced in training and deploying computer vision and sequence-to-sequence neural networks, as well as optimizing open-source models for high-performance GPU inference. Passionate about engineering production-grade machine learning pipelines and scalable AI systems."
+      - text: "Computer Science graduate and certified TensorFlow Developer specializing in machine learning systems, deep learning models, and MLOps. Experienced in training and deploying computer vision and sequence-to-sequence neural networks, as well as optimizing open-source models for GPU inference. Interested in building machine learning pipelines and AI systems that can be evaluated clearly."
         roles: ["ml_engineer"]
-      - text: "Computer Science graduate and data practitioner specializing in predictive modeling, statistical analysis, and machine learning pipelines. Experienced in exploratory data analysis (EDA), cluster analysis, and data quality validation on complex datasets. Proven track record of leveraging data to uncover trends and build robust models to support data-driven decision-making."
+      - text: "Computer Science graduate and data practitioner specializing in predictive modeling, statistical analysis, and machine learning pipelines. Experienced in exploratory data analysis (EDA), cluster analysis, and data quality validation on complex datasets. Uses data analysis to uncover trends and support data-driven decisions."
         roles: ["data_scientist"]
       - text: "Computer Science graduate and data analyst specializing in business intelligence, data wrangling, and actionable insights. Proficient in SQL query optimization, database design, and interactive dashboard creation. Experienced in executing the complete Data Analysis Life Cycle and transforming complex datasets into clear, data-driven recommendations."
         roles: ["data_analyst"]
-      - text: "Computer Science graduate and backend developer specializing in robust API design, database optimization, and scalable backend workflows. Experienced in building enterprise-grade data reconciliation systems, integrating AI models, and optimizing database queries, reducing processing times by 95%. Passionate about clean code and efficient system design."
+      - text: "Computer Science graduate and backend developer specializing in API design, database optimization, and backend workflows. Experienced in building financial reconciliation systems, integrating AI models, and optimizing database queries, reducing processing times by 95%. Interested in clear, maintainable system design."
         roles: ["backend_engineer"]
 
     skills:
@@ -140,9 +140,9 @@ cv:
         highlights:
           - text: "**Reduced reconciliation processing time by 95%** (from ~45 minutes to ~2 minutes) by optimizing backend data processing logic and database queries."
             roles: ["all"]
-          - text: "Engineered an enterprise financial reconciliation system using SQL and relational databases to automate transaction matching and validation across multiple disparate sources."
+          - text: "Built a financial reconciliation system using SQL and relational databases to automate transaction matching and validation across multiple sources."
             roles: ["all"]
-          - text: "Designed robust backend validation pipelines and data traceability protocols (PostgreSQL), ensuring absolute auditability and consistency for daily finance operations."
+          - text: "Designed backend validation and traceability workflows in PostgreSQL for daily finance operations."
             roles: ["all"]
 
       - company: "Universitas Negeri Semarang"
@@ -165,16 +165,16 @@ cv:
         summary: "Python, FastAPI, PostgreSQL, Vector DB, LLMs"
         roles: ["ai_engineer", "backend_engineer"]
         highlights:
-          - text: "Architected a SaaS-ready AI market intelligence platform that discovers business opportunities by mining and clustering customer pain points from unstructured online discussions."
+          - text: "Built an AI market-intelligence workflow that groups customer pain points from unstructured online discussions into potential opportunity areas."
             roles: ["all"]
-          - text: "Designed an end-to-end LLM pipeline integrating concurrent web scraping, embedding-based clustering, and automated opportunity scoring using FastAPI, PostgreSQL, and vector search."
+          - text: "Designed separate collection, language-model extraction, clustering, and scoring stages using FastAPI, PostgreSQL, and vector search."
             roles: ["all"]
-          - text: "Deployed containerized (Docker) REST APIs with scheduled pipelines (APScheduler), authentication, and a dashboard, reducing data ingestion latency."
+          - text: "Developed containerized APIs, scheduled processing, authentication, and a dashboard for the in-development product."
             roles: ["all"]
 
-      - name: "Ningsih: My Personal AI Secretary"
+      - name: "Ningsih: Personal SaaS"
         start_date: "2026-06"
-        summary: "Python, FastAPI, OpenAI, Supabase, Docker"
+        summary: "Personal SaaS built as a solo developer using Python, FastAPI, OpenAI, Supabase, and Docker"
         roles: ["ai_engineer", "backend_engineer"]
         highlights:
           - text: "Built an autonomous agentic AI assistant integrating Google APIs (Calendar, Tasks) and Telegram with persistent long-term memory to manage scheduling and workflows proactively."
@@ -184,26 +184,26 @@ cv:
           - text: "Engineered the platform for multi-tenant scalability, deploying Docker containers and designing modular APIs to handle concurrent task scheduling."
             roles: ["all"]
 
-      - name: "VentureForge: Autonomous Startup Discovery"
+      - name: "VentureForge: Startup Discovery Workflow"
         date: "May 2026"
-        summary: "LangGraph, vLLM, Qwen3-35B, AMD MI300X, Gradio | [GitHub](https://github.com/rizkiwijanarko/KickUp)"
+        summary: "Open-source hackathon workflow using LangGraph, vLLM, Qwen3-35B, AMD MI300X, and Gradio | [GitHub](https://github.com/rizkiwijanarko/KickUp)"
         roles: ["ai_engineer", "ml_engineer"]
         highlights:
           - text: "Built a multi-agent workflow using LangGraph to analyze and score startup ideas via real-time integrations with Hacker News, Product Hunt, and YouTube APIs."
             roles: ["all"]
           - text: "Designed structured LLM-based evaluation pipelines to assess market relevance and product-market fit based on real-time data ingestion."
             roles: ["all"]
-          - text: "Deployed open-source LLM inference (Qwen 3.5 35B) using vLLM on high-performance AMD MI300X GPUs, achieving low-latency inference for interactive Gradio clients."
+          - text: "Connected an open-source language model served through vLLM on AMD MI300X hardware to the interactive Gradio workflow."
             roles: ["all"]
 
-      - name: "Rizclone: RAG-based Chatbot"
+      - name: "Rizclone: Knowledge-Base Assistant"
         start_date: "2026-05"
         summary: "Gradio, Hugging Face Spaces, Cohere, Telegram API"
         roles: ["ai_engineer"]
         highlights:
           - text: "Built and deployed a RAG-based chatbot application using Gradio and Hugging Face Spaces, supporting custom tool calling and response generation."
             roles: ["all"]
-          - text: "Enhanced retrieval accuracy by 25%+ by implementing query rewriting (LLM-based) and reranking (Cohere/BGE) to filter out noise from the knowledge base."
+          - text: "Implemented query rewriting and reranking to improve the quality of retrieved context before response generation; no formal percentage benchmark is recorded."
             roles: ["all"]
           - text: "Integrated Telegram API webhooks for real-time alerting on unanswered queries, tracking user interactions."
             roles: ["all"]

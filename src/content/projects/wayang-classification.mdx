@@ -1,70 +1,37 @@
 ---
-title: "Ensemble Wayang Kulit Classification"
-summary: "An ensemble CNN classifier combining InceptionV3, EfficientNetB2, and ResNet101V2 to recognize 22 Wayang Kulit characters at 99.80% accuracy."
-proof: "Made a 99.80% accuracy claim trustworthy by fixing dataset leakage."
+title: "Wayang Kulit Classification"
+summary: "A machine-learning research project that recognizes 22 Wayang Kulit characters from images."
+proof: "Reached 99.80% test accuracy after correcting data leakage in the public dataset split."
+problem: "A high classification score is only useful when the evaluation split is clean and the model is tested on genuinely unseen examples."
+deliverable: "An ensemble image classifier and Flask interface for recognizing 22 Wayang Kulit characters."
+nextStep: "Test robustness on more varied images and document the evaluation setup alongside the public implementation."
 status: "shipped"
+context: "Independent research"
+maturity: "Shipped · Repository"
+evidence: ["Public repository", "Evaluation analysis"]
 category: "Machine Learning"
 role: "ML Engineer"
 startDate: "2025-07"
 tech: ["TensorFlow", "InceptionV3", "EfficientNetB2", "ResNet101V2", "Flask"]
-featured: true
+featured: false
 previewAvailable: true
 preview: "/previews/wayang.svg"
 order: 5
 repoUrl: "https://github.com/rizkiwijanarko/Wayang_Kulit_Characters_Classification_using_Ensemble_Learning_Majority_Voting"
 ---
 
-## Overview
+## What I built
 
-An ensemble CNN classifier that recognizes 22 Wayang Kulit (Javanese shadow puppet) characters from images, combining three transfer-learned backbones with majority voting to reach 99.80% test accuracy.
+I trained an ensemble of three transfer-learned image classifiers and combined their predictions with majority voting to recognize 22 Wayang Kulit characters. I also built a Flask interface for serving predictions.
 
-## Problem
+## Evidence and outcome
 
-Wayang Kulit is a rich cultural heritage, but its characters are unfamiliar to most people. A classifier that can identify the characters from a photo needed to be both accurate and robust — and the public dataset for it carried a hidden data-leakage trap.
+The public repository contains the implementation and evaluation work. The reported result is 99.80% test accuracy on the corrected split; it should not be read as a guarantee of performance on every real-world image.
 
-## Solution
+## Technical decisions
 
-An ensemble of three transfer-learned CNNs — InceptionV3, EfficientNetB2, and ResNet101V2 — combined with majority voting. Each backbone sees the same image; the ensemble votes on the character.
+Before treating the score as evidence, I diagnosed that the public dataset had augmented images crossing the original train/test partition. Correcting the split was more important than preserving the higher but misleading score.
 
-A critical part of the work was **diagnosing data leakage** in the public Kaggle dataset: pre-existing augmentation before partitioning meant the train/test split was not clean. Resolving it made the reported accuracy trustworthy.
+## Result and next step
 
-## Architecture
-
-The pipeline sends each image through three parallel transfer-learned backbones. Their class probabilities are combined through majority voting before the predicted character is returned by a Flask web app with interactive confidence visualizations.
-
-## Tech Stack
-
-- **Models**: TensorFlow, InceptionV3, EfficientNetB2, ResNet101V2
-- **Ensemble**: majority voting
-- **Deployment**: Flask web application
-
-## Key Features
-
-- 22-class Wayang Kulit recognition
-- Three-backbone ensemble with majority voting
-- Interactive probability visualization
-- Data-leakage-verified evaluation
-
-## Engineering Decisions
-
-- **Ensemble + majority voting** over a single model — robustness across diverse backbones
-- **Transfer learning** (ImageNet weights) — small dataset, high accuracy without training from scratch
-- **Leakage diagnosis before reporting** — a 99%+ accuracy claim is only worth anything if the split is sound
-
-## Challenges
-
-**Data leakage in the public dataset.** The Kaggle dataset had augmentation applied before partitioning, leaking augmented copies of training images into the test set. Diagnosis and re-partitioning restored evaluation integrity.
-
-## Results
-
-- **Test accuracy: 99.80%** on 22 classes (leakage-free split)
-- Deployed real-time predictions via Flask
-
-## Lessons Learned
-
-Evaluation integrity matters as much as model accuracy. Checking the dataset split for leakage before reporting results made the final performance claim meaningful.
-
-## Roadmap
-
-- **Completed**: ensemble model, leakage fix, Flask deployment
-- **Planned**: edge-case robustness, more characters
+The project demonstrates both an ensemble classifier and an evaluation-integrity check. The next step is testing more varied images and documenting robustness limits.

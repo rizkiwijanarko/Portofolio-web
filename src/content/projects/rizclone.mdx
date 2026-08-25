@@ -1,0 +1,56 @@
+---
+title: "Rizclone: Personal Knowledge-Base Assistant"
+summary: "A deployed assistant that makes a personal knowledge base searchable and transparent."
+proof: "Shows the retrieved context behind an answer instead of hiding the search process."
+problem: "A portfolio assistant needs to answer from source material, make its context inspectable, and capture questions it cannot answer yet."
+deliverable: "A deployed knowledge-base assistant with routing, retrieval, context display, follow-up capture, and unanswered-question logging."
+nextStep: "Add a formal benchmark for retrieval quality, groundedness, latency, and unanswered-question coverage."
+status: "shipped"
+context: "Independent project"
+maturity: "Shipped · Demo"
+evidence: ["Public demo", "Screenshots", "Architecture overview"]
+category: "AI Assistant"
+role: "AI Engineer"
+startDate: "2026-05"
+tech: ["Python", "LiteLLM", "OpenAI Embeddings", "ChromaDB", "Gradio", "Cohere"]
+featured: true
+previewAvailable: true
+preview: "/projects/rizclone/app-preview.png"
+order: 4
+demoUrl: "https://huggingface.co/spaces/Raiquia/Rizclone"
+---
+
+import PublicImage from '../../components/PublicImage.astro';
+
+## What I built
+
+I built an assistant that answers questions about my background and work using a searchable knowledge base. It can also handle direct responses, capture contact details, and log unanswered questions for future improvement.
+
+The interface shows retrieved context beside the answer so a visitor can inspect what informed the response.
+
+## My role
+
+I designed and implemented the retrieval flow, routing behavior, tool calls, persistence, and Gradio interface, then deployed the demo to Hugging Face Spaces.
+
+## Evidence and outcome
+
+The public demo, application screenshot, and architecture diagram are the available evidence. The project is deployed and testable by other people. I have not claimed a percentage improvement because no formal before-and-after retrieval benchmark is recorded.
+
+## How it works
+
+The assistant first routes a request to the relevant path. Knowledge-base questions use a search-before-answer flow: the original and rewritten queries retrieve candidate passages, a reranker selects the strongest context, and the language model produces the response. Contact and unknown-question paths use separate tools.
+
+<div class="figure-card architecture-figure">
+  <PublicImage src="/projects/rizclone/architecture.png" alt="Rizclone routing and retrieval architecture" />
+  <div class="figure-caption">The flow separates routing, retrieval, reranking, response generation, persistence, and notifications.</div>
+</div>
+
+## Technical decisions
+
+- I route direct and contact requests before retrieval so every request does not pay the cost of a knowledge-base search.
+- I use query rewriting and reranking as retrieval quality controls, not as a quantified accuracy claim.
+- I expose retrieved context to make the prototype easier to inspect and debug.
+
+## Result and next step
+
+Rizclone provides a working, transparent public demonstration of a knowledge-base assistant. The next step is measuring retrieval quality and groundedness with a repeatable evaluation set.

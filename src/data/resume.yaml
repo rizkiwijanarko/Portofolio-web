@@ -9,10 +9,10 @@ contact:
   linkedin: https://linkedin.com/in/rizki-wijanarko
 
 summary: >-
-  AI Engineer building production-ready AI systems and AI-native SaaS products.
-  I design and build dependable AI end to end — RAG pipelines, multi-agent
-  workflows, and computer-vision models — and I like making complex systems feel
-  simple to use.
+  AI Engineer helping turn unclear product ideas and workflows into useful
+  AI-powered web and mobile products. I work across LLM applications, backend
+  systems, and machine learning, with a focus on making complex systems simple
+  to use.
 
 skills:
   - label: Languages
@@ -42,9 +42,9 @@ experience:
     endDate: "2025-01"
     location: Jakarta Pusat, Indonesia
     highlights:
-      - Reduced reconciliation processing time by 95% (from ~45 minutes to ~2 minutes) by optimizing backend data processing logic and database queries.
-      - Engineered an enterprise financial reconciliation system using SQL and relational databases to automate transaction matching and validation across multiple disparate sources.
-      - Designed robust backend validation pipelines and data traceability protocols (PostgreSQL), ensuring absolute auditability and consistency for daily finance operations.
+      - Reduced reconciliation processing time by 95% (from ~45 minutes to ~2 minutes) by optimizing backend processing logic and database queries.
+      - Built a financial reconciliation system using SQL and relational databases to automate transaction matching and validation across multiple sources.
+      - Designed backend validation and traceability workflows in PostgreSQL for daily finance operations.
   - company: Universitas Negeri Semarang
     position: Assistant Research Engineer
     startDate: "2022-11"
@@ -72,14 +72,10 @@ education:
       - "Final score: 93.23 / 100"
 
 certifications:
-  - TensorFlow Developer Certificate — TensorFlow (May 2024)
-  - Agentic AI Course Completion — DeepLearning.AI (Apr 2026)
-  - Bangkit Academy Certificate of Completion — Bangkit Academy (Dec 2023)
-  - "TensorFlow: Data and Deployment Specialization — Coursera (Nov 2023)"
-  - DeepLearning.AI TensorFlow Developer Specialization — Coursera (Nov 2023)
-  - Machine Learning Specialization — Coursera (Oct 2023)
-  - Mathematics for Machine Learning and Data Science Specialization — Coursera (Sep 2023)
-  - Structuring Machine Learning Projects — Coursera (Nov 2023)
+  - Professional certification — TensorFlow Developer Certificate — TensorFlow (May 2024)
+  - Program completion — Bangkit Academy — Bangkit Academy (Dec 2023)
+  - Course completion — Agentic AI — DeepLearning.AI (Apr 2026)
+  - "Course completion — TensorFlow: Data and Deployment Specialization — Coursera (Nov 2023)"
 
 achievements:
   - "3rd Place — National Data Mining Competition, UNY National IT Competition (UNITY), 2025"
@@ -88,39 +84,43 @@ projects:
   - name: Ningsih App
     caseStudyId: ningsih-app
     startDate: "2026-07"
-    summary: AI personal chief of staff mobile SaaS — proactive scheduling, habit tracking, 3-tier micro-task decomposition, and voice input via natural conversation.
+    summary: Personal SaaS that turns messy thoughts and voice notes into organized next steps.
     tech: [Expo, React Native, Convex, DeepSeek V4 Flash, OpenRouter, Clerk, RevenueCat]
     category: AI SaaS
     status: building
+    context: Personal SaaS · Solo developer
+    maturity: "Functional build · Preparing for launch"
     featured: true
     highlights:
-      - Built a proactive multi-tenant mobile SaaS chief of staff (Expo/React Native + Convex serverless) that turns natural language and voice into structured daily momentum — managing Google Calendar, habits, goals, and long-term memory via chat.
-      - Engineered a deep agent engine with a 10-tool registry (scheduleEvent, suggestMicroTask, alignGoal, rememberContext, generateWeeklyReview) powered by DeepSeek V4 Flash via OpenRouter with OpenAI fallback.
-      - "Designed ADHD-focused features: 3-tier micro-task generator (2m/3m/5m), distraction-recovery check-ins, 30-day habit consistency scoring, and day-part routines; monetized via RevenueCat Free/Plus tiers with server-authoritative entitlements."
+      - Built a mobile product with Expo, React Native, and Convex that turns natural-language and voice input into calendar actions, goals, habits, and smaller next steps.
+      - Implemented conversational actions, persistent context, and external integrations for the product's scheduling and productivity workflows.
+      - Developing the experience around smaller task suggestions, recovery flows, and a focused mobile interaction model.
   - name: Orla E-Commerce
     caseStudyId: orla
     startDate: "2026-06"
-    summary: Paid client project — an editorial luxury modest fashion e-commerce platform with two-step order-first checkout, Biteship multi-courier logistics, and an isolated admin portal; currently in final testing preparing for VPS deployment.
+    summary: Client storefront for a women's clothing business, with safer ordering and local delivery workflows.
     tech: [Next.js, TypeScript, Prisma, PostgreSQL, Tailwind CSS, Biteship API, Leaflet]
     category: E-Commerce
     status: building
+    context: Paid client project
+    maturity: "Functional staging build · Awaiting client deployment"
     featured: true
     highlights:
-      - Engineered a paid client e-commerce platform (Next.js 15 + TypeScript + Prisma) with an editorial storefront, two-step order-first checkout with atomic inventory reservation, and QRIS/BCA payment proof verification.
-      - Integrated Biteship logistics aggregator for live multi-courier rates (JNE, SiCepat, J&T, instant), automated pickup booking, AWB generation, and signature-verified delivery webhooks.
-      - Built passwordless 6-digit OTP customer auth and an isolated bcrypt-authenticated admin portal; 89 Vitest tests passing across API contracts, stock reservation, and RBAC middleware; currently preparing for VPS production rollout.
+      - Built a client storefront for a women's clothing business with a two-step checkout, inventory reservation, and QRIS/BCA payment-proof workflow.
+      - Integrated Biteship for local courier rates, pickup booking, shipment labels, and delivery updates.
+      - Built customer account and admin workflows; the website is in final testing before VPS deployment.
   - name: SignalAtlas
     caseStudyId: signalatlas
     startDate: "2026-06"
-    summary: AI market intelligence platform that discovers business opportunities by mining and clustering customer pain points from unstructured online discussions.
+    summary: AI market intelligence platform in development that groups customer pain points into potential opportunity areas.
     tech: [Python, FastAPI, PostgreSQL, Vector DB, LLMs]
     category: AI SaaS
     status: building
-    featured: true
+    featured: false
     highlights:
-      - Architected a SaaS-ready AI market intelligence platform that discovers business opportunities by mining and clustering customer pain points from unstructured online discussions.
-      - Designed an end-to-end LLM pipeline integrating concurrent web scraping, embedding-based clustering, and automated opportunity scoring using FastAPI, PostgreSQL, and vector search.
-      - Deployed containerized (Docker) REST APIs with scheduled pipelines (APScheduler), authentication, and a dashboard, reducing data ingestion latency.
+      - Built an AI market-intelligence workflow that groups customer pain points from unstructured online discussions into potential opportunity areas.
+      - Designed separate collection, language-model extraction, clustering, and scoring stages using FastAPI, PostgreSQL, and vector search.
+      - Developed containerized APIs, scheduled processing, authentication, and a dashboard for the in-development product.
   - name: Ningsih (Telegram Bot)
     startDate: "2026-06"
     summary: First-version prototype of Ningsih — an autonomous agentic AI assistant integrating Google APIs and Telegram with persistent long-term memory; superseded by the Ningsih App (mobile SaaS).
@@ -135,35 +135,41 @@ projects:
   - name: VentureForge
     caseStudyId: ventureforge
     startDate: "2026-05"
-    summary: Built for AMD AI Hackathon (Track 1) — an autonomous hierarchical multi-agent pipeline (LangGraph + Pydantic v2) that mines real user complaints across 5 platforms, scores startup ideas via 8 Paul Graham binary rubrics, and drafts investor-ready pitch briefs with adversarial verification.
+    summary: Open-source hackathon system that turns scattered customer complaints into evidence-backed startup opportunities.
     tech: [LangGraph, Pydantic v2, SQLite, Gradio, vLLM, AMD MI300X, Python]
     category: AI Agent
     status: open-source
+    context: Open-source project
+    maturity: "Open source · Public demo"
     featured: true
     repoUrl: https://github.com/rizkiwijanarko/KickUp
     highlights:
-      - Built an autonomous 6-agent hierarchical pipeline with LangGraph and SQLite checkpointing for the AMD AI Hackathon, featuring a supervisor orchestrator, SLA-budgeted data mining, and strict downstream reflection invalidation cascades.
-      - Engineered a concurrent multi-source evidence subsystem ingesting and clustering live user complaints across Hacker News, Reddit, Product Hunt, YouTube, and Tavily with engagement-weighted ranking.
-      - Designed an 8-point Paul Graham binary rubric scoring engine with pursue-first filtering and an adversarial critic loop that audits URL provenance, contained fire positioning, and strategic differentiation.
-      - Implemented a hybrid Gradio Studio interface rendering 2-column Bento Grid pitch briefs with interactive rubric breakdown matrices, quarantined pitch segregation, and deterministic canonical Markdown export.
+      - Built a multi-stage workflow with LangGraph and SQLite checkpointing for the AMD AI Hackathon, connecting research collection, idea generation, evaluation, and brief writing.
+      - Integrated public-source research inputs and grouped customer complaints with citations attached to the resulting opportunity areas.
+      - Designed explicit evaluation criteria and a review step to make generated startup briefs easier to inspect and revise.
+      - Implemented a Gradio interface for the workflow, evaluation output, and structured pitch brief export.
   - name: Rizclone
+    caseStudyId: rizclone
     startDate: "2026-05"
-    summary: RAG-based chatbot with custom tool calling, deployed on Hugging Face Spaces, with query rewriting and reranking for improved retrieval.
+    summary: Deployed assistant that makes a personal knowledge base searchable and transparent.
     tech: [Gradio, Hugging Face Spaces, Cohere, Telegram API]
     category: AI Agent
     status: shipped
+    context: Independent project
+    maturity: "Shipped · Public demo"
+    evidence: ["Public demo", "Screenshots", "Architecture overview"]
     highlights:
-      - Built and deployed a RAG-based chatbot application using Gradio and Hugging Face Spaces, supporting custom tool calling and response generation.
-      - Enhanced retrieval accuracy by 25%+ by implementing query rewriting (LLM-based) and reranking (Cohere/BGE) to filter out noise from the knowledge base.
-      - Integrated Telegram API webhooks for real-time alerting on unanswered queries, tracking user interactions.
+      - Built and deployed a knowledge-base assistant using Gradio and Hugging Face Spaces, with custom tool calling and response generation.
+      - Implemented query rewriting and reranking to improve the quality of retrieved context before response generation; no formal percentage benchmark is recorded.
+      - Integrated Telegram API webhooks for alerts on unanswered questions and user follow-up.
   - name: Ensemble Wayang Kulit Classification
     caseStudyId: wayang-classification
     startDate: "2025-07"
-    summary: Ensemble CNN classifier (InceptionV3, EfficientNetB2, ResNet101V2) achieving 99.80% test accuracy on 22 classes.
+    summary: Machine-learning project recognizing 22 Wayang Kulit characters, with a 99.80% result after correcting dataset leakage.
     tech: [TensorFlow, InceptionV3, EfficientNetB2, ResNet101V2, Flask]
     category: Machine Learning
     status: shipped
-    featured: true
+    featured: false
     repoUrl: https://github.com/rizkiwijanarko/Wayang_Kulit_Characters_Classification_using_Ensemble_Learning_Majority_Voting
     highlights:
       - Developed an ensemble CNN classifier combining InceptionV3, EfficientNetB2, and ResNet101V2 via transfer learning, achieving 99.80% test accuracy on 22 classes.
@@ -175,6 +181,8 @@ projects:
     tech: [K-Means, HDBSCAN, GMM, Pandas, NumPy]
     category: Machine Learning
     status: research
+    context: Independent research
+    maturity: "Research · Awarded"
     highlights:
       - Led data preprocessing, feature engineering, and clustering model development using multi-source environmental and demographic datasets.
       - Integrated and analyzed regional datasets from Badan Pusat Statistik, IQAir, and WeatherSpark, conducting exploratory data analysis (EDA) to uncover urbanization trends.
@@ -185,6 +193,8 @@ projects:
     tech: [Laravel, OpenAI API, Geocoding, Resend API]
     category: Backend
     status: shipped
+    context: Independent project
+    maturity: "Shipped · Awarded"
     highlights:
       - Developed the backend of a web-based AI public complaint system using Laravel, OpenAI, GeoCoding, and Resend APIs.
       - Designed automated text categorization and routing logic to classify citizen complaints and assign them to relevant government bodies.
