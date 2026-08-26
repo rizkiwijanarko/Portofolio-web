@@ -171,7 +171,7 @@ const formatDate = (value?: string) => {
     padding: 18px;
     border-radius: 0;
     border: none;
-    border-right: 1.5px dashed #d9c3a8;
+    border-right: 1.5px dashed var(--preview-border);
   }
   .case-link .preview-panel .preview-img {
     object-fit: contain;
@@ -247,7 +247,7 @@ const formatDate = (value?: string) => {
   }
   .archive-link:hover {
     text-decoration: none;
-    background: rgba(255, 255, 255, 0.45);
+    background: var(--surface-hover);
   }
   .archive-link > * {
     min-width: 0;
@@ -277,7 +277,7 @@ const formatDate = (value?: string) => {
     }
     .case-link .preview-panel {
       border-right: none;
-      border-bottom: 1.5px dashed #d9c3a8;
+      border-bottom: 1.5px dashed var(--preview-border);
       border-radius: 0;
     }
     .archive-link {

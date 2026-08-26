@@ -41,7 +41,7 @@ The public demo, application screenshot, and architecture diagram are the availa
 The assistant first routes a request to the relevant path. Knowledge-base questions use a search-before-answer flow: the original and rewritten queries retrieve candidate passages, a reranker selects the strongest context, and the language model produces the response. Contact and unknown-question paths use separate tools.
 
 <div class="figure-card architecture-figure">
-  <PublicImage src="/projects/rizclone/architecture.png" alt="Rizclone routing and retrieval architecture" />
+  <PublicImage src="/projects/rizclone/architecture.png" alt="Rizclone routing and retrieval architecture" width={3648} height={5635} />
   <div class="figure-caption">The flow separates routing, retrieval, reranking, response generation, persistence, and notifications.</div>
 </div>
 

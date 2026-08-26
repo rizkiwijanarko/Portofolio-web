@@ -14,6 +14,7 @@ const { title, description, image, active } = Astro.props;
 const siteTitle = 'Kharisma Rizki Wijanarko — AI Engineer';
 const base = import.meta.env.BASE_URL;
 const canonical = new URL(Astro.url.pathname, Astro.site);
+const siteUrl = new URL(base, Astro.site);
 ---
 
 <!doctype html>
@@ -22,7 +23,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <meta charset="utf-8" />
     <link rel="icon" type="image/svg+xml" href={base + 'favicon.svg'} />
     <link rel="icon" href={base + 'favicon.ico'} />
-    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <meta name="generator" content={Astro.generator} />
     <meta name="description" content={description ?? siteTitle} />
     <link rel="canonical" href={canonical} />
@@ -35,6 +36,18 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <meta name="twitter:title" content={title + ' — ' + siteTitle} />
     <meta name="twitter:description" content={description ?? siteTitle} />
     {image && <meta property="og:image" content={new URL(image, Astro.site ?? Astro.url).toString()} />}
+    {image && <meta property="og:image:alt" content={title + ' preview'} />}
+    <script type="application/ld+json" set:html={JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'Person',
+      name: 'Kharisma Rizki Wijanarko',
+      jobTitle: 'AI Engineer',
+      url: siteUrl.toString(),
+      sameAs: [
+        'https://github.com/rizkiwijanarko',
+        'https://linkedin.com/in/rizki-wijanarko',
+      ],
+    })} />
     <title>{title} — {siteTitle}</title>
   </head>
   <body id="top">

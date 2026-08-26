@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://rizkiwijanarko.github.io/Portofolio-web/sitemap.xml

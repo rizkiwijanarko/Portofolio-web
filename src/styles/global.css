@@ -11,13 +11,25 @@
   --hairline: #e9e2d5;
   --ink: #2b2118;
   --ink-soft: #5b4f43;
-  --ink-faint: #8a7563;
+  --ink-faint: #735f4f;
   --accent: #b3543a;
   --accent-deep: #9a4527;
   --accent-tint: #f6e7df;
   --amber-tint: #fdf3dd;
-  --amber-deep: #8a6d1f;
+  --amber-deep: #795b12;
   --chip-bg: #f4eee4;
+  --on-accent: #ffffff;
+  --header-surface: rgba(250, 247, 242, 0.88);
+  --status-shipped-bg: #e4f2e6;
+  --status-shipped-text: #3d7a46;
+  --status-research-bg: #e8edf7;
+  --status-research-text: #3d5a8a;
+  --preview-start: #f3ece1;
+  --preview-end: #ead9c8;
+  --preview-border: #d9c3a8;
+  --surface-soft: #fdf6ee;
+  --surface-soft-border: #f0dcc5;
+  --surface-hover: rgba(255, 255, 255, 0.45);
 
   /* Radii */
   --radius-sm: 10px;
@@ -61,6 +73,7 @@ body {
 img {
   display: block;
   max-width: 100%;
+  height: auto;
 }
 
 a {
@@ -99,7 +112,7 @@ h1, h2, h3, h4 {
   left: -9999px;
   top: 0;
   background: var(--accent);
-  color: #fff;
+  color: var(--on-accent);
   padding: 10px 16px;
   border-radius: 0 0 14px 0;
   z-index: 100;
@@ -108,6 +121,10 @@ h1, h2, h3, h4 {
 
 .skip-link:focus {
   left: 0;
+}
+
+#contact {
+  scroll-margin-top: 84px;
 }
 
 .wrap {
@@ -174,7 +191,7 @@ h1, h2, h3, h4 {
 
 .btn-primary {
   background: var(--accent);
-  color: #fff;
+  color: var(--on-accent);
 }
 
 .btn-primary:hover {
@@ -247,8 +264,8 @@ h1, h2, h3, h4 {
 }
 
 .status-shipped {
-  background: #e4f2e6;
-  color: #3d7a46;
+  background: var(--status-shipped-bg);
+  color: var(--status-shipped-text);
 }
 
 .status-open-source {
@@ -257,8 +274,8 @@ h1, h2, h3, h4 {
 }
 
 .status-research {
-  background: #e8edf7;
-  color: #3d5a8a;
+  background: var(--status-research-bg);
+  color: var(--status-research-text);
 }
 
 /* ---------- Preview placeholder ---------- */
@@ -268,8 +285,8 @@ h1, h2, h3, h4 {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, #f3ece1, #ead9c8);
-  border: 1.5px dashed #d9c3a8;
+  background: linear-gradient(135deg, var(--preview-start), var(--preview-end));
+  border: 1.5px dashed var(--preview-border);
   color: var(--ink-faint);
   font-size: 0.82rem;
   font-weight: 600;
@@ -291,6 +308,9 @@ h1, h2, h3, h4 {
   }
   .section {
     padding: 64px 0 12px;
+  }
+  #contact {
+    scroll-margin-top: 190px;
   }
 }
 
