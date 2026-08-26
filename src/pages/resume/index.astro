@@ -5,6 +5,14 @@ import { getCollection } from 'astro:content';
 const resume = (await getCollection('resume'))[0]?.data;
 const projects = await getCollection('projects');
 const pdf = import.meta.env.BASE_URL + 'Kharisma_Rizki_Wijanarko_CV.pdf';
+const resumeProjectIds = ['ningsih-app', 'signalatlas', 'ventureforge', 'wayang-classification'];
+const formatMonth = (value?: string) => {
+  if (!value || value === 'Present') return value ?? '';
+  const [year, month] = value.split('-');
+  if (!month) return value;
+  return new Intl.DateTimeFormat('en', { month: 'short', year: 'numeric' }).format(new Date(Number(year), Number(month) - 1));
+};
+const formatRange = (start?: string, end?: string) => [formatMonth(start), formatMonth(end)].filter(Boolean).join(' – ');
 ---
 
 <Layout title="Résumé" active="resume" description="Résumé of Kharisma Rizki Wijanarko — AI Engineer.">
@@ -20,36 +28,57 @@ const pdf = import.meta.env.BASE_URL + 'Kharisma_Rizki_Wijanarko_CV.pdf';
   <section class="section">
     <div class="wrap">
       <article class="resume-content">
-        <p class="resume-headline">AI Engineer | End-to-End AI Product Engineering</p>
+        <p class="resume-headline">AI Engineer · Applied AI, Machine Learning Systems, and LLM Engineering</p>
         <p class="resume-summary">{resume?.summary}</p>
+        <div class="resume-contact" aria-label="Contact details">
+          {resume?.contact.email && <a href={'mailto:' + resume.contact.email}>{resume.contact.email}</a>}
+          {resume?.contact.phone && <a href={'tel:' + resume.contact.phone}>{resume.contact.phone}</a>}
+          <span>{resume?.contact.location}</span>
+        </div>
         <section class="resume-section">
-          <h2>Selected experience</h2>
+          <h2>Work experience</h2>
           {resume?.experience.map((e) => (
             <article class="resume-entry">
               <div><h3>{e.company}</h3><p class="resume-role">{e.position} · {e.location}</p></div>
-              <span class="resume-date">{e.startDate} – {e.endDate}</span>
-              <ul>{e.highlights.slice(0, 2).map((h) => <li>{h}</li>)}</ul>
+              <span class="resume-date">{formatRange(e.startDate, e.endDate)}</span>
+              <ul>{e.highlights.map((h) => <li>{h}</li>)}</ul>
             </article>
           ))}
         </section>
         <section class="resume-section">
-          <h2>Selected projects</h2>
-          {['ningsih-app', 'ventureforge', 'orla', 'rizclone'].map((id) => {
+          <h2>Projects</h2>
+          {resumeProjectIds.map((id) => {
             const project = projects.find((p) => p.id === id);
             const resumeProject = resume?.projects.find((p) => p.caseStudyId === id);
             return project && resumeProject ? (
               <article class="resume-entry">
-                <div><h3><a class="resume-project-link" href={import.meta.env.BASE_URL + 'projects/' + project.id + '/'}>{project.data.title.split(':')[0]}</a></h3><p class="resume-role">{project.data.context} · {project.data.maturity}</p></div>
-                <p>{project.data.summary}</p>
+                <div>
+                  <h3><a class="resume-project-link" href={import.meta.env.BASE_URL + 'projects/' + project.id + '/'}>{resumeProject.name}</a></h3>
+                  <p class="resume-role">{resumeProject.tech.join(', ')}</p>
+                  {resumeProject.repoUrl && <a class="resume-inline-link" href={resumeProject.repoUrl} target="_blank" rel="noopener" aria-label={`${resumeProject.name} source code (opens in a new tab)`}>GitHub</a>}
+                </div>
+                <span class="resume-date">{formatRange(resumeProject.startDate, resumeProject.endDate)}</span>
+                <ul>{resumeProject.highlights.map((highlight) => <li>{highlight}</li>)}</ul>
               </article>
             ) : null;
           })}
         </section>
         <section class="resume-section resume-columns">
           <div><h2>Skills</h2>{resume?.skills.map((s) => <p><strong>{s.label}:</strong> {s.details.join(', ')}</p>)}</div>
-          <div><h2>Education</h2>{resume?.education.map((e) => <p><strong>{e.institution}</strong><br />{e.degree} · {e.startDate} – {e.endDate}</p>)}</div>
+          <div>
+            <h2>Education</h2>
+            {resume?.education.map((e) => (
+              <div class="education-entry">
+                <p><strong>{e.institution}</strong></p>
+                <p>{e.degree} · {e.location}</p>
+                <p class="resume-date">{formatRange(e.startDate, e.endDate)}</p>
+                {e.highlights.map((highlight) => <p>{highlight}</p>)}
+              </div>
+            ))}
+          </div>
         </section>
-        <section class="resume-section"><h2>Relevant certifications</h2><ul>{resume?.certifications.slice(0, 3).map((c) => <li>{c}</li>)}</ul></section>
+        <section class="resume-section"><h2>Certifications</h2><ul>{resume?.certifications.map((c) => <li>{c}</li>)}</ul></section>
+        <section class="resume-section"><h2>Achievements</h2><ul>{resume?.achievements.map((a) => <li>{a}</li>)}</ul></section>
       </article>
 
       <div class="resume-links">
@@ -101,6 +130,17 @@ const pdf = import.meta.env.BASE_URL + 'Kharisma_Rizki_Wijanarko_CV.pdf';
     max-width: 70ch;
     margin-top: 8px;
   }
+  .resume-contact {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 14px;
+    margin-top: 18px;
+    color: var(--ink-soft);
+    font-size: 0.9rem;
+  }
+  .resume-contact a {
+    color: var(--accent-deep);
+  }
   .resume-section {
     border-top: 1px solid var(--hairline);
     margin-top: 28px;
@@ -127,6 +167,14 @@ const pdf = import.meta.env.BASE_URL + 'Kharisma_Rizki_Wijanarko_CV.pdf';
     min-height: 44px;
     display: inline-flex;
     align-items: center;
+  }
+  .resume-inline-link {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    color: var(--accent-deep);
+    font-size: 0.82rem;
+    font-weight: 650;
   }
   .resume-entry p,
   .resume-entry li {
@@ -160,6 +208,9 @@ const pdf = import.meta.env.BASE_URL + 'Kharisma_Rizki_Wijanarko_CV.pdf';
     font-size: 0.9rem;
     margin-top: 8px;
   }
+  .education-entry + .education-entry {
+    margin-top: 18px;
+  }
   .resume-links {
     margin-top: 48px;
     text-align: center;
@@ -180,7 +231,7 @@ const pdf = import.meta.env.BASE_URL + 'Kharisma_Rizki_Wijanarko_CV.pdf';
       grid-template-columns: 1fr;
     }
     .resume-date {
-      grid-row: 1;
+      grid-row: auto;
     }
     .resume-entry ul,
     .resume-entry > p {
